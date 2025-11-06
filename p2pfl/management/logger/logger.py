@@ -121,7 +121,12 @@ class P2PFLogger:
         self._logger.setLevel(logging.getLevelName(Settings.general.LOG_LEVEL))
 
         # STDOUT - Handler
-        stream_handler = logging.StreamHandler()
+        import sys
+        stream_handler = logging.StreamHandler(sys.stdout)
+        # Ensure UTF-8 encoding for emoji support
+        if sys.platform == 'win32':
+            import codecs
+            sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer)
         cmd_formatter = ColoredFormatter(
             f"{GRAY}[ {YELLOW}%(asctime)s {GRAY}| {CYAN}%(node)s {GRAY}| %(levelname)s{GRAY} ]{RESET} %(message)s",
             datefmt="%Y-%m-%d %H:%M:%S",
