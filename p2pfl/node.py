@@ -107,6 +107,9 @@ class Node:
         self.aggregator = FedAvg() if aggregator is None else aggregator
         self.aggregator.set_addr(self.addr)
 
+        # Add info into model
+        model.add_info("address", {"self":self.addr})
+
         # Learner
         if learner is None:  # if no learner, use factory default
             learner = LearnerFactory.create_learner(model)()
