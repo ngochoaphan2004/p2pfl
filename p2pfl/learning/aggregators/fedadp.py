@@ -1,6 +1,7 @@
 import numpy as np
 from functools import reduce
 import math
+from collections import defaultdict
 from typing import Any
 from p2pfl.learning.aggregators.aggregator import Aggregator, NoModelsToAggregateError
 from p2pfl.learning.frameworks.p2pfl_model import P2PFLModel
@@ -9,13 +10,14 @@ from p2pfl.learning.frameworks.p2pfl_model import P2PFLModel
 class FedAdp(Aggregator):
 
     SUPPORTS_PARTIAL_AGGREGATION: bool = True
+    REQUIRED_INFO_KEYS = ["global_model"]
 
     def __init__(self, disable_partial_aggregation: bool = False) -> None:
         """Initialize the aggregator."""
         super().__init__(disable_partial_aggregation=disable_partial_aggregation)
         self.timer = 1
         self.global_model_params: list[np.ndarray] = []
-        self.node_correlation : dict[str, float] = {}
+        self.node_correlation  = defaultdict(lambda : 0.0)
 
     def aggregate(self, models: list[P2PFLModel]) -> P2PFLModel:
         """
@@ -39,6 +41,7 @@ class FedAdp(Aggregator):
         # Set init global model
         if not self.global_model_params:
             self.global_model_params = self._init_global_model(models)
+            print("Init global parameter")
 
         # Total Samples
         total_samples = sum([m.get_num_samples() for m in models])
@@ -51,7 +54,7 @@ class FedAdp(Aggregator):
         g_vec = np.concatenate([p.ravel() for p in self.global_model_params])
         g_norm = np.linalg.norm(g_vec)
         t = self.timer
-        for m in models:
+        for index, m in enumerate(models):
             l_vec = np.concatenate([p.ravel() for p in m.get_parameters()])
             l_norm = np.linalg.norm(l_vec)
 
@@ -62,10 +65,9 @@ class FedAdp(Aggregator):
                 cos_sim = np.clip(cos_sim, -1.0, 1.0)
             angle = float(np.arccos(cos_sim))
 
-            address = m.get_info("address")["self"]
-            pre_arccos_i = self.node_correlation.get(address)
-            arccos_i = angle if (self.timer == 1 or pre_arccos_i is None) else (((t-1)/t)*pre_arccos_i + (1/t)*angle)
-            self.node_correlation[address] = arccos_i
+            pre_arccos_i = self.node_correlation[index]
+            arccos_i = angle if (self.timer == 1 or pre_arccos_i == 0.0) else (((t-1)/t)*pre_arccos_i + (1/t)*angle)
+            self.node_correlation[index] = arccos_i
 
             gompertz_value = self._gompertz_function(arccos_i)
             strategy_weights.append(m.get_num_samples() * gompertz_value)
@@ -115,3 +117,16 @@ class FedAdp(Aggregator):
     
     def _gompertz_function(self, angle: float):
         return 5*(1-math.exp(-(math.exp(-5*(angle - 1)))))
+    
+    def _get_and_validate_model_info(self, model: P2PFLModel) -> dict[str, Any]:
+        """
+        Validate the model.
+
+        Args:
+            model: The model to validate.
+
+        """
+        info = model.get_info("scaffold")
+        if not all(key in info for key in self.REQUIRED_INFO_KEYS):
+            raise ValueError(f"Model is missing required info keys: {self.REQUIRED_INFO_KEYS}Model info keys: {info.keys()}")
+        return info
