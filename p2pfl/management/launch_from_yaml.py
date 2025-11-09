@@ -120,6 +120,27 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
     dataset = None
     if data_source == "huggingface":
         dataset = P2PFLDataset.from_huggingface(dataset_name)
+    elif data_source == "kaggle":
+        # Download from Kaggle using kagglehub
+        try:
+            import kagglehub
+            dataset_id = dataset_config.get("dataset_id")
+            if not dataset_id:
+                raise ValueError("Missing 'dataset_id' for Kaggle dataset source")
+            
+            # Download dataset
+            kaggle_path = kagglehub.dataset_download(dataset_id)
+            
+            # Build paths for train and test CSV files
+            dataset_name = {
+                "train": f"{kaggle_path}/{dataset_name['train']}",
+                "test": f"{kaggle_path}/{dataset_name['test']}"
+            }
+            
+            # Load CSV files
+            dataset = P2PFLDataset.from_csv(dataset_name)
+        except ImportError:
+            raise ImportError("kagglehub not installed. Install with: pip install kagglehub")
     elif data_source == "csv":
         dataset = P2PFLDataset.from_csv(dataset_name)
     elif data_source == "json":

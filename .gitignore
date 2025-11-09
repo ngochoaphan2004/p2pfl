@@ -19,10 +19,8 @@ profile/
 # MNIST dataset folder (root level only)
 /MNIST/
 
-# Fraud detection dataset - CSV files only
-p2pfl/examples/fraud/*.csv
-p2pfl/examples/fraud/fraudTrain.csv
-p2pfl/examples/fraud/fraudTest.csv
+# Fraud detection dataset
+
 
 # Logs
 *.log

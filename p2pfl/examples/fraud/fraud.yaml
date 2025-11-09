@@ -11,29 +11,28 @@ remote_loggers:
 network:
   package: "p2pfl.communication.protocols.protobuff.memory"
   protocol: "MemoryCommunicationProtocol"
-  nodes: 10
+  nodes: 4
   topology: "ring" # Network topology: "line", "ring", "star", "full"
   additional_connections:
     - [0, 2]
-    - [0, 5]
     - [1, 3]
-    - [2, 7]
 
 # Defines experiment settings
 experiment:
   name: "fraud_detection_experiment"
-  rounds: 10
+  rounds: 2
   epochs: 1
-  trainset_size: 500
+  trainset_size: 10
   seed: 666
   wait_timeout: 60
 
-  # Dataset settings - using local CSV files
+  # Dataset settings - downloading from Kaggle
   dataset:
-    source: "csv"
+    source: "kaggle"
+    dataset_id: "kartik2112/fraud-detection"
     name:
-      train: "p2pfl/examples/fraud/fraudTrain.csv"
-      test: "p2pfl/examples/fraud/fraudTest.csv"
+      train: "fraudTrain.csv"
+      test: "fraudTest.csv"
     batch_size: 32
     transforms:
       package: "p2pfl.examples.fraud.transforms"
