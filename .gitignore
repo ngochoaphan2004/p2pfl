@@ -22,6 +22,9 @@ profile/
 # Fraud detection dataset
 dataset/
 /dataset/
+p2pfl/examples/fraud/*.csv
+p2pfl/examples/fraud/fraudTrain.csv
+p2pfl/examples/fraud/fraudTest.csv
 
 # Logs
 *.log
