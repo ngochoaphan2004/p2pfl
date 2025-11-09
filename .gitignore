@@ -19,6 +19,10 @@ profile/
 # MNIST dataset folder (root level only)
 /MNIST/
 
+# Fraud detection dataset
+dataset/
+/dataset/
+
 # Logs
 *.log
 lightning_logs/
