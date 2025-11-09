@@ -37,25 +37,29 @@ class FedAdp(Aggregator):
         if len(models) == 0:
             raise NoModelsToAggregateError(f"({self.addr}) Trying to aggregate models when there is no models")
         
+        # Total Samples
+        total_samples = sum([m.get_num_samples() for m in models])
+        # Get contributors
+        contributors: list[str] = []
+        for m in models:
+            contributors = contributors + m.get_contributors()
+
         # TEMPORARY
         # Set init global model
         if not self.global_model_params:
             self.global_model_params = self._init_global_model(models)
             print("Init global parameter")
 
-        # Total Samples
-        total_samples = sum([m.get_num_samples() for m in models])
-
-        # Create a Zero Model using numpy
-        accum = [np.copy(p) for p in self.global_model_params]
-
+        #Get global model gradients
+        temm_init_model = models[0].build_copy(params=self.global_model_params, num_samples=total_samples, contributors=contributors)
+        global_model_gradients = temm_init_model.get_model().get_gradient()
         # Get weighted models
         strategy_weights = []
-        g_vec = np.concatenate([p.ravel() for p in self.global_model_params])
+        g_vec = np.concatenate([p.ravel() for p in self.global_model_params]) # change to gradient
         g_norm = np.linalg.norm(g_vec)
         t = self.timer
         for index, m in enumerate(models):
-            l_vec = np.concatenate([p.ravel() for p in m.get_parameters()])
+            l_vec = np.concatenate([p.ravel() for p in m.get_model().get_gradient()])
             l_norm = np.linalg.norm(l_vec)
 
             if g_norm == 0 or l_norm == 0:
@@ -70,7 +74,7 @@ class FedAdp(Aggregator):
             self.node_correlation[index] = arccos_i
 
             gompertz_value = self._gompertz_function(arccos_i)
-            strategy_weights.append(m.get_num_samples() * gompertz_value)
+            strategy_weights.append(m.get_num_samples() * math.exp(gompertz_value))
             
         
         # Normalize weights
@@ -78,23 +82,19 @@ class FedAdp(Aggregator):
         strategy_weights = [w/total_strategy_weights for w in strategy_weights]
 
         # Normalize accum
+        accum = [np.zeros_like(p) for p in self.global_model_params]
         for index, m in enumerate(models):
             for i, layer in enumerate(m.get_parameters()):
-                accum[i] = np.add(accum[i], np.subtract(layer,self.global_model_params[i]) * strategy_weights[index])
-
-        # Get contributors
-        contributors: list[str] = []
-        for m in models:
-            contributors = contributors + m.get_contributors()
+                accum[i] += (layer - self.global_model_params[i]) * strategy_weights[index]
 
         # Increase timer value
         self.timer += 1
 
         # Change global parameter with newest
-        self.global_model_params = accum
+        self.global_model_params = [g + a for g, a in zip(self.global_model_params, accum)]
 
         # Return an aggregated p2pfl model
-        return models[0].build_copy(params=accum, num_samples=total_samples, contributors=contributors)
+        return models[0].build_copy(params=self.global_model_params, num_samples=total_samples, contributors=contributors)
 
 
     def _init_global_model(self, models: list[P2PFLModel]):
