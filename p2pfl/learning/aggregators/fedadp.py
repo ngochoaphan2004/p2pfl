@@ -44,22 +44,34 @@ class FedAdp(Aggregator):
         for m in models:
             contributors = contributors + m.get_contributors()
 
-        # TEMPORARY
         # Set init global model
         if not self.global_model_params:
-            self.global_model_params = self._init_global_model(models)
+            # at initial model at index 0 is its self model
+            self.global_model_params = [p.copy() for p in models[0].get_parameters()]
             print("Init global parameter")
+            return models[0].build_copy(params=self.global_model_params, num_samples=total_samples, contributors=contributors)
 
-        #Get global model gradients
-        temm_init_model = models[0].build_copy(params=self.global_model_params, num_samples=total_samples, contributors=contributors)
-        global_model_gradients = temm_init_model.get_model().get_gradient()
+        # Loss function = Gradient of its
+        list_lossvalues: list[list[np.ndarray]]  = []
+        total_lossvalue = [np.zeros_like(i) for i in self.global_model_params]
+        for m in models:
+            pi = m.get_parameters()
+            
+            # Check
+            assert len(pi) == len(self.global_model_params), "Layer count mismatch"
+
+            li =  [-(pi - pg) for pi, pg in zip(pi, self.global_model_params)]
+            list_lossvalues.append(li)
+            total_lossvalue = [m.get_num_samples() / float(total_samples) * l + t for l, t in  zip(li, total_lossvalue)]
+
+
         # Get weighted models
         strategy_weights = []
-        g_vec = np.concatenate([p.ravel() for p in self.global_model_params]) # change to gradient
+        g_vec = np.concatenate([p.ravel() for p in total_lossvalue]) 
         g_norm = np.linalg.norm(g_vec)
         t = self.timer
         for index, m in enumerate(models):
-            l_vec = np.concatenate([p.ravel() for p in m.get_model().get_gradient()])
+            l_vec = np.concatenate([p.ravel() for p in list_lossvalues[index]])
             l_norm = np.linalg.norm(l_vec)
 
             if g_norm == 0 or l_norm == 0:
@@ -97,23 +109,6 @@ class FedAdp(Aggregator):
         return models[0].build_copy(params=self.global_model_params, num_samples=total_samples, contributors=contributors)
 
 
-    def _init_global_model(self, models: list[P2PFLModel]):
-        # Total Samples
-        total_samples = sum([m.get_num_samples() for m in models])
-
-        # Create a Zero Model using numpy
-        first_model_weights = models[0].get_parameters()
-        accum = [np.zeros_like(layer) for layer in first_model_weights]
-
-        # Add weighted models
-        for m in models:
-            for i, layer in enumerate(m.get_parameters()):
-                accum[i] = np.add(accum[i], layer * m.get_num_samples())
-
-        # Normalize Accum
-        accum = [np.divide(layer, total_samples) for layer in accum]
-
-        return accum
     
     def _gompertz_function(self, angle: float):
         return 5*(1-math.exp(-(math.exp(-5*(angle - 1)))))
@@ -126,7 +121,13 @@ class FedAdp(Aggregator):
             model: The model to validate.
 
         """
-        info = model.get_info("scaffold")
+        info = model.get_info("fedadp")
         if not all(key in info for key in self.REQUIRED_INFO_KEYS):
             raise ValueError(f"Model is missing required info keys: {self.REQUIRED_INFO_KEYS}Model info keys: {info.keys()}")
         return info
+    
+
+    def get_required_callbacks(self) -> list[str]:
+        """Retrieve the list of required callback keys for this aggregator."""
+        return ["fedadp"]
+    
