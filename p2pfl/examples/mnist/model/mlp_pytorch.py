@@ -20,7 +20,7 @@
 
 import lightning as L
 import torch
-from torchmetrics import Accuracy, Metric
+from torchmetrics import Accuracy, Precision, Recall, F1Score
 
 from p2pfl.learning.frameworks.pytorch.lightning_model import LightningModel
 from p2pfl.settings import Settings
@@ -40,7 +40,6 @@ class MLP(L.LightningModule):
         hidden_sizes: list[int] | None = None,
         out_channels: int = 10,
         activation: str = "relu",
-        metric: type[Metric] = Accuracy,
         lr_rate: float = 0.001,
     ) -> None:
         """Initialize the MLP."""
@@ -50,9 +49,16 @@ class MLP(L.LightningModule):
             hidden_sizes = [256, 128]
         self.lr_rate = lr_rate
         if out_channels == 1:
-            self.metric = metric(task="binary")
+            self.accuracy = Accuracy(task="binary")
+            self.precision = Precision(task="binary")
+            self.recall = Recall(task="binary")
+            self.f1 = F1Score(task="binary")
         else:
-            self.metric = metric(task="multiclass", num_classes=out_channels)
+            self.accuracy = Accuracy(task="multiclass", num_classes=out_channels)
+            self.precision = Precision(task="multiclass", num_classes=out_channels, average="macro")
+            self.recall = Recall(task="multiclass", num_classes=out_channels, average="macro")
+            self.f1 = F1Score(task="multiclass", num_classes=out_channels, average="macro")
+
 
         self.layers = torch.nn.ModuleList()
 
@@ -113,9 +119,17 @@ class MLP(L.LightningModule):
         logits = self(x)
         loss = torch.nn.functional.cross_entropy(self(x), y)
         out = torch.argmax(logits, dim=1)
-        metric = self.metric(out, y)
-        self.log("test_loss", loss, prog_bar=True)
-        self.log("test_metric", metric, prog_bar=True)
+        
+        acc = self.accuracy(out, y)
+        prec = self.precision(out, y)
+        rec = self.recall(out, y)
+        f1 = self.f1(out, y)
+
+        self.log("\ntest_loss", loss, prog_bar=True)
+        self.log("test_acc\n", acc, prog_bar=True)
+        self.log("test_precision\n", prec, prog_bar=True)
+        self.log("test_recall\n", rec, prog_bar=True)
+        self.log("test_f1\n", f1, prog_bar=True)
         return loss
 
 
