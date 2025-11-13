@@ -20,11 +20,11 @@ network:
 # Defines experiment settings
 experiment:
   name: "my_experiment"
-  rounds: 10
+  rounds: 2
   epochs: 1
   trainset_size: 4
   seed: 666
-  wait_timeout: 60  # Timeout in minutes for wait_to_finish (default: 60 minutes)
+  wait_timeout: 60 # Timeout in minutes for wait_to_finish (default: 60 minutes)
 
   # Dataset settings
   dataset:
@@ -37,8 +37,8 @@ experiment:
     #  function: "XX"
     partitioning:
       package: "p2pfl.learning.dataset.partition_strategies"
-      strategy: "RandomIIDPartitionStrategy" 
-      reduced_dataset: false  # For testing purposes
+      strategy: "RandomIIDPartitionStrategy"
+      reduced_dataset: false # For testing purposes
       reduction_factor: 10
 
       params: {} # No parameters needed for random partitioning
@@ -47,7 +47,7 @@ experiment:
   model:
     package: "p2pfl.examples.mnist.model.mlp_pytorch" # mlp_pytorch | mlp_tensorflow
     model_build_fn: "model_build_fn"
-    params: {}  
+    params: {}
     # Learning algorithm parameters (algorithm-specific)
     #compression:
     #ptq:
@@ -56,7 +56,6 @@ experiment:
     #  k: 0.1
     #zlib:
     #  level: 6
-
 
   # Aggregation algorithm configuration
   aggregator:

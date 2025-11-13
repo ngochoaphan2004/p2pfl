@@ -19,6 +19,9 @@ profile/
 # MNIST dataset folder (root level only)
 /MNIST/
 
+# Fraud detection dataset
+
+
 # Logs
 *.log
 lightning_logs/
@@ -168,3 +171,6 @@ wandb/
 .uv/
 uv.lock.tmp*
 .uv-cache/
+p2pfl/examples/fraud/*.csv
+
+p2pfl/examples/fraud/*.csv

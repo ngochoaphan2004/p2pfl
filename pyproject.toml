@@ -46,6 +46,7 @@ tensorflow = [
 ]
 flax = ["flax>=0.10.0,<0.11"]
 dp = ["opendp>=0.13.0"]
+he = ["phe>=1.5.0"]  # Python Paillier Cryptosystem for homomorphic encryption
 wandb = ["wandb>=0.20.1,<0.21"]
 
 [project.urls]
