@@ -94,7 +94,7 @@ class FedAdp(Aggregator):
         strategy_weights = [w/total_strategy_weights for w in strategy_weights]
 
         # Normalize accum
-        accum = [np.zeros_like(p) for p in self.global_model_params]
+        accum = [np.zeros_like(p, dtype=np.float64) for p in self.global_model_params]
         for index, m in enumerate(models):
             for i, layer in enumerate(m.get_parameters()):
                 accum[i] += (layer - self.global_model_params[i]) * strategy_weights[index]
