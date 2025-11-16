@@ -24,7 +24,7 @@ from p2pfl.learning.frameworks.p2pfl_model import P2PFLModel
 from p2pfl.management.logger import logger
 from p2pfl.settings import Settings
 from p2pfl.utils.node_component import NodeComponent
-
+from collections import defaultdict
 
 class NoModelsToAggregateError(Exception):
     """Exception raised when there are no models to aggregate."""
@@ -43,10 +43,11 @@ class Aggregator(NodeComponent):
 
     SUPPORTS_PARTIAL_AGGREGATION: bool = False  # Default, subclasses should override
 
-    def __init__(self, disable_partial_aggregation: bool = False) -> None:
+    def __init__(self, disable_partial_aggregation: bool = False, learning_rate: float = 0.01) -> None:
         """Initialize the aggregator."""
         self.__train_set: list[str] = []  # TODO: Remove the trainset from the state
-        self.__models: list[P2PFLModel] = []
+        self.__models: list[P2PFLModel] = []        
+    
 
         # Initialize instance's partial_aggregation based on the class's support
         self.partial_aggregation: bool = self.__class__.SUPPORTS_PARTIAL_AGGREGATION
@@ -54,6 +55,11 @@ class Aggregator(NodeComponent):
         # If the class supports it, allow disabling it for this instance
         if self.partial_aggregation and disable_partial_aggregation:
             self.partial_aggregation = False
+
+        # Learning rate
+        self.learning_rate = learning_rate
+        # number of trained rounds in each node
+        self.each_trained_round = defaultdict(int)
 
         # (addr) Super
         NodeComponent.__init__(self)
@@ -289,3 +295,11 @@ class Aggregator(NodeComponent):
             return self.__get_partial_aggregation(except_nodes)
         else:
             return self.__get_remaining_model(except_nodes)
+
+
+    def set_trained_round(self, addr):
+        if addr in self.each_trained_round:
+            self.each_trained_round[addr] += 1
+        else:
+            self.each_trained_round[addr] = 1
+            

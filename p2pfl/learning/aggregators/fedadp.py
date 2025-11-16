@@ -5,6 +5,7 @@ from collections import defaultdict
 from typing import Any
 from p2pfl.learning.aggregators.aggregator import Aggregator, NoModelsToAggregateError
 from p2pfl.learning.frameworks.p2pfl_model import P2PFLModel
+from p2pfl.management.logger import logger
 
 
 class FedAdp(Aggregator):
@@ -15,7 +16,6 @@ class FedAdp(Aggregator):
     def __init__(self, disable_partial_aggregation: bool = False) -> None:
         """Initialize the aggregator."""
         super().__init__(disable_partial_aggregation=disable_partial_aggregation)
-        self.timer = 1
         self.global_model_params: list[np.ndarray] = []
         self.node_correlation  = defaultdict(lambda : 0.0)
 
@@ -48,7 +48,6 @@ class FedAdp(Aggregator):
         if not self.global_model_params:
             # at initial model at index 0 is its self model
             self.global_model_params = [p.copy() for p in models[0].get_parameters()]
-            print("Init global parameter")
             return models[0].build_copy(params=self.global_model_params, num_samples=total_samples, contributors=contributors)
 
         # Loss function = Gradient of its
@@ -60,7 +59,7 @@ class FedAdp(Aggregator):
             # Check
             assert len(pi) == len(self.global_model_params), "Layer count mismatch"
 
-            li =  [-(pi - pg) for pi, pg in zip(pi, self.global_model_params)]
+            li =  [-(pi - pg) / self.learning_rate for pi, pg in zip(pi, self.global_model_params)]
             list_lossvalues.append(li)
             total_lossvalue = [m.get_num_samples() / float(total_samples) * l + t for l, t in  zip(li, total_lossvalue)]
 
@@ -69,7 +68,7 @@ class FedAdp(Aggregator):
         strategy_weights = []
         g_vec = np.concatenate([p.ravel() for p in total_lossvalue]) 
         g_norm = np.linalg.norm(g_vec)
-        t = self.timer
+        t = self.each_trained_round[self.addr]
         for index, m in enumerate(models):
             l_vec = np.concatenate([p.ravel() for p in list_lossvalues[index]])
             l_norm = np.linalg.norm(l_vec)
@@ -82,7 +81,7 @@ class FedAdp(Aggregator):
             angle = float(np.arccos(cos_sim))
 
             pre_arccos_i = self.node_correlation[index]
-            arccos_i = angle if (self.timer == 1 or pre_arccos_i == 0.0) else (((t-1)/t)*pre_arccos_i + (1/t)*angle)
+            arccos_i = angle if (t <= 1 or pre_arccos_i == 0.0) else (((t-1)/t)*pre_arccos_i + (1/t)*angle)
             self.node_correlation[index] = arccos_i
 
             gompertz_value = self._gompertz_function(arccos_i)
@@ -99,8 +98,7 @@ class FedAdp(Aggregator):
             for i, layer in enumerate(m.get_parameters()):
                 accum[i] += (layer - self.global_model_params[i]) * strategy_weights[index]
 
-        # Increase timer value
-        self.timer += 1
+        logger.info(self.addr, "Trained round value is " + str(t))
 
         # Change global parameter with newest
         self.global_model_params = [g + a for g, a in zip(self.global_model_params, accum)]

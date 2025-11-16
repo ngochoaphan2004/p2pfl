@@ -89,6 +89,7 @@ class TrainStage(Stage):
             check_early_stop(state)
 
             # Set aggregated model
+            aggregator.set_trained_round(state.addr)
             agg_model = aggregator.wait_and_get_aggregation()
             learner.set_model(agg_model)
 
