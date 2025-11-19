@@ -87,7 +87,8 @@ class MLP(L.LightningModule):
         for layer in self.layers:
             x = layer(x)
 
-        x = torch.log_softmax(x, dim=1)
+        # Return raw logits. Leave softmax/log_softmax to the loss function
+        # (e.g., CrossEntropyLoss expects raw logits).
         return x
 
     def configure_optimizers(self) -> torch.optim.Optimizer:
@@ -96,7 +97,10 @@ class MLP(L.LightningModule):
 
     def training_step(self, batch: dict[str, torch.Tensor], batch_id: int) -> torch.Tensor:
         """Training step of the MLP."""
+        # Ensure images are floats in [0,1]
         x = batch["image"].float()
+        if x.max() > 1.0:
+            x = x / 255.0
         y = batch["label"]
         loss = torch.nn.functional.cross_entropy(self(x), y)
         self.log("train_loss", loss, prog_bar=True)
@@ -108,10 +112,13 @@ class MLP(L.LightningModule):
 
     def test_step(self, batch: dict[str, torch.Tensor], batch_id: int) -> torch.Tensor:
         """Test step for the MLP."""
+        # Ensure images are floats in [0,1]
         x = batch["image"].float()
+        if x.max() > 1.0:
+            x = x / 255.0
         y = batch["label"]
         logits = self(x)
-        loss = torch.nn.functional.cross_entropy(self(x), y)
+        loss = torch.nn.functional.cross_entropy(logits, y)
         out = torch.argmax(logits, dim=1)
         metric = self.metric(out, y)
         self.log("test_loss", loss, prog_bar=True)
