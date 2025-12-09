@@ -11,7 +11,7 @@ remote_loggers:
 network:
   package: "p2pfl.communication.protocols.protobuff.memory"
   protocol: "MemoryCommunicationProtocol"
-  nodes: 8
+  nodes: 5
   topology: "star"   # Network topology: "line", "ring", "star", "full", null for custom
   additional_connections:
   #  - [0, 2]              # Connect node 0 to Node 2 (indices)
@@ -20,7 +20,7 @@ network:
 # Defines experiment settings
 experiment:
   name: "cifar10_experiment"
-  rounds: 130
+  rounds: 5
   epochs: 1
   trainset_size: 4
   seed: 666

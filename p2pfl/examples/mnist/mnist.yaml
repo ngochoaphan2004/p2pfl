@@ -11,7 +11,7 @@ remote_loggers:
 network:
   package: "p2pfl.communication.protocols.protobuff.memory"
   protocol: "MemoryCommunicationProtocol"
-  nodes: 8
+  nodes: 10
   topology: "full"   # Network topology: "line", "ring", "star", "full", null for custom
   additional_connections:
     # - [0, 2]              # Connect node 0 to Node 2 (indices)
@@ -20,7 +20,7 @@ network:
 # Defines experiment settings
 experiment:
   name: "my_experiment"
-  rounds: 10
+  rounds: 50
   epochs: 1
   trainset_size: 4
   seed: 666
@@ -60,8 +60,8 @@ experiment:
 
   # Aggregation algorithm configuration
   aggregator:
-    package: "p2pfl.learning.aggregators.fedadp"
-    aggregator: "FedAdp"
+    package: "p2pfl.learning.aggregators.fedavg"
+    aggregator: "FedAvg"
     params: {}  # Aggregator parameters (algorithm-specific)
 
 # General experiment settings
