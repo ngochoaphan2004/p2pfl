@@ -7,7 +7,7 @@ from p2pfl.learning.frameworks.p2pfl_model import P2PFLModel
 from p2pfl.management.logger import logger
 
 class DFedAdp(Aggregator):
-    SUPPORTS_PARTIAL_AGGREGATION: bool = True
+    SUPPORTS_PARTIAL_AGGREGATION: bool = False
     REQUIRED_INFO_KEYS = ["delta", "degrees"] 
     ALPHA = 5.0 
 
@@ -50,7 +50,6 @@ class DFedAdp(Aggregator):
             )
             # Then set the gradients_estimate attribute directly
             result_model.gradients_estimate = self.prev_local_gradient
-            result_model.add_info("dfedadp", {})
             return result_model
 
         # 3. Calculate Metropolis-Hastings Weights (Topology-based)
@@ -162,7 +161,6 @@ class DFedAdp(Aggregator):
         )
         # Then set the gradients_estimate attribute directly
         result_model.gradients_estimate = tracking_gradient
-        result_model.add_info("dfedadp", {})
         return result_model
 
     def _gompertz_function(self, angle: float):

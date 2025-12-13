@@ -10,7 +10,7 @@ from p2pfl.management.logger import logger
 
 class FedAdp(Aggregator):
 
-    SUPPORTS_PARTIAL_AGGREGATION: bool = True
+    SUPPORTS_PARTIAL_AGGREGATION: bool = False
     REQUIRED_INFO_KEYS = ["global_model"]
 
     def __init__(self, disable_partial_aggregation: bool = False) -> None:
