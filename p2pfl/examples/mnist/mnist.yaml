@@ -20,11 +20,11 @@ network:
 # Defines experiment settings
 experiment:
   name: "my_experiment"
-  rounds: 4
-  epochs: 1
+  rounds: 50
+  epochs: 3
   trainset_size: 10
   seed: 666
-  wait_timeout: 60 # Timeout in minutes for wait_to_finish (default: 60 minutes)
+  wait_timeout: 180 # Timeout in minutes for wait_to_finish (default: 60 minutes)
 
   # Dataset settings
   dataset:
@@ -53,7 +53,7 @@ experiment:
       dp:
         clip_norm: 1.0 # L2 clipping norm (C)
         epsilon: 10.0 # Privacy budget (epsilon)
-        delta: 1e-5 # Privacy parameter delta (used for gaussian noise)
+        delta: 0.00001 # Privacy parameter delta (used for gaussian noise)
         noise_type: "gaussian" # "gaussian" or "laplace"
     # Learning algorithm parameters (algorithm-specific)
     #compression:
@@ -66,9 +66,10 @@ experiment:
 
   # Aggregation algorithm configuration
   aggregator:
-    package: "p2pfl.learning.aggregators.fedavg"
-    aggregator: "FedAvg"
-    params: {} # Aggregator parameters (algorithm-specific)
+    package: "p2pfl.learning.aggregators.fedadp"
+    aggregator: "FedAdp"
+    params: 
+      theta: 1.0
 
 # General experiment settings
 settings:

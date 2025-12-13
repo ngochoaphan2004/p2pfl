@@ -166,16 +166,6 @@ class DifferentialPrivacyCompressor(TensorCompressor):
         if not params:
             raise ValueError("DifferentialPrivacyCompressor: list 'params' must not be empty")
 
-        # Coerce/validate numeric DP params to floats in case they come as strings
-        try:
-            clip_norm = float(clip_norm)
-            epsilon = float(epsilon)
-            # delta can be None for laplace, but if provided coerce to float
-            delta = None if delta is None else float(delta)
-            stability_constant = float(stability_constant)
-        except Exception as e:
-            raise ValueError(f"Invalid DP parameter type: {e}") from e
-
         # Step 1: Compute global L2 norm across all parameters
         flat_update = np.concatenate([p.flatten() for p in params])
         total_norm = np.linalg.norm(flat_update)
