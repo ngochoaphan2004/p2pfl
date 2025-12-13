@@ -108,7 +108,8 @@ class Node:
         self.aggregator.set_addr(self.addr)
 
         # Add info into model
-
+        degree = int(len(self.get_neighbors(only_direct=True)))
+        model.set_degrees(degree)
         # Learner
         if learner is None:  # if no learner, use factory default
             learner = LearnerFactory.create_learner(model)()

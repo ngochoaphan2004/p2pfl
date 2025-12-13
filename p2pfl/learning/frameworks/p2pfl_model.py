@@ -50,6 +50,8 @@ class P2PFLModel:
         contributors: list[str] | None = None,
         additional_info: dict[str, Any] | None = None,
         compression: dict[str, dict[str, Any]] | None = None,
+        gradients_estimate: list[np.ndarray] | None = None,
+        degrees: int | None = None,
     ) -> None:
         """Initialize the model."""
         self.model = model
@@ -68,6 +70,15 @@ class P2PFLModel:
             self.compression = compression
         else:
             self.compression = {}
+        if gradients_estimate is not None:
+            self.gradients_estimate = gradients_estimate
+        else:
+            self.gradients_estimate = []
+        if degrees is not None:
+            self.degrees = degrees
+        else:
+            self.degrees = 0
+        
 
     def get_model(self) -> Any:
         """Get the model."""
@@ -145,6 +156,16 @@ class P2PFLModel:
         if callback is None:
             return self.additional_info
         return self.additional_info[callback]
+
+    def set_degrees(self, degrees: int) -> None:
+        """
+        Set the degrees of the model.
+
+        Args:
+            degrees : The degrees of the model.
+
+        """
+        self.degrees = degrees
 
     def set_contribution(self, contributors: list[str], num_samples: int) -> None:
         """

@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.10.0, <3.13"
 resolution-markers = [
     "python_full_version >= '3.12' and sys_platform == 'linux'",
@@ -2154,6 +2154,9 @@ dp = [
 flax = [
     { name = "flax" },
 ]
+he = [
+    { name = "phe" },
+]
 tensorflow = [
     { name = "keras" },
     { name = "tensorflow" },
@@ -2205,6 +2208,7 @@ requires-dist = [
     { name = "numpy", specifier = ">=1.20,<2.0" },
     { name = "opendp", marker = "extra == 'dp'", specifier = ">=0.13.0" },
     { name = "pandas", specifier = ">=2.2.3,<3" },
+    { name = "phe", marker = "extra == 'he'", specifier = ">=1.5.0" },
     { name = "protobuf", specifier = ">=5.29.1" },
     { name = "psutil", specifier = ">=5.9.8,<6" },
     { name = "pyyaml", specifier = ">=6.0.2,<7" },
@@ -2218,7 +2222,7 @@ requires-dist = [
     { name = "types-tensorflow", marker = "extra == 'tensorflow'", specifier = ">=2.17.0.20240820,<3" },
     { name = "wandb", marker = "extra == 'wandb'", specifier = ">=0.20.1,<0.21" },
 ]
-provides-extras = ["torch", "tensorflow", "flax", "dp", "wandb"]
+provides-extras = ["torch", "tensorflow", "flax", "dp", "he", "wandb"]
 
 [package.metadata.requires-dev]
 dev = [
@@ -2328,6 +2332,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/42/92/cc564bf6381ff43ce1f4d06852fc19a2f11d180f23dc32d9588bee2f149d/pexpect-4.9.0.tar.gz", hash = "sha256:ee7d41123f3c9911050ea2c2dac107568dc43b2d3b0c7557a33212c398ead30f", size = 166450, upload-time = "2023-11-25T09:07:26.339Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/9e/c3/059298687310d527a58bb01f3b1965787ee3b40dce76752eda8b44e9a2c5/pexpect-4.9.0-py2.py3-none-any.whl", hash = "sha256:7236d1e080e4936be2dc3e326cec0af72acf9212a7e1d060210e70a47e253523", size = 63772, upload-time = "2023-11-25T06:56:14.81Z" },
+]
+
+[[package]]
+name = "phe"
+version = "1.5.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/81/47/3efede484a4ca820f0f05c59f3daf60b560f3e397e1eb8df7b37b5657068/phe-1.5.0.tar.gz", hash = "sha256:992fb7091d2427f0d9733946f8f350acdd4d1d012057f2aad364ba79f970339c", size = 51263, upload-time = "2022-04-20T01:45:34.463Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/53/7c/1c514f3e030ff69ee2a184fca3f1514c1d32653ca00869d884b4f981e564/phe-1.5.0-py2.py3-none-any.whl", hash = "sha256:a0d0098e22474b3027cbc0b05e9de2290bc603f1728bf401f498abbdbe795391", size = 53737, upload-time = "2022-04-20T01:45:33.152Z" },
 ]
 
 [[package]]

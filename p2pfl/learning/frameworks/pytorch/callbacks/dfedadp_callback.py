@@ -29,9 +29,9 @@ from lightning.pytorch.callbacks import Callback
 from p2pfl.learning.frameworks.callback import P2PFLCallback
 
 
-class FEDADPCallback(Callback, P2PFLCallback):
+class DFEDADPCallback(Callback, P2PFLCallback):
     """
-    Callback for FEDADP operations to use with PyTorch Lightning.
+    Callback for DFEDADP operations to use with PyTorch Lightning.
 
     At the beginning of the training, the callback stores the global model. Then, after training, it computes the delta (new parameters minus old parameters).
     """
@@ -45,7 +45,7 @@ class FEDADPCallback(Callback, P2PFLCallback):
     @staticmethod
     def get_name() -> str:
         """Return the name of the callback."""
-        return "fedadp"
+        return "dfedadp"
 
     def on_train_start(self, trainer: pl.Trainer, pl_module: pl.LightningModule) -> None:
         """
@@ -56,10 +56,10 @@ class FEDADPCallback(Callback, P2PFLCallback):
             pl_module: The model.
 
         """
-
+        # Store the global model
         initial_model_params = copy.deepcopy(self._get_parameters(pl_module))
         self.additional_info["global_model"] = initial_model_params
-
+        
     def on_train_end(self, trainer: pl.Trainer, pl_module: pl.LightningModule) -> None:
         """
         Compute and store the delta (new parameters minus old parameters).
