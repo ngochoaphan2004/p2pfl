@@ -107,9 +107,6 @@ class Node:
         self.aggregator = FedAvg() if aggregator is None else aggregator
         self.aggregator.set_addr(self.addr)
 
-        # Add info into model
-        degree = int(len(self.get_neighbors(only_direct=True)))
-        model.set_degrees(degree)
         # Learner
         if learner is None:  # if no learner, use factory default
             learner = LearnerFactory.create_learner(model)()
@@ -236,6 +233,10 @@ class Node:
         logger.register_node(self.addr)
         # Communication Protocol
         self._communication_protocol.start()
+        # Update model degree after protocol starts
+        if hasattr(self, 'learner') and self.learner.get_model() is not None:
+            degree = int(len(self.get_neighbors(only_direct=True)))
+            self.learner.get_model().set_degrees(degree)
         if wait:
             self._communication_protocol.wait_for_termination()
             logger.info(self.addr, "gRPC terminated.")

@@ -16,7 +16,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-"""Callback for FEDADP operations (PyTorch Lighting)."""
+"""Callback for DFEDADP operations (PyTorch Lighting)."""
 
 import copy
 from typing import Any

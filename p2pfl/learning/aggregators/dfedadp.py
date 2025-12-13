@@ -42,12 +42,16 @@ class DFedAdp(Aggregator):
             # Initial tracking gradient is just the local gradient
             self.prev_local_gradient = [-d / self.learning_rate for d in delta]
             
-            return self_model.build_copy(
-                params=self.global_model_params, 
-                num_samples=total_samples, 
-                contributors=contributors, 
-                gradients_estimate=self.prev_local_gradient
+            # Create the model copy without gradients_estimate first
+            result_model = self_model.build_copy(
+                params=self.global_model_params,
+                num_samples=total_samples,
+                contributors=contributors
             )
+            # Then set the gradients_estimate attribute directly
+            result_model.gradients_estimate = self.prev_local_gradient
+            result_model.add_info("dfedadp", {})
+            return result_model
 
         # 3. Calculate Metropolis-Hastings Weights (Topology-based)
         degrees = [int(m.degrees) for m in models]
@@ -144,30 +148,35 @@ class DFedAdp(Aggregator):
 
         # 9. Final Update (Apply Gradient Tracking correction)
         self.global_model_params = [
-            wh - self.learning_rate * tg 
+            wh - self.learning_rate * tg
             for wh, tg in zip(w_half, tracking_gradient)
         ]
 
         logger.info(self.addr, f"DFedAdp Round {current_round}: Aggregated {len(models)} models.")
 
-        return models[0].build_copy(
-            params=self.global_model_params, 
-            num_samples=total_samples, 
-            contributors=contributors, 
-            gradients_estimate=tracking_gradient
+        # Create the model copy without gradients_estimate first
+        result_model = models[0].build_copy(
+            params=self.global_model_params,
+            num_samples=total_samples,
+            contributors=contributors
         )
+        # Then set the gradients_estimate attribute directly
+        result_model.gradients_estimate = tracking_gradient
+        result_model.add_info("dfedadp", {})
+        return result_model
 
     def _gompertz_function(self, angle: float):
         # Non-linear Gompertz mapping function
         return self.ALPHA * (1 - math.exp(-math.exp(-self.ALPHA * (angle - 1))))
     
     def _get_and_validate_model_info(self, model: P2PFLModel) -> dict[str, Any]:
-        # Validate model info (must contain 'delta')
-        info = model.get_info("dfedadp")
-        if "delta" not in info: 
-             if "delta" in model.additional_info:
-                 return model.additional_info
-             raise ValueError(f"Model missing 'delta' information required for DFedAdp.")
+        try:
+            info = model.get_info("dfedadp")
+        except KeyError:
+            info = model.get_info()
+        
+        if "delta" not in info:
+            raise ValueError(f"Model missing 'delta' information required for DFedAdp.")
         return info
 
     def get_required_callbacks(self) -> list[str]:
