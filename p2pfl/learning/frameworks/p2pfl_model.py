@@ -142,6 +142,8 @@ class P2PFLModel:
             info: The information for the callback.
 
         """
+        if isinstance(info, dict) and self.degrees is not None and self.degrees > 0:
+            info["degrees"] = self.degrees
         self.additional_info[callback] = info
 
     def get_info(self, callback: str | None = None) -> Any:

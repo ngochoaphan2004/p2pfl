@@ -11,14 +11,16 @@ class DFedAdp(Aggregator):
     REQUIRED_INFO_KEYS = ["delta", "degrees"] 
     ALPHA = 5.0 
 
-    def __init__(self, disable_partial_aggregation: bool = False, learning_rate: float = 0.1) -> None:
+    def __init__(self, disable_partial_aggregation: bool = False, learning_rate: float = 0.001, log_dfedadp_params: bool = False) -> None:
         super().__init__(disable_partial_aggregation=disable_partial_aggregation)
         self.global_model_params: List[np.ndarray] = []
         # Map contributor_id -> smoothed_angle history
         self.node_correlation: Dict[str, float] = defaultdict(lambda: 0.0)
         self.learning_rate = learning_rate
         # Store previous local gradient for Gradient Tracking
-        self.prev_local_gradient: List[np.ndarray] = [] 
+        self.prev_local_gradient: List[np.ndarray] = []
+        # Control logging of dfedadp parameters
+        self.log_dfedadp_params = log_dfedadp_params
 
     def aggregate(self, models: List[P2PFLModel]) -> P2PFLModel:
         # Validate input
@@ -37,34 +39,40 @@ class DFedAdp(Aggregator):
         # 2. Initial Round (Round 0): Setup params and initial tracking gradient
         if not self.global_model_params:
             self.global_model_params = [p.copy() for p in self_model.get_parameters()]
-            info = self._get_and_validate_model_info(self_model)
-            delta = info["delta"]
-            # Initial tracking gradient is just the local gradient
-            self.prev_local_gradient = [-d / self.learning_rate for d in delta]
-            
-            # Create the model copy without gradients_estimate first
-            result_model = self_model.build_copy(
-                params=self.global_model_params,
-                num_samples=total_samples,
-                contributors=contributors
-            )
-            # Then set the gradients_estimate attribute directly
-            result_model.gradients_estimate = self.prev_local_gradient
-            return result_model
+            for m in models:
+                info = self._get_and_validate_model_info(m)
+                delta = info["delta"]
+                # Initial tracking gradient is just the local gradient
+                self.prev_local_gradient = [-d / self.learning_rate for d in delta]
+                # Then set the gradients_estimate attribute directly
+                m.gradients_estimate = self.prev_local_gradient
+                
+                # Log initial round information if logging is enabled
+                if self.log_dfedadp_params:
+                    node_id = m.get_contributors()[0] if m.get_contributors() else "initial_node"
+                    logger.info(self.addr, f"DFedAdp Round {current_round}: Initial round - Node {node_id}, gradient estimate norm = {np.linalg.norm(np.concatenate([g.ravel() for g in self.prev_local_gradient])):.4f}")
 
         # 3. Calculate Metropolis-Hastings Weights (Topology-based)
-        degrees = [int(m.degrees) for m in models]
+        degrees = [int(self._get_and_validate_model_info(m)["degrees"]) for m in models]
         weight_metro = [0.0] * len(degrees)
         my_degree = degrees[0]
-        
         for i in range(1, len(degrees)):
             weight_metro[i] = 1.0 / (1 + max(my_degree, degrees[i]))
         weight_metro[0] = 1.0 - sum(weight_metro[1:])
+        
+        # Log Metropolis-Hastings weights if logging is enabled
+        if self.log_dfedadp_params:
+            logger.info(self.addr, f"DFedAdp Round {current_round}: Metro weights = {weight_metro}")
 
         # 4. Compute Current Local Gradient
         self_info = self._get_and_validate_model_info(self_model)
         self_delta = self_info["delta"]
         curr_local_gradient = [-d / self.learning_rate for d in self_delta]
+        
+        # Log current node's local gradient if logging is enabled
+        if self.log_dfedadp_params:
+            self_node_id = self_model.get_contributors()[0] if self_model.get_contributors() else "self_node"
+            logger.info(self.addr, f"DFedAdp Round {current_round}, Node {self_node_id}: Local gradient norm = {np.linalg.norm(np.concatenate([g.ravel() for g in curr_local_gradient])):.4f}")
 
         # 5. Gradient Tracking: Estimate Global Gradient
         # 5a. Weighted sum of neighbors' previous tracking gradients
@@ -74,20 +82,29 @@ class DFedAdp(Aggregator):
             if hasattr(m, 'gradients_estimate') and m.gradients_estimate:
                 g_j_prev = m.gradients_estimate
             else:
-                 d = self._get_and_validate_model_info(m)["delta"]
-                 g_j_prev = [-x / self.learning_rate for x in d]
+                d = self._get_and_validate_model_info(m)["delta"]
+                g_j_prev = [-x / self.learning_rate for x in d]
+            
+            # Log gradient estimate for this node if logging is enabled
+            if self.log_dfedadp_params:
+                node_id = m.get_contributors()[0] if m.get_contributors() else f"node_{idx}"
+                logger.info(self.addr, f"DFedAdp Round {current_round}, Node {node_id}: Gradient estimate norm = {np.linalg.norm(np.concatenate([g.ravel() for g in g_j_prev])):.4f}")
 
             w_ij = weight_metro[idx]
             weighted_neighbor_tracking = [acc + w_ij * g for acc, g in zip(weighted_neighbor_tracking, g_j_prev)]
 
         # 5b. Add Gradient Drift (Current - Previous Local Gradient)
         if not self.prev_local_gradient:
-             self.prev_local_gradient = [np.zeros_like(p) for p in curr_local_gradient]
+            self.prev_local_gradient = [np.zeros_like(p) for p in curr_local_gradient]
              
         tracking_gradient = [
-            wn + curr - prev 
+            wn + curr - prev
             for wn, curr, prev in zip(weighted_neighbor_tracking, curr_local_gradient, self.prev_local_gradient)
         ]
+
+        # Log the tracking gradient if logging is enabled
+        if self.log_dfedadp_params:
+            logger.info(self.addr, f"DFedAdp Round {current_round}: Tracking gradient norm = {np.linalg.norm(np.concatenate([tg.ravel() for tg in tracking_gradient])):.4f}")
 
         # Update previous local gradient for the next round
         self.prev_local_gradient = [g.copy() for g in curr_local_gradient]
@@ -129,6 +146,10 @@ class DFedAdp(Aggregator):
             f_val = self._gompertz_function(smoothed_angle)
             score = m.get_num_samples() * math.exp(f_val)
             fedadp_scores.append(score)
+            
+            # Log detailed information for this node if logging is enabled
+            if self.log_dfedadp_params:
+                logger.info(self.addr, f"DFedAdp Round {current_round}, Node {node_id}: Angle={angle:.4f}, Smoothed Angle={smoothed_angle:.4f}, Gompertz f_val={f_val:.4f}, Score={score:.4f}, Local grad norm={l_norm:.4f}")
 
         # 7. Calculate Adaptive Mixing Matrix (Metropolis + FedAdp)
         total_score = sum(fedadp_scores)
@@ -137,6 +158,12 @@ class DFedAdp(Aggregator):
         unnormalized_mix = [p * w for p, w in zip(psi, weight_metro)]
         sum_mix = sum(unnormalized_mix)
         final_mixing_weights = [u / sum_mix if sum_mix > 0 else 1.0/len(models) for u in unnormalized_mix]
+        
+        # Log the mixing weights and scores if logging is enabled
+        if self.log_dfedadp_params:
+            logger.info(self.addr, f"DFedAdp Round {current_round}: FedAdp scores = {fedadp_scores}")
+            logger.info(self.addr, f"DFedAdp Round {current_round}: Normalized psi weights = {psi}")
+            logger.info(self.addr, f"DFedAdp Round {current_round}: Final mixing weights = {final_mixing_weights}")
 
         # 8. Aggregation Step (Consensus)
         w_half = [np.zeros_like(p, dtype=np.float64) for p in self.global_model_params]
@@ -145,13 +172,29 @@ class DFedAdp(Aggregator):
             for i, layer in enumerate(m.get_parameters()):
                 w_half[i] += layer * w
 
+        clip_threshold = 5.0
+        tracking_gradient = [
+            np.clip(tg, -clip_threshold, clip_threshold) 
+            for tg in tracking_gradient
+        ]
+
         # 9. Final Update (Apply Gradient Tracking correction)
         self.global_model_params = [
             wh - self.learning_rate * tg
             for wh, tg in zip(w_half, tracking_gradient)
         ]
 
-        logger.info(self.addr, f"DFedAdp Round {current_round}: Aggregated {len(models)} models.")
+        if self.log_dfedadp_params:
+            logger.info(self.addr, f"DFedAdp Round {current_round}: Aggregated {len(models)} models.")
+        
+        # Log final model parameters information if logging is enabled
+        if self.log_dfedadp_params:
+            param_norm = np.linalg.norm(np.concatenate([p.ravel() for p in self.global_model_params]))
+            logger.info(self.addr, f"DFedAdp Round {current_round}: Global model param norm = {param_norm:.4f}")
+        
+        # Log node correlation information if logging is enabled
+        if self.log_dfedadp_params:
+            logger.info(self.addr, f"DFedAdp Round {current_round}: Node correlations = {dict(list(self.node_correlation.items()))}")
 
         # Create the model copy without gradients_estimate first
         result_model = models[0].build_copy(
@@ -161,6 +204,12 @@ class DFedAdp(Aggregator):
         )
         # Then set the gradients_estimate attribute directly
         result_model.gradients_estimate = tracking_gradient
+        
+        # Log the final gradient estimate that will be sent to other nodes if logging is enabled
+        if self.log_dfedadp_params:
+            result_node_id = result_model.get_contributors()[0] if result_model.get_contributors() else "result_node"
+            logger.info(self.addr, f"DFedAdp Round {current_round}, Node {result_node_id}: Final gradient estimate norm = {np.linalg.norm(np.concatenate([tg.ravel() for tg in tracking_gradient])):.4f}")
+        
         return result_model
 
     def _gompertz_function(self, angle: float):

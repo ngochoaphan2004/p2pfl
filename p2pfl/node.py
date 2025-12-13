@@ -233,10 +233,6 @@ class Node:
         logger.register_node(self.addr)
         # Communication Protocol
         self._communication_protocol.start()
-        # Update model degree after protocol starts
-        if hasattr(self, 'learner') and self.learner.get_model() is not None:
-            degree = int(len(self.get_neighbors(only_direct=True)))
-            self.learner.get_model().set_degrees(degree)
         if wait:
             self._communication_protocol.wait_for_termination()
             logger.info(self.addr, "gRPC terminated.")
@@ -404,6 +400,11 @@ class Node:
 
     def __start_learning(self, rounds: int, epochs: int, trainset_size: int, experiment_name: str) -> None:
         # Set seed
+        if hasattr(self, 'learner') and self.learner.get_model() is not None:
+            neighbors = self.get_neighbors(only_direct=False)
+            degree = int(len(neighbors))
+            logger.info(self.addr, f"🔍 Neighbors found: {list(neighbors.keys())} | Degree: {degree}")
+            self.learner.get_model().set_degrees(degree)
         try:
             # Initialize experiment with metadata
             self.state.set_experiment(
