@@ -99,6 +99,13 @@ except ImportError:
     pass
 
 try:
+    from p2pfl.learning.frameworks.pytorch.callbacks.dfedadp_callback import DFEDADPCallback as DFEDADPCallbackPT
+
+    CallbackFactory.register_callback(learner=Framework.PYTORCH.value, callback=DFEDADPCallbackPT)
+except ImportError:
+    pass
+
+try:
     from p2pfl.learning.frameworks.pytorch.callbacks.fedadp_callback import FEDADPCallback as FEDADPCallbackPT
 
     CallbackFactory.register_callback(learner=Framework.PYTORCH.value, callback=FEDADPCallbackPT)
