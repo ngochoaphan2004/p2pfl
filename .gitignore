@@ -1,3 +1,4 @@
+
 ignore/
 results*/
 
@@ -23,10 +24,10 @@ profile/
 
 
 # Logs
-*.log
+#*.log
 lightning_logs/
 training_logs/
-logs
+#logs
 
 # SSL
 *.key
