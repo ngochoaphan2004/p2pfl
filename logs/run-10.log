@@ -1,0 +1,423 @@
+[ 2025-12-14 08:18:22 | ActorPool | INFO ] Ray detected 1.0 GPU(s), allocating 0.25 GPU per actor
+[ 2025-12-14 08:18:22 | ActorPool | INFO ] Initialized with 4 actors, 0.25 GPU per actor
+[ 2025-12-14 08:18:22 | node | INFO ] InMemoryServer started at node
+[ 2025-12-14 08:18:22 | node | INFO ] 🏁 Starting gossiper...
+[ 2025-12-14 08:18:22 | node_1 | INFO ] InMemoryServer started at node_1
+[ 2025-12-14 08:18:22 | node_1 | INFO ] 🏁 Starting gossiper...
+[ 2025-12-14 08:18:22 | node_2 | INFO ] InMemoryServer started at node_2
+[ 2025-12-14 08:18:22 | node_2 | INFO ] 🏁 Starting gossiper...
+[ 2025-12-14 08:18:22 | node_3 | INFO ] InMemoryServer started at node_3
+[ 2025-12-14 08:18:22 | node_3 | INFO ] 🏁 Starting gossiper...
+[ 2025-12-14 08:18:22 | node_4 | INFO ] InMemoryServer started at node_4
+[ 2025-12-14 08:18:22 | node_4 | INFO ] 🏁 Starting gossiper...
+[ 2025-12-14 08:18:22 | node_5 | INFO ] InMemoryServer started at node_5
+[ 2025-12-14 08:18:22 | node_5 | INFO ] 🏁 Starting gossiper...
+[ 2025-12-14 08:18:22 | node_6 | INFO ] InMemoryServer started at node_6
+[ 2025-12-14 08:18:22 | node_6 | INFO ] 🏁 Starting gossiper...
+[ 2025-12-14 08:18:22 | node_7 | INFO ] InMemoryServer started at node_7
+[ 2025-12-14 08:18:22 | node_7 | INFO ] 🏁 Starting gossiper...
+[ 2025-12-14 08:18:22 | node_8 | INFO ] InMemoryServer started at node_8
+[ 2025-12-14 08:18:22 | node_8 | INFO ] 🏁 Starting gossiper...
+[ 2025-12-14 08:18:22 | node_9 | INFO ] InMemoryServer started at node_9
+[ 2025-12-14 08:18:22 | node_9 | INFO ] 🏁 Starting gossiper...
+[ 2025-12-14 08:18:22 | node_10 | INFO ] InMemoryServer started at node_10
+[ 2025-12-14 08:18:22 | node_10 | INFO ] 🏁 Starting gossiper...
+[ 2025-12-14 08:18:22 | node_11 | INFO ] InMemoryServer started at node_11
+[ 2025-12-14 08:18:22 | node_11 | INFO ] 🏁 Starting gossiper...
+[ 2025-12-14 08:18:22 | node_12 | INFO ] InMemoryServer started at node_12
+[ 2025-12-14 08:18:22 | node_12 | INFO ] 🏁 Starting gossiper...
+[ 2025-12-14 08:18:22 | node_13 | INFO ] InMemoryServer started at node_13
+[ 2025-12-14 08:18:22 | node_13 | INFO ] 🏁 Starting gossiper...
+[ 2025-12-14 08:18:22 | node_14 | INFO ] InMemoryServer started at node_14
+[ 2025-12-14 08:18:22 | node_14 | INFO ] 🏁 Starting gossiper...
+[ 2025-12-14 08:18:22 | node_15 | INFO ] InMemoryServer started at node_15
+[ 2025-12-14 08:18:22 | node_15 | INFO ] 🏁 Starting gossiper...
+[ 2025-12-14 08:18:22 | node_16 | INFO ] InMemoryServer started at node_16
+[ 2025-12-14 08:18:22 | node_16 | INFO ] 🏁 Starting gossiper...
+[ 2025-12-14 08:18:22 | node_17 | INFO ] InMemoryServer started at node_17
+[ 2025-12-14 08:18:22 | node_17 | INFO ] 🏁 Starting gossiper...
+[ 2025-12-14 08:18:22 | node_18 | INFO ] InMemoryServer started at node_18
+[ 2025-12-14 08:18:22 | node_18 | INFO ] 🏁 Starting gossiper...
+[ 2025-12-14 08:18:22 | node_19 | INFO ] InMemoryServer started at node_19
+[ 2025-12-14 08:18:22 | node_19 | INFO ] 🏁 Starting gossiper...
+[ 2025-12-14 08:18:22 |  | INFO ] Connected nodes node and node_1
+[ 2025-12-14 08:18:22 |  | INFO ] Connected nodes node and node_19
+[ 2025-12-14 08:18:22 |  | INFO ] Connected nodes node_1 and node_2
+[ 2025-12-14 08:18:22 |  | INFO ] Connected nodes node_2 and node_3
+[ 2025-12-14 08:18:22 |  | INFO ] Connected nodes node_3 and node_4
+[ 2025-12-14 08:18:22 |  | INFO ] Connected nodes node_4 and node_5
+[ 2025-12-14 08:18:22 |  | INFO ] Connected nodes node_5 and node_6
+[ 2025-12-14 08:18:23 |  | INFO ] Connected nodes node_6 and node_7
+[ 2025-12-14 08:18:23 |  | INFO ] Connected nodes node_7 and node_8
+[ 2025-12-14 08:18:23 |  | INFO ] Connected nodes node_8 and node_9
+[ 2025-12-14 08:18:23 |  | INFO ] Connected nodes node_9 and node_10
+[ 2025-12-14 08:18:23 |  | INFO ] Connected nodes node_10 and node_11
+[ 2025-12-14 08:18:23 |  | INFO ] Connected nodes node_11 and node_12
+[ 2025-12-14 08:18:23 |  | INFO ] Connected nodes node_12 and node_13
+[ 2025-12-14 08:18:23 |  | INFO ] Connected nodes node_13 and node_14
+[ 2025-12-14 08:18:23 |  | INFO ] Connected nodes node_14 and node_15
+[ 2025-12-14 08:18:23 |  | INFO ] Connected nodes node_15 and node_16
+[ 2025-12-14 08:18:24 |  | INFO ] Connected nodes node_16 and node_17
+[ 2025-12-14 08:18:24 |  | INFO ] Connected nodes node_17 and node_18
+[ 2025-12-14 08:18:24 |  | INFO ] Connected nodes node_18 and node_19
+[ 2025-12-14 08:18:37 | node | INFO ] 🚀 Broadcasting start learning...
+[ 2025-12-14 08:18:37 | node_1 | INFO ] ⏳ Waiting initialization.
+[ 2025-12-14 08:18:37 | node_19 | INFO ] ⏳ Waiting initialization.
+[ 2025-12-14 08:18:37 | node | INFO ] ⏳ Waiting initialization.
+[ 2025-12-14 08:18:37 | node | INFO ] 🗣️ Gossiping model initialization.
+[ 2025-12-14 08:18:38 | node_2 | INFO ] ⏳ Waiting initialization.
+[ 2025-12-14 08:18:38 | node_3 | INFO ] ⏳ Waiting initialization.
+[ 2025-12-14 08:18:39 | node_18 | INFO ] ⏳ Waiting initialization.
+[ 2025-12-14 08:18:39 | node_17 | INFO ] ⏳ Waiting initialization.
+[ 2025-12-14 08:18:40 | node_4 | INFO ] ⏳ Waiting initialization.
+[ 2025-12-14 08:18:41 | node_16 | INFO ] ⏳ Waiting initialization.
+[ 2025-12-14 08:18:41 | node_5 | INFO ] ⏳ Waiting initialization.
+[ 2025-12-14 08:18:43 | node_15 | INFO ] ⏳ Waiting initialization.
+[ 2025-12-14 08:18:43 | node_6 | INFO ] ⏳ Waiting initialization.
+[ 2025-12-14 08:18:43 | node_7 | INFO ] ⏳ Waiting initialization.
+[ 2025-12-14 08:18:45 | node_14 | INFO ] ⏳ Waiting initialization.
+[ 2025-12-14 08:18:45 | node_8 | INFO ] ⏳ Waiting initialization.
+[ 2025-12-14 08:18:47 | node_13 | INFO ] ⏳ Waiting initialization.
+[ 2025-12-14 08:18:47 | node_9 | INFO ] ⏳ Waiting initialization.
+[ 2025-12-14 08:18:47 | node_12 | INFO ] ⏳ Waiting initialization.
+[ 2025-12-14 08:18:48 | node_11 | INFO ] ⏳ Waiting initialization.
+[ 2025-12-14 08:18:49 | node_10 | INFO ] ⏳ Waiting initialization.
+[ 2025-12-14 08:19:01 | node_1 | INFO ] 🤖 Model Weights Initialized
+[ 2025-12-14 08:19:01 | node_1 | INFO ] 🗣️ Gossiping model initialization.
+[ 2025-12-14 08:19:23 | node_19 | INFO ] 🤖 Model Weights Initialized
+[ 2025-12-14 08:19:23 | node_19 | INFO ] 🗣️ Gossiping model initialization.
+[ 2025-12-14 08:19:24 | node_2 | INFO ] 🤖 Model Weights Initialized
+[ 2025-12-14 08:19:24 | node_2 | INFO ] 🗣️ Gossiping model initialization.
+[ 2025-12-14 08:19:47 | node_3 | INFO ] 🤖 Model Weights Initialized
+[ 2025-12-14 08:19:47 | node_3 | INFO ] 🗣️ Gossiping model initialization.
+[ 2025-12-14 08:19:48 | node_18 | INFO ] 🤖 Model Weights Initialized
+[ 2025-12-14 08:19:48 | node_18 | INFO ] 🗣️ Gossiping model initialization.
+[ 2025-12-14 08:19:48 | node_1 | INFO ] 🤫 Gossip finished.
+[ 2025-12-14 08:19:48 | node_1 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-14 08:20:10 | node | INFO ] 🤫 Gossip finished.
+[ 2025-12-14 08:20:10 | node | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-14 08:20:11 | node_4 | INFO ] 🤖 Model Weights Initialized
+[ 2025-12-14 08:20:11 | node_4 | INFO ] 🗣️ Gossiping model initialization.
+[ 2025-12-14 08:20:12 | node_2 | INFO ] 🤫 Gossip finished.
+[ 2025-12-14 08:20:12 | node_2 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-14 08:20:13 | node_17 | INFO ] 🤖 Model Weights Initialized
+[ 2025-12-14 08:20:13 | node_17 | INFO ] 🗣️ Gossiping model initialization.
+[ 2025-12-14 08:20:14 | node_19 | INFO ] 🤫 Gossip finished.
+[ 2025-12-14 08:20:14 | node_19 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-14 08:20:34 | node_5 | INFO ] 🤖 Model Weights Initialized
+[ 2025-12-14 08:20:34 | node_5 | INFO ] 🗣️ Gossiping model initialization.
+[ 2025-12-14 08:20:36 | node_3 | INFO ] 🤫 Gossip finished.
+[ 2025-12-14 08:20:36 | node_3 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-14 08:20:36 | node_16 | INFO ] 🤖 Model Weights Initialized
+[ 2025-12-14 08:20:36 | node_16 | INFO ] 🗣️ Gossiping model initialization.
+[ 2025-12-14 08:20:40 | node_18 | INFO ] 🤫 Gossip finished.
+[ 2025-12-14 08:20:40 | node_18 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-14 08:20:58 | node_6 | INFO ] 🤖 Model Weights Initialized
+[ 2025-12-14 08:20:58 | node_6 | INFO ] 🗣️ Gossiping model initialization.
+[ 2025-12-14 08:20:59 | node_4 | INFO ] 🤫 Gossip finished.
+[ 2025-12-14 08:20:59 | node_4 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-14 08:20:59 | node_15 | INFO ] 🤖 Model Weights Initialized
+[ 2025-12-14 08:20:59 | node_15 | INFO ] 🗣️ Gossiping model initialization.
+[ 2025-12-14 08:21:00 | node_17 | INFO ] 🤫 Gossip finished.
+[ 2025-12-14 08:21:00 | node_17 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-14 08:21:22 | node_5 | INFO ] 🤫 Gossip finished.
+[ 2025-12-14 08:21:22 | node_5 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-14 08:21:23 | node_16 | INFO ] 🤫 Gossip finished.
+[ 2025-12-14 08:21:23 | node_16 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-14 08:21:23 | node_14 | INFO ] 🤖 Model Weights Initialized
+[ 2025-12-14 08:21:23 | node_14 | INFO ] 🗣️ Gossiping model initialization.
+[ 2025-12-14 08:21:24 | node_7 | INFO ] 🤖 Model Weights Initialized
+[ 2025-12-14 08:21:24 | node_7 | INFO ] 🗣️ Gossiping model initialization.
+[ 2025-12-14 08:21:48 | node_15 | INFO ] 🤫 Gossip finished.
+[ 2025-12-14 08:21:48 | node_15 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-14 08:21:49 | node_13 | INFO ] 🤖 Model Weights Initialized
+[ 2025-12-14 08:21:49 | node_13 | INFO ] 🗣️ Gossiping model initialization.
+[ 2025-12-14 08:21:49 | node_8 | INFO ] 🤖 Model Weights Initialized
+[ 2025-12-14 08:21:49 | node_8 | INFO ] 🗣️ Gossiping model initialization.
+[ 2025-12-14 08:21:50 | node_1 | INFO ] Timeout for vote aggregation. Missing votes from {'node_10', 'node_8', 'node_15', 'node_9', 'node_11', 'node_12', 'node_6', 'node_7', 'node_14', 'node_13'}
+[ 2025-12-14 08:21:50 | node_1 | INFO ] 🔢 Computed 10 votes.
+[ 2025-12-14 08:21:50 | node_1 | INFO ] 🚂 Train set of 10 nodes: ['node_12', 'node_18', 'node_9', 'node_17', 'node_11', 'node_5', 'node_6', 'node_10', 'node_2', 'node']
+[ 2025-12-14 08:21:50 | node_1 | INFO ] ⏳ Waiting aggregation.
+[ 2025-12-14 08:21:52 | node_6 | INFO ] 🤫 Gossip finished.
+[ 2025-12-14 08:21:52 | node_6 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-14 08:22:11 | node | INFO ] Timeout for vote aggregation. Missing votes from {'node_10', 'node_8', 'node_9', 'node_11', 'node_12', 'node_7', 'node_14', 'node_13'}
+[ 2025-12-14 08:22:11 | node | INFO ] 🔢 Computed 12 votes.
+[ 2025-12-14 08:22:11 | node | INFO ] 🚂 Train set of 10 nodes: ['node_12', 'node_18', 'node_11', 'node_9', 'node_17', 'node_5', 'node_2', 'node_6', 'node_10', 'node']
+[ 2025-12-14 08:22:11 | node | INFO ] 🔬 Evaluating...
+[ 2025-12-14 08:22:13 | node | INFO ] 📈 Evaluated. Results: {'test_loss': 2.2989864349365234, 'test_metric': 0.09399999678134918}
+[ 2025-12-14 08:22:13 | node | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-14 08:22:13 | node | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-14 08:22:13 | node_9 | INFO ] 🤖 Model Weights Initialized
+[ 2025-12-14 08:22:13 | node_9 | INFO ] 🗣️ Gossiping model initialization.
+[ 2025-12-14 08:22:13 | node_2 | INFO ] Timeout for vote aggregation. Missing votes from {'node_10', 'node_8', 'node_9', 'node_11', 'node_12', 'node_7', 'node_14', 'node_13'}
+[ 2025-12-14 08:22:13 | node_2 | INFO ] 🔢 Computed 12 votes.
+[ 2025-12-14 08:22:13 | node_2 | INFO ] 🚂 Train set of 10 nodes: ['node_12', 'node_18', 'node_11', 'node_9', 'node_17', 'node_5', 'node_2', 'node_6', 'node_10', 'node']
+[ 2025-12-14 08:22:13 | node_2 | INFO ] 🔬 Evaluating...
+[ 2025-12-14 08:22:14 | node_12 | INFO ] 🤖 Model Weights Initialized
+[ 2025-12-14 08:22:14 | node_12 | INFO ] 🗣️ Gossiping model initialization.
+[ 2025-12-14 08:22:14 | node | INFO ] 🎓 Training done.
+[ 2025-12-14 08:22:14 | node | INFO ] 🧩 Model added (1/10) from ['node']
+[ 2025-12-14 08:22:14 | node_18 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:22:14 | node_17 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:22:14 | node_2 | INFO ] 🧩 Model added (1/10) from ['node']
+[ 2025-12-14 08:22:15 | node_5 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:22:15 | node_6 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:22:15 | node_12 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:22:15 | node_11 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:22:15 | node_9 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:22:15 | node_10 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:22:15 | node_14 | INFO ] 🤫 Gossip finished.
+[ 2025-12-14 08:22:15 | node_14 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-14 08:22:15 | node_2 | INFO ] 📈 Evaluated. Results: {'test_loss': 731.6988525390625, 'test_metric': 0.10400000214576721}
+[ 2025-12-14 08:22:15 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-14 08:22:15 | node_2 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-14 08:22:15 | node_7 | INFO ] 🤫 Gossip finished.
+[ 2025-12-14 08:22:15 | node_7 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-14 08:22:16 | node_19 | INFO ] Timeout for vote aggregation. Missing votes from {'node_10', 'node_8', 'node_9', 'node_11', 'node_12', 'node_7', 'node_14', 'node_13'}
+[ 2025-12-14 08:22:16 | node_19 | INFO ] 🔢 Computed 12 votes.
+[ 2025-12-14 08:22:16 | node_19 | INFO ] 🚂 Train set of 10 nodes: ['node_12', 'node_18', 'node_11', 'node_9', 'node_17', 'node_5', 'node_2', 'node_6', 'node_10', 'node']
+[ 2025-12-14 08:22:16 | node_19 | INFO ] ⏳ Waiting aggregation.
+[ 2025-12-14 08:22:16 | node_2 | INFO ] 🎓 Training done.
+[ 2025-12-14 08:22:16 | node_2 | INFO ] 🧩 Model added (2/10) from ['node_2']
+[ 2025-12-14 08:22:16 | node | INFO ] 🧩 Model added (2/10) from ['node_2']
+[ 2025-12-14 08:22:37 | node_3 | INFO ] Timeout for vote aggregation. Missing votes from {'node_10', 'node_8', 'node_9', 'node_11', 'node_12', 'node_13'}
+[ 2025-12-14 08:22:37 | node_3 | INFO ] 🔢 Computed 14 votes.
+[ 2025-12-14 08:22:37 | node_3 | INFO ] 🚂 Train set of 10 nodes: ['node_12', 'node_17', 'node_18', 'node_11', 'node_1', 'node_5', 'node_9', 'node_2', 'node', 'node_6']
+[ 2025-12-14 08:22:37 | node_3 | INFO ] ⏳ Waiting aggregation.
+[ 2025-12-14 08:22:38 | node_8 | INFO ] 🤫 Gossip finished.
+[ 2025-12-14 08:22:38 | node_8 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-14 08:22:38 | node_10 | INFO ] 🤖 Model Weights Initialized
+[ 2025-12-14 08:22:38 | node_10 | INFO ] 🗣️ Gossiping model initialization.
+[ 2025-12-14 08:22:39 | node_11 | INFO ] 🤖 Model Weights Initialized
+[ 2025-12-14 08:22:39 | node_11 | INFO ] 🗣️ Gossiping model initialization.
+[ 2025-12-14 08:22:39 | node_10 | INFO ] 🤫 Gossip finished.
+[ 2025-12-14 08:22:39 | node_10 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-14 08:22:40 | node_11 | INFO ] 🤫 Gossip finished.
+[ 2025-12-14 08:22:40 | node_11 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-14 08:22:41 | node_13 | INFO ] 🤫 Gossip finished.
+[ 2025-12-14 08:22:41 | node_13 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-14 08:22:41 | node_18 | INFO ] Timeout for vote aggregation. Missing votes from {'node_10', 'node_8', 'node_9', 'node_11', 'node_12', 'node_13'}
+[ 2025-12-14 08:22:41 | node_18 | INFO ] 🔢 Computed 14 votes.
+[ 2025-12-14 08:22:41 | node_18 | INFO ] 🚂 Train set of 10 nodes: ['node_12', 'node_17', 'node_18', 'node_11', 'node_1', 'node_5', 'node_9', 'node_2', 'node', 'node_6']
+[ 2025-12-14 08:22:41 | node_18 | INFO ] 🔬 Evaluating...
+[ 2025-12-14 08:22:41 | node_18 | INFO ] 📈 Evaluated. Results: {'test_loss': 882.3848266601562, 'test_metric': 0.09399999678134918}
+[ 2025-12-14 08:22:41 | node_18 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-14 08:22:41 | node_18 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-14 08:22:42 | node_18 | INFO ] 🎓 Training done.
+[ 2025-12-14 08:22:42 | node_18 | INFO ] 🧩 Model added (1/10) from ['node_18']
+[ 2025-12-14 08:22:42 | node_17 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:22:42 | node | INFO ] 🧩 Model added (3/10) from ['node_18']
+[ 2025-12-14 08:22:42 | node_2 | INFO ] 🧩 Model added (3/10) from ['node_18']
+[ 2025-12-14 08:22:42 | node_12 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:22:42 | node_11 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:22:42 | node_9 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:22:42 | node_5 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:22:42 | node_6 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:23:00 | node_4 | INFO ] Timeout for vote aggregation. Missing votes from {'node_12', 'node_9'}
+[ 2025-12-14 08:23:00 | node_4 | INFO ] 🔢 Computed 18 votes.
+[ 2025-12-14 08:23:00 | node_4 | INFO ] 🚂 Train set of 10 nodes: ['node_17', 'node_12', 'node_18', 'node_11', 'node_1', 'node', 'node_13', 'node_9', 'node_5', 'node_10']
+[ 2025-12-14 08:23:00 | node_4 | INFO ] ⏳ Waiting aggregation.
+[ 2025-12-14 08:23:02 | node_17 | INFO ] Timeout for vote aggregation. Missing votes from {'node_12', 'node_9'}
+[ 2025-12-14 08:23:02 | node_17 | INFO ] 🔢 Computed 18 votes.
+[ 2025-12-14 08:23:02 | node_17 | INFO ] 🚂 Train set of 10 nodes: ['node_17', 'node_12', 'node_18', 'node_11', 'node_1', 'node', 'node_13', 'node_9', 'node_5', 'node_10']
+[ 2025-12-14 08:23:02 | node_17 | INFO ] 🔬 Evaluating...
+[ 2025-12-14 08:23:02 | node_17 | INFO ] 📈 Evaluated. Results: {'test_loss': 645.552490234375, 'test_metric': 0.11599999666213989}
+[ 2025-12-14 08:23:02 | node_17 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-14 08:23:02 | node_17 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-14 08:23:03 | node_17 | INFO ] 🎓 Training done.
+[ 2025-12-14 08:23:03 | node_17 | INFO ] 🧩 Model added (1/10) from ['node_17']
+[ 2025-12-14 08:23:03 | node_18 | INFO ] 🧩 Model added (2/10) from ['node_17']
+[ 2025-12-14 08:23:03 | node_13 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:23:03 | node | INFO ] 🧩 Model added (4/10) from ['node_17']
+[ 2025-12-14 08:23:03 | node_12 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:23:03 | node_11 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:23:03 | node_10 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:23:03 | node_9 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:23:03 | node_5 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:23:04 | node_2 | INFO ] 🧩 Model added (4/10) from ['node_17']
+[ 2025-12-14 08:23:05 | node_9 | INFO ] 🤫 Gossip finished.
+[ 2025-12-14 08:23:05 | node_9 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-14 08:23:05 | node_12 | INFO ] 🤫 Gossip finished.
+[ 2025-12-14 08:23:05 | node_12 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-14 08:23:05 | node_11 | INFO ] 🔢 Computed 20 votes.
+[ 2025-12-14 08:23:05 | node_11 | INFO ] 🚂 Train set of 10 nodes: ['node_17', 'node_12', 'node_18', 'node', 'node_11', 'node_1', 'node_13', 'node_9', 'node_5', 'node_7']
+[ 2025-12-14 08:23:05 | node_11 | INFO ] 🔬 Evaluating...
+[ 2025-12-14 08:23:06 | node_11 | INFO ] 📈 Evaluated. Results: {'test_loss': 662.1931762695312, 'test_metric': 0.08799999952316284}
+[ 2025-12-14 08:23:06 | node_11 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-14 08:23:06 | node_11 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-14 08:23:07 | node_11 | INFO ] 🎓 Training done.
+[ 2025-12-14 08:23:07 | node_11 | INFO ] 🧩 Model added (1/10) from ['node_11']
+[ 2025-12-14 08:23:07 | node_12 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:23:07 | node_9 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:23:07 | node_13 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:23:07 | node_7 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:23:07 | node_5 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:23:07 | node | INFO ] 🧩 Model added (5/10) from ['node_11']
+[ 2025-12-14 08:23:07 | node_10 | INFO ] 🔢 Computed 20 votes.
+[ 2025-12-14 08:23:07 | node_10 | INFO ] 🚂 Train set of 10 nodes: ['node_17', 'node_12', 'node_18', 'node', 'node_11', 'node_1', 'node_13', 'node_9', 'node_5', 'node_7']
+[ 2025-12-14 08:23:07 | node_10 | INFO ] ⏳ Waiting aggregation.
+[ 2025-12-14 08:23:07 | node_17 | INFO ] 🧩 Model added (2/10) from ['node_11']
+[ 2025-12-14 08:23:07 | node_12 | INFO ] 🔢 Computed 20 votes.
+[ 2025-12-14 08:23:07 | node_12 | INFO ] 🚂 Train set of 10 nodes: ['node_17', 'node_12', 'node_18', 'node', 'node_11', 'node_1', 'node_13', 'node_9', 'node_5', 'node_7']
+[ 2025-12-14 08:23:07 | node_12 | INFO ] 🔬 Evaluating...
+[ 2025-12-14 08:23:07 | node_18 | INFO ] 🧩 Model added (3/10) from ['node_11']
+[ 2025-12-14 08:23:07 | node_12 | INFO ] 📈 Evaluated. Results: {'test_loss': 870.921142578125, 'test_metric': 0.10000000149011612}
+[ 2025-12-14 08:23:07 | node_12 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-14 08:23:07 | node_12 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-14 08:23:07 | node_2 | INFO ] 🧩 Model added (5/10) from ['node_11']
+[ 2025-12-14 08:23:08 | node_9 | INFO ] 🔢 Computed 20 votes.
+[ 2025-12-14 08:23:08 | node_9 | INFO ] 🚂 Train set of 10 nodes: ['node_17', 'node_12', 'node_18', 'node', 'node_11', 'node_1', 'node_13', 'node_9', 'node_5', 'node_7']
+[ 2025-12-14 08:23:08 | node_9 | INFO ] 🔬 Evaluating...
+[ 2025-12-14 08:23:08 | node_9 | INFO ] 📈 Evaluated. Results: {'test_loss': 906.7628173828125, 'test_metric': 0.11400000005960464}
+[ 2025-12-14 08:23:08 | node_9 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-14 08:23:08 | node_9 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-14 08:23:08 | node_12 | INFO ] 🎓 Training done.
+[ 2025-12-14 08:23:08 | node_12 | INFO ] 🧩 Model added (1/10) from ['node_12']
+[ 2025-12-14 08:23:08 | node_11 | INFO ] 🧩 Model added (2/10) from ['node_12']
+[ 2025-12-14 08:23:08 | node_13 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:23:08 | node_9 | INFO ] 🧩 Model added (1/10) from ['node_12']
+[ 2025-12-14 08:23:08 | node_7 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:23:08 | node_5 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:23:08 | node_17 | INFO ] 🧩 Model added (3/10) from ['node_12']
+[ 2025-12-14 08:23:08 | node | INFO ] 🧩 Model added (6/10) from ['node_12']
+[ 2025-12-14 08:23:08 | node_18 | INFO ] 🧩 Model added (4/10) from ['node_12']
+[ 2025-12-14 08:23:09 | node_9 | INFO ] 🎓 Training done.
+[ 2025-12-14 08:23:09 | node_9 | INFO ] 🧩 Model added (2/10) from ['node_9']
+[ 2025-12-14 08:23:09 | node_8 | INFO ] 🔢 Computed 20 votes.
+[ 2025-12-14 08:23:09 | node_8 | INFO ] 🚂 Train set of 10 nodes: ['node_17', 'node_12', 'node_18', 'node', 'node_11', 'node_1', 'node_13', 'node_9', 'node_5', 'node_7']
+[ 2025-12-14 08:23:09 | node_8 | INFO ] ⏳ Waiting aggregation.
+[ 2025-12-14 08:23:09 | node_13 | INFO ] 🔢 Computed 20 votes.
+[ 2025-12-14 08:23:09 | node_13 | INFO ] 🚂 Train set of 10 nodes: ['node_17', 'node_12', 'node_18', 'node', 'node_11', 'node_1', 'node_13', 'node_9', 'node_5', 'node_7']
+[ 2025-12-14 08:23:09 | node_13 | INFO ] 🔬 Evaluating...
+[ 2025-12-14 08:23:09 | node_13 | INFO ] 📈 Evaluated. Results: {'test_loss': 724.6236572265625, 'test_metric': 0.07400000095367432}
+[ 2025-12-14 08:23:09 | node_13 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-14 08:23:09 | node_13 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-14 08:23:09 | node_2 | INFO ] 🧩 Model added (6/10) from ['node_12']
+[ 2025-12-14 08:23:10 | node_14 | INFO ] 🔢 Computed 20 votes.
+[ 2025-12-14 08:23:10 | node_14 | INFO ] 🚂 Train set of 10 nodes: ['node_17', 'node_12', 'node_18', 'node', 'node_11', 'node_1', 'node_13', 'node_9', 'node_5', 'node_7']
+[ 2025-12-14 08:23:10 | node_14 | INFO ] ⏳ Waiting aggregation.
+[ 2025-12-14 08:23:10 | node_13 | INFO ] 🎓 Training done.
+[ 2025-12-14 08:23:10 | node_13 | INFO ] 🧩 Model added (1/10) from ['node_13']
+[ 2025-12-14 08:23:10 | node_12 | INFO ] 🧩 Model added (2/10) from ['node_13']
+[ 2025-12-14 08:23:10 | node_11 | INFO ] 🧩 Model added (3/10) from ['node_13']
+[ 2025-12-14 08:23:10 | node_9 | INFO ] 🧩 Model added (3/10) from ['node_13']
+[ 2025-12-14 08:23:10 | node_7 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:23:10 | node_17 | INFO ] 🧩 Model added (4/10) from ['node_13']
+[ 2025-12-14 08:23:10 | node_5 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:23:11 | node_7 | INFO ] 🔢 Computed 20 votes.
+[ 2025-12-14 08:23:11 | node_7 | INFO ] 🚂 Train set of 10 nodes: ['node_17', 'node_12', 'node_18', 'node', 'node_11', 'node_1', 'node_13', 'node_9', 'node_5', 'node_7']
+[ 2025-12-14 08:23:11 | node_7 | INFO ] 🔬 Evaluating...
+[ 2025-12-14 08:23:11 | node_7 | INFO ] 📈 Evaluated. Results: {'test_loss': 458.59588623046875, 'test_metric': 0.10999999940395355}
+[ 2025-12-14 08:23:11 | node_7 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-14 08:23:11 | node_7 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-14 08:23:11 | node_15 | INFO ] 🔢 Computed 20 votes.
+[ 2025-12-14 08:23:11 | node_15 | INFO ] 🚂 Train set of 10 nodes: ['node_17', 'node_12', 'node_18', 'node', 'node_11', 'node_1', 'node_13', 'node_9', 'node_5', 'node_7']
+[ 2025-12-14 08:23:11 | node_15 | INFO ] ⏳ Waiting aggregation.
+[ 2025-12-14 08:23:12 | node_6 | INFO ] 🔢 Computed 20 votes.
+[ 2025-12-14 08:23:12 | node_6 | INFO ] 🚂 Train set of 10 nodes: ['node_17', 'node_12', 'node_18', 'node', 'node_11', 'node_1', 'node_13', 'node_9', 'node_5', 'node_7']
+[ 2025-12-14 08:23:12 | node_7 | INFO ] 🎓 Training done.
+[ 2025-12-14 08:23:12 | node_7 | INFO ] 🧩 Model added (1/10) from ['node_7']
+[ 2025-12-14 08:23:12 | node_6 | INFO ] ⏳ Waiting aggregation.
+[ 2025-12-14 08:23:12 | node_5 | ERROR ] Model Reception when there is no trainset
+[ 2025-12-14 08:23:12 | node_9 | INFO ] 🧩 Model added (4/10) from ['node_7']
+[ 2025-12-14 08:23:12 | node_11 | INFO ] 🧩 Model added (4/10) from ['node_7']
+[ 2025-12-14 08:23:12 | node_12 | INFO ] 🧩 Model added (3/10) from ['node_7']
+[ 2025-12-14 08:23:12 | node_13 | INFO ] 🧩 Model added (2/10) from ['node_7']
+[ 2025-12-14 08:23:13 | node_16 | INFO ] 🔢 Computed 20 votes.
+[ 2025-12-14 08:23:13 | node_16 | INFO ] 🚂 Train set of 10 nodes: ['node_17', 'node_12', 'node_18', 'node', 'node_11', 'node_1', 'node_13', 'node_9', 'node_5', 'node_7']
+[ 2025-12-14 08:23:13 | node_16 | INFO ] ⏳ Waiting aggregation.
+[ 2025-12-14 08:23:14 | node_5 | INFO ] 🔢 Computed 20 votes.
+[ 2025-12-14 08:23:14 | node_5 | INFO ] 🚂 Train set of 10 nodes: ['node_17', 'node_12', 'node_18', 'node', 'node_11', 'node_1', 'node_13', 'node_9', 'node_5', 'node_7']
+[ 2025-12-14 08:23:14 | node_5 | INFO ] 🔬 Evaluating...
+[ 2025-12-14 08:23:14 | node_5 | INFO ] 📈 Evaluated. Results: {'test_loss': 822.1826782226562, 'test_metric': 0.12399999797344208}
+[ 2025-12-14 08:23:14 | node_5 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-14 08:23:14 | node_5 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-14 08:23:15 | node_5 | INFO ] 🎓 Training done.
+[ 2025-12-14 08:23:15 | node_5 | INFO ] 🧩 Model added (1/10) from ['node_5']
+[ 2025-12-14 08:23:15 | node | INFO ] 🧩 Model added (7/10) from ['node_5']
+[ 2025-12-14 08:23:15 | node_7 | INFO ] 🧩 Model added (2/10) from ['node_5']
+[ 2025-12-14 08:23:15 | node_11 | INFO ] 🧩 Model added (5/10) from ['node_9']
+[ 2025-12-14 08:23:15 | node_18 | INFO ] 🧩 Model added (5/10) from ['node_5']
+[ 2025-12-14 08:23:15 | node_17 | INFO ] 🧩 Model added (5/10) from ['node_5']
+[ 2025-12-14 08:23:15 | node_12 | INFO ] 🧩 Model added (4/10) from ['node_9']
+[ 2025-12-14 08:23:15 | node_9 | INFO ] 🧩 Model added (5/10) from ['node_5']
+[ 2025-12-14 08:23:16 | node_11 | INFO ] 🧩 Model added (6/10) from ['node_5']
+[ 2025-12-14 08:23:16 | node_12 | INFO ] 🧩 Model added (5/10) from ['node_5']
+[ 2025-12-14 08:23:16 | node_13 | INFO ] 🧩 Model added (3/10) from ['node_5']
+[ 2025-12-14 08:23:16 | node_2 | INFO ] 🧩 Model added (7/10) from ['node_5']
+[ 2025-12-14 08:24:11 | node | INFO ] ⏹️  Gossiping exited for 50 equal rounds.
+[ 2025-12-14 08:24:11 | node_2 | INFO ] ⏹️  Gossiping exited for 50 equal rounds.
+[ 2025-12-14 08:24:23 | node | INFO ] Stopping node...
+[ 2025-12-14 08:24:23 | node | INFO ] 🛑 Stopping gossiper...
+[ 2025-12-14 08:24:23 | node | INFO ] InMemoryServer stopped at node
+[ 2025-12-14 08:24:23 | node_1 | INFO ] Stopping node...
+[ 2025-12-14 08:24:23 | node_1 | INFO ] 🛑 Stopping gossiper...
+[ 2025-12-14 08:24:23 | node_1 | INFO ] InMemoryServer stopped at node_1
+[ 2025-12-14 08:24:23 | node_2 | INFO ] Stopping node...
+[ 2025-12-14 08:24:23 | node_2 | INFO ] 🛑 Stopping gossiper...
+[ 2025-12-14 08:24:23 | node_2 | INFO ] InMemoryServer stopped at node_2
+[ 2025-12-14 08:24:23 | node_3 | INFO ] Stopping node...
+[ 2025-12-14 08:24:23 | node_3 | INFO ] 🛑 Stopping gossiper...
+[ 2025-12-14 08:24:23 | node_3 | INFO ] InMemoryServer stopped at node_3
+[ 2025-12-14 08:24:23 | node_4 | INFO ] Stopping node...
+[ 2025-12-14 08:24:23 | node_4 | INFO ] 🛑 Stopping gossiper...
+[ 2025-12-14 08:24:23 | node_4 | INFO ] InMemoryServer stopped at node_4
+[ 2025-12-14 08:24:23 | node_5 | INFO ] Stopping node...
+[ 2025-12-14 08:24:23 | node_5 | INFO ] 🛑 Stopping gossiper...
+[ 2025-12-14 08:24:23 | node_5 | INFO ] InMemoryServer stopped at node_5
+[ 2025-12-14 08:24:23 | node_6 | INFO ] Stopping node...
+[ 2025-12-14 08:24:23 | node_6 | INFO ] 🛑 Stopping gossiper...
+[ 2025-12-14 08:24:23 | node_6 | INFO ] InMemoryServer stopped at node_6
+[ 2025-12-14 08:24:23 | node_7 | INFO ] Stopping node...
+[ 2025-12-14 08:24:23 | node_7 | INFO ] 🛑 Stopping gossiper...
+[ 2025-12-14 08:24:23 | node_7 | INFO ] InMemoryServer stopped at node_7
+[ 2025-12-14 08:24:23 | node_8 | INFO ] Stopping node...
+[ 2025-12-14 08:24:23 | node_8 | INFO ] 🛑 Stopping gossiper...
+[ 2025-12-14 08:24:23 | node_8 | INFO ] InMemoryServer stopped at node_8
+[ 2025-12-14 08:24:23 | node_9 | INFO ] Stopping node...
+[ 2025-12-14 08:24:23 | node_9 | INFO ] 🛑 Stopping gossiper...
+[ 2025-12-14 08:24:23 | node_9 | INFO ] InMemoryServer stopped at node_9
+[ 2025-12-14 08:24:23 | node_10 | INFO ] Stopping node...
+[ 2025-12-14 08:24:23 | node_10 | INFO ] 🛑 Stopping gossiper...
+[ 2025-12-14 08:24:23 | node_10 | INFO ] InMemoryServer stopped at node_10
+[ 2025-12-14 08:24:23 | node_11 | INFO ] Stopping node...
+[ 2025-12-14 08:24:23 | node_11 | INFO ] 🛑 Stopping gossiper...
+[ 2025-12-14 08:24:23 | node_11 | INFO ] InMemoryServer stopped at node_11
+[ 2025-12-14 08:24:23 | node_12 | INFO ] Stopping node...
+[ 2025-12-14 08:24:23 | node_12 | INFO ] 🛑 Stopping gossiper...
+[ 2025-12-14 08:24:23 | node_12 | INFO ] InMemoryServer stopped at node_12
+[ 2025-12-14 08:24:23 | node_13 | INFO ] Stopping node...
+[ 2025-12-14 08:24:23 | node_13 | INFO ] 🛑 Stopping gossiper...
+[ 2025-12-14 08:24:23 | node_13 | INFO ] InMemoryServer stopped at node_13
+[ 2025-12-14 08:24:23 | node_14 | INFO ] Stopping node...
+[ 2025-12-14 08:24:23 | node_14 | INFO ] 🛑 Stopping gossiper...
+[ 2025-12-14 08:24:23 | node_14 | INFO ] InMemoryServer stopped at node_14
+[ 2025-12-14 08:24:23 | node_15 | INFO ] Stopping node...
+[ 2025-12-14 08:24:23 | node_15 | INFO ] 🛑 Stopping gossiper...
+[ 2025-12-14 08:24:23 | node_15 | INFO ] InMemoryServer stopped at node_15
+[ 2025-12-14 08:24:23 | node_16 | INFO ] Stopping node...
+[ 2025-12-14 08:24:23 | node_16 | INFO ] 🛑 Stopping gossiper...
+[ 2025-12-14 08:24:23 | node_16 | INFO ] InMemoryServer stopped at node_16
+[ 2025-12-14 08:24:23 | node_17 | INFO ] Stopping node...
+[ 2025-12-14 08:24:23 | node_17 | INFO ] 🛑 Stopping gossiper...
+[ 2025-12-14 08:24:23 | node_17 | INFO ] InMemoryServer stopped at node_17
+[ 2025-12-14 08:24:23 | node_18 | INFO ] Stopping node...
+[ 2025-12-14 08:24:23 | node_18 | INFO ] 🛑 Stopping gossiper...
+[ 2025-12-14 08:24:23 | node_18 | INFO ] InMemoryServer stopped at node_18
+[ 2025-12-14 08:24:23 | node_19 | INFO ] Stopping node...
+[ 2025-12-14 08:24:23 | node_19 | INFO ] 🛑 Stopping gossiper...
+[ 2025-12-14 08:24:23 | node_19 | INFO ] InMemoryServer stopped at node_19
+[ 2025-12-14 08:24:23 | node_13 | INFO ] Stopping model gossip process.
+[ 2025-12-14 08:24:23 | node_13 | INFO ] Stopping Wokflow.
+[ 2025-12-14 08:24:23 | node_18 | INFO ] Stopping model gossip process.
+[ 2025-12-14 08:24:23 | node_18 | INFO ] Stopping Wokflow.
+[ 2025-12-14 08:24:23 | node_7 | INFO ] Stopping model gossip process.
+[ 2025-12-14 08:24:23 | node_7 | INFO ] Stopping Wokflow.
+[ 2025-12-14 08:24:23 | node_5 | INFO ] Stopping model gossip process.
+[ 2025-12-14 08:24:23 | node_5 | INFO ] Stopping Wokflow.
+[ 2025-12-14 08:24:23 | node_9 | INFO ] Stopping model gossip process.
+[ 2025-12-14 08:24:23 | node_9 | INFO ] Stopping Wokflow.
+[ 2025-12-14 08:24:24 | node_11 | INFO ] Stopping model gossip process.
+[ 2025-12-14 08:24:24 | node_11 | INFO ] Stopping Wokflow.
+[ 2025-12-14 08:24:24 | node_12 | INFO ] Stopping model gossip process.
+[ 2025-12-14 08:24:24 | node_12 | INFO ] Stopping Wokflow.
