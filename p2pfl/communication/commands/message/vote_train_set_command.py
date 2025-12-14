@@ -71,4 +71,16 @@ class VoteTrainSetCommand(Command):
                     f"Vote received in a late round. Ignored. {round} != {self.state.round} / {self.state.round + 1}",
                 )
         else:
-            logger.error(self.state.addr, "Vote received when learning is not running")
+            # If learning is not running yet (round is None), we still accept the vote if it is for the first rounds
+            # this happens when a neighbor is faster than us (e.g. using ray_actor_pool_size)
+            if round <= 1: 
+                votes = args
+                tmp_votes = {}
+                for i in range(0, len(votes), 2):
+                    tmp_votes[votes[i]] = int(votes[i + 1])
+                # set votes
+                self.state.train_set_votes_lock.acquire()
+                self.state.train_set_votes[source] = tmp_votes
+                self.state.train_set_votes_lock.release()
+            else:
+                logger.warning(self.state.addr, f"Vote received when learning is not running (Round {round}). Ignored.")
