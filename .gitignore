@@ -20,10 +20,10 @@ profile/
 /MNIST/
 
 # Logs
-*.log
+#*.log
 lightning_logs/
 training_logs/
-logs
+#logs
 
 # SSL
 *.key
