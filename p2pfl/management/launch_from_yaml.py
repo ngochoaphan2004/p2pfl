@@ -270,14 +270,12 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
         topology = network_config.get("topology")
         if not topology:
             raise ValueError("Missing 'topology' configuration in YAML file.")
-        if n > Settings.gossip.TTL:
-            print(
-                f""""TTL less than the number of nodes ({Settings.gossip.TTL} < {n}).
-                Some messages will not be delivered depending on the topology."""
-            )
+        
         adjacency_matrix = TopologyFactory.generate_matrix(topology, len(nodes))
         TopologyFactory.connect_nodes(adjacency_matrix, nodes)
-        wait_convergence(nodes, n - 1, only_direct=False, wait=60, debug=False)  # type: ignore
+        import numpy as np
+        expected_neighbors = int(np.min(np.sum(adjacency_matrix, axis=1)))
+        wait_convergence(nodes, expected_neighbors, only_direct=True, wait=60, debug=False) # type: ignore
 
         # Additional connections
         additional_connections = network_config.get("additional_connections")

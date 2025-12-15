@@ -56,38 +56,52 @@ class TrainStage(Stage):
             check_early_stop(state)
 
             # Set Models To Aggregate
-            aggregator.set_nodes_to_aggregate(state.train_set)
+            direct_neighbors = list(communication_protocol.get_neighbors(only_direct=True).keys())
+            expected_contributors = [state.addr] + direct_neighbors
+            aggregator.set_nodes_to_aggregate(expected_contributors)
 
             check_early_stop(state)
 
-            # Evaluate and send metrics
-            TrainStage.__evaluate(state, learner, communication_protocol)
-
-            check_early_stop(state)
 
             # Train
-            logger.info(state.addr, "🏋️‍♀️ Training...")
-            learner.fit()
-            logger.info(state.addr, "🎓 Training done.")
+            if state.addr in state.train_set:
+                # Evaluate and send metrics
+                TrainStage.__evaluate(state, learner, communication_protocol)
+
+                check_early_stop(state)
+                logger.info(state.addr, "🏋️‍♀️ Training...")
+                learner.fit()
+                logger.info(state.addr, "🎓 Training done.")
+            else:
+                logger.info(state.addr, "💤 Skipping training...")
 
             check_early_stop(state)
 
             # Aggregate Model
-            models_added = aggregator.add_model(learner.get_model())
-
             # send model added msg ---->> redundant (a node always owns its model)
             # TODO: print("Broadcast redundante")
-            communication_protocol.broadcast(
-                communication_protocol.build_msg(
-                    ModelsAggregatedCommand.get_name(),
-                    models_added,
-                    round=state.round,
-                )
-            )
-            TrainStage.__gossip_model_aggregation(state, communication_protocol, aggregator)
+            # communication_protocol.broadcast(
+            #     communication_protocol.build_msg(
+            #         ModelsAggregatedCommand.get_name(),
+            #         models_added,
+            #         round=state.round,
+            #     )
+            # )
 
+            # check_early_stop(state)
+
+            current_model = learner.get_model()
+            if state.addr not in state.train_set:
+                n_s = learner.get_data().get_num_samples()
+                current_model.set_contribution([state.addr], n_s) 
+            aggregator.add_model(current_model)
+
+            import time
+            time.sleep(5) # wait for continuous voting
+
+            TrainStage.__send_model_direct(state, communication_protocol, current_model)
             check_early_stop(state)
-
+            
             # Set aggregated model
             aggregator.set_trained_round(state.addr)
             agg_model = aggregator.wait_and_get_aggregation()
@@ -198,3 +212,48 @@ class TrainStage(Stage):
     @staticmethod
     def __get_remaining_nodes(node: str, state: NodeState) -> set[str]:
         return set(state.train_set) - set(TrainStage.__get_aggregated_models(node, state))
+    
+    @staticmethod
+    def __send_model_direct(
+        state: NodeState,
+        communication_protocol: CommunicationProtocol,
+        model: Any
+    ) -> None:
+        """
+        Gửi mô hình chỉ cho các hàng xóm kết nối trực tiếp (Direct Neighbors).
+        Không sử dụng cơ chế Broadcast hay Gossip lan truyền.
+        """
+        direct_neighbors = communication_protocol.get_neighbors(only_direct=True)
+        
+        if not direct_neighbors:
+            logger.info(state.addr, "⚠️ No direct neighbors to send model.")
+            return
+
+        logger.info(state.addr, f"📤 Sending model to {len(direct_neighbors)} direct neighbors: {list(direct_neighbors.keys())}")
+
+        from p2pfl.communication.commands.weights.partial_model_command import PartialModelCommand
+        from p2pfl.communication.commands.message.pre_send_model_command import PreSendModelCommand
+        
+        contributors = model.get_contributors()
+        
+        pre_send_args = [PartialModelCommand.get_name()] + contributors
+        pre_send_msg = communication_protocol.build_msg(
+            cmd=PreSendModelCommand.get_name(),
+            args=pre_send_args,
+            round=state.round
+        )
+
+        model_msg = communication_protocol.build_weights(
+            cmd=PartialModelCommand.get_name(),
+            round=state.round or 0,
+            serialized_model=model.encode_parameters(), 
+            contributors=model.get_contributors(),
+            weight=model.get_num_samples(),
+        )
+
+        for neighbor_addr in direct_neighbors:
+            try:
+                communication_protocol.send(neighbor_addr, pre_send_msg)
+                communication_protocol.send(neighbor_addr, model_msg)
+            except Exception as e:
+                logger.error(state.addr, f"❌ Failed to send model to {neighbor_addr}: {e}")

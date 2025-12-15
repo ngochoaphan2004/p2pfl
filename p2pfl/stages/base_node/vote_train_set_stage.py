@@ -66,11 +66,12 @@ class VoteTrainSetStage(Stage):
             )
 
             # Next stage
-            if state.addr in state.train_set:
-                return StageFactory.get_stage("TrainStage")
-            else:
-                logger.debug(state.addr, "Node not in train set. Proceeding to WaitAggregatedModelsStage.")
-                return StageFactory.get_stage("WaitAggregatedModelsStage")
+            return StageFactory.get_stage("TrainStage")
+            # if state.addr in state.train_set:
+            #     return StageFactory.get_stage("TrainStage")
+            # else:
+            #     logger.debug(state.addr, "Node not in train set. Proceeding to WaitAggregatedModelsStage.")
+            #     return StageFactory.get_stage("WaitAggregatedModelsStage")
         except EarlyStopException:
             return None
 

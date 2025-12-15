@@ -9,14 +9,17 @@ from p2pfl.management.logger import logger
 class DFedAdp(Aggregator):
     SUPPORTS_PARTIAL_AGGREGATION: bool = False
     REQUIRED_INFO_KEYS = ["delta", "degrees"] 
-    ALPHA = 5.0 
+    ALPHA = 5.0
 
-    def __init__(self, disable_partial_aggregation: bool = False, learning_rate: float = 0.001, log_dfedadp_params: bool = False) -> None:
+    def __init__(self, disable_partial_aggregation: bool = False, learning_rate: float = 0.001, log_dfedadp_params: bool = False, decay_rate: float = 0.98, min_learning_rate: float = 0.0001,) -> None:
         super().__init__(disable_partial_aggregation=disable_partial_aggregation)
         self.global_model_params: List[np.ndarray] = []
         # Map contributor_id -> smoothed_angle history
         self.node_correlation: Dict[str, float] = defaultdict(lambda: 0.0)
+        # Learning rate
         self.learning_rate = learning_rate
+        self.min_learning_rate = min_learning_rate
+        self.decay_rate = decay_rate
         # Store previous local gradient for Gradient Tracking
         self.prev_local_gradient: List[np.ndarray] = []
         # Control logging of dfedadp parameters
@@ -35,6 +38,9 @@ class DFedAdp(Aggregator):
         
         current_round = self.each_trained_round.get(self.addr, 0)
         self_model = models[0] # Assuming models[0] is self
+
+        if self.log_dfedadp_params:
+            logger.info(self.addr, f"DFedAdp Round {current_round}: Learning rate = {self.learning_rate}")
         
         # 2. Initial Round (Round 0): Setup params and initial tracking gradient
         if not self.global_model_params:
@@ -209,7 +215,8 @@ class DFedAdp(Aggregator):
         if self.log_dfedadp_params:
             result_node_id = result_model.get_contributors()[0] if result_model.get_contributors() else "result_node"
             logger.info(self.addr, f"DFedAdp Round {current_round}, Node {result_node_id}: Final gradient estimate norm = {np.linalg.norm(np.concatenate([tg.ravel() for tg in tracking_gradient])):.4f}")
-        
+        # Update learning_rate
+        self.learning_rate = max(self.learning_rate*self.decay_rate, self.min_learning_rate)
         return result_model
 
     def _gompertz_function(self, angle: float):

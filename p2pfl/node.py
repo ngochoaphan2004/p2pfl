@@ -401,7 +401,7 @@ class Node:
     def __start_learning(self, rounds: int, epochs: int, trainset_size: int, experiment_name: str) -> None:
         # Set seed
         if hasattr(self, 'learner') and self.learner.get_model() is not None:
-            neighbors = self.get_neighbors(only_direct=False)
+            neighbors = self.get_neighbors(only_direct=True)
             degree = int(len(neighbors))
             logger.info(self.addr, f"🔍 Neighbors found: {list(neighbors.keys())} | Degree: {degree}")
             self.learner.get_model().set_degrees(degree)
