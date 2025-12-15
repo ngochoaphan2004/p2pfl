@@ -9,9 +9,9 @@ from p2pfl.management.logger import logger
 class DFedAdp(Aggregator):
     SUPPORTS_PARTIAL_AGGREGATION: bool = False
     REQUIRED_INFO_KEYS = ["delta", "degrees"] 
-    ALPHA = 5.0
+    
 
-    def __init__(self, disable_partial_aggregation: bool = False, learning_rate: float = 0.001, log_dfedadp_params: bool = False, decay_rate: float = 0.98, min_learning_rate: float = 0.0001,) -> None:
+    def __init__(self, disable_partial_aggregation: bool = False, learning_rate: float = 0.001, log_dfedadp_params: bool = False, decay_rate: float = 0.98, min_learning_rate: float = 0.0001,alpha : float = 5.0) -> None:
         super().__init__(disable_partial_aggregation=disable_partial_aggregation)
         self.global_model_params: List[np.ndarray] = []
         # Map contributor_id -> smoothed_angle history
@@ -24,6 +24,8 @@ class DFedAdp(Aggregator):
         self.prev_local_gradient: List[np.ndarray] = []
         # Control logging of dfedadp parameters
         self.log_dfedadp_params = log_dfedadp_params
+        # ALPHA for glompetz function
+        self.ALPHA = alpha
 
     def aggregate(self, models: List[P2PFLModel]) -> P2PFLModel:
         # Validate input
