@@ -268,7 +268,9 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
     try:
         # Connect nodes
         topology = network_config.get("topology")
-        if not topology:
+        # Additional connections
+        additional_connections = network_config.get("additional_connections")
+        if not topology and not additional_connections:
             raise ValueError("Missing 'topology' configuration in YAML file.")
         
         adjacency_matrix = TopologyFactory.generate_matrix(topology, len(nodes))
@@ -277,8 +279,6 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
         expected_neighbors = int(np.min(np.sum(adjacency_matrix, axis=1)))
         wait_convergence(nodes, expected_neighbors, only_direct=True, wait=60, debug=False) # type: ignore
 
-        # Additional connections
-        additional_connections = network_config.get("additional_connections")
         if additional_connections:
             for source, connect_to in additional_connections:
                 nodes[source].connect(nodes[connect_to].addr)

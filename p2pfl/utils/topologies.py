@@ -105,6 +105,8 @@ class TopologyFactory:
                     i, j = possible_edges[index]
                     matrix[i, j] = 1
                     matrix[j, i] = 1
+        if topology_type is None:
+            return matrix
         else:
             raise ValueError(f"Unsupported topology type: {topology_type}")
 
