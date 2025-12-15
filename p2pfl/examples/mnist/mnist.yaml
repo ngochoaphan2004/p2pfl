@@ -222,7 +222,7 @@ experiment:
   name: "my_experiment"
   rounds: 100
   epochs: 1
-  trainset_size: 10
+  trainset_size: 50
   seed: 666
   wait_timeout: 600 # Timeout in minutes for wait_to_finish (default: 60 minutes)
 
