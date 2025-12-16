@@ -11,7 +11,7 @@ remote_loggers:
 network:
   package: "p2pfl.communication.protocols.protobuff.memory"
   protocol: "MemoryCommunicationProtocol"
-  nodes: 5
+  nodes: 50
   topology: "full"   # Network topology: "line", "ring", "star", "full", null for custom
   additional_connections:
     # - [0, 2]              # Connect node 0 to Node 2 (indices)
@@ -20,7 +20,7 @@ network:
 # Defines experiment settings
 experiment:
   name: "my_experiment"
-  rounds: 5
+  rounds: 100
   epochs: 1
   trainset_size: 5
   seed: 666
@@ -80,7 +80,7 @@ settings:
     CLIENT_KEY: None
   heartbeat:
     period: 2
-    timeout: 10
+    timeout: 180
     wait_convergence: 4
     exclude_beat_logs: true
   gossip:
