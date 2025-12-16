@@ -11,7 +11,7 @@ remote_loggers:
 network:
   package: "p2pfl.communication.protocols.protobuff.memory"
   protocol: "MemoryCommunicationProtocol"
-  nodes: 10
+  nodes: 5
   topology: "full"   # Network topology: "line", "ring", "star", "full", null for custom
   additional_connections:
     # - [0, 2]              # Connect node 0 to Node 2 (indices)
@@ -20,9 +20,9 @@ network:
 # Defines experiment settings
 experiment:
   name: "my_experiment"
-  rounds: 50
+  rounds: 5
   epochs: 1
-  trainset_size: 4
+  trainset_size: 5
   seed: 666
   wait_timeout: 60  # Timeout in minutes for wait_to_finish (default: 60 minutes)
 
@@ -60,8 +60,8 @@ experiment:
 
   # Aggregation algorithm configuration
   aggregator:
-    package: "p2pfl.learning.aggregators.fedavg"
-    aggregator: "FedAvg"
+    package: "p2pfl.learning.aggregators.psgd"
+    aggregator: "PSGD"
     params: {}  # Aggregator parameters (algorithm-specific)
 
 # General experiment settings
