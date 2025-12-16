@@ -67,8 +67,8 @@ experiment:
 # General experiment settings
 settings:
   general:
-    log_level: "INFO"
-    grpc_timeout: 300 
+    log_level: "INFO" # Logging verbosity: "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"
+    grpc_timeout: 2
     disable_ray: False
 
   SSL:
@@ -79,22 +79,21 @@ settings:
     SERVER_KEY: None
     CLIENT_KEY: None
   heartbeat:
-    period: 30 
+    period: 2
     timeout: 3600
-    wait_convergence: 900
+    wait_convergence: 4
     exclude_beat_logs: true
   gossip:
     period: 1
     ttl: 10
-    messages_per_period: 20
+    messages_per_period: 200
     amount_last_messages_saved: 1000
     models_period: 1
     models_per_round: 4
     exit_on_x_equal_rounds: 50
-  
   training:
-    vote_timeout: 1800
-    aggregation_timeout: 1800
+    vote_timeout: 300
+    aggregation_timeout: 300
 
 # Profiling configuration
 profiling:

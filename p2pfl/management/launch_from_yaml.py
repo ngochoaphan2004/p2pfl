@@ -277,7 +277,7 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
         TopologyFactory.connect_nodes(adjacency_matrix, nodes)
         import numpy as np
         expected_neighbors = int(np.min(np.sum(adjacency_matrix, axis=1)))
-        wait_convergence(nodes, expected_neighbors, only_direct=True, wait=600, debug=False) # type: ignore
+        wait_convergence(nodes, expected_neighbors, only_direct=True, wait=60, debug=False) # type: ignore
 
         if additional_connections:
             for source, connect_to in additional_connections:
