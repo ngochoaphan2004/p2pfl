@@ -43,8 +43,13 @@ class DFedAdp(Aggregator):
         # ===== 0. INIT =====
         if not self.global_model_params:
             self.global_model_params = [p.copy() for p in self_model.get_parameters()]
-            assert "local_gradients" in self_info
-            self.prev_local_gradient = self_info["local_gradients"]
+            # Use collected gradients if available, otherwise calculate from delta
+            if "local_gradients" in self_info:
+                self.prev_local_gradient = self_info["local_gradients"]
+            else:
+                # Calculate gradient from delta and learning rate
+                delta = self_info["delta"]
+                self.prev_local_gradient = [-d / self.learning_rate for d in delta]
             self_model.gradients_estimate = self.prev_local_gradient
 
         # ===== 1. METROPOLIS WEIGHTS =====
@@ -57,8 +62,12 @@ class DFedAdp(Aggregator):
         W[0] = 1.0 - sum(W[1:])
 
         # ===== 2. CURRENT LOCAL GRADIENT (TRUE GRADIENT) =====
-        assert "local_gradients" in self_info
-        g_curr = self_info["local_gradients"]
+        if "local_gradients" in self_info:
+            g_curr = self_info["local_gradients"]
+        else:
+            # Calculate gradient from delta and learning rate
+            delta = self_info["delta"]
+            g_curr = [-d / self.learning_rate for d in delta]
 
         # ===== 3. GRADIENT TRACKING (DIGing) =====
         g_mix = [np.zeros_like(p) for p in self.global_model_params]
@@ -68,7 +77,12 @@ class DFedAdp(Aggregator):
                 g_prev_hat = m.gradients_estimate
             else:
                 info = self._get_and_validate_model_info(m)
-                g_prev_hat = info["local_gradients"]
+                if "local_gradients" in info:
+                    g_prev_hat = info["local_gradients"]
+                else:
+                    # Calculate gradient from delta and learning rate
+                    delta = info["delta"]
+                    g_prev_hat = [-d / self.learning_rate for d in delta]
 
             for k in range(len(g_mix)):
                 g_mix[k] += W[idx] * g_prev_hat[k]
@@ -88,7 +102,14 @@ class DFedAdp(Aggregator):
             info = self._get_and_validate_model_info(m)
             node_id = m.get_contributors()[0]
 
-            l_grad = info["local_gradients"]
+            # Use collected gradients if available, otherwise calculate from delta
+            if "local_gradients" in info:
+                l_grad = info["local_gradients"]
+            else:
+                # Calculate gradient from delta and learning rate
+                delta = info["delta"]
+                l_grad = [-d / self.learning_rate for d in delta]
+
             l_vec = np.concatenate([g.ravel() for g in l_grad])
             l_norm = np.linalg.norm(l_vec)
 
