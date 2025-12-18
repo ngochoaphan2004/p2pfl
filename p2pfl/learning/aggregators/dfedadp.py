@@ -77,12 +77,9 @@ class DFedAdp(Aggregator):
                 g_prev_hat = m.gradients_estimate
             else:
                 info = self._get_and_validate_model_info(m)
-                if "local_gradients" in info:
-                    g_prev_hat = info["local_gradients"]
-                else:
-                    # Calculate gradient from delta and learning rate
-                    delta = info["delta"]
-                    g_prev_hat = [-d / self.learning_rate for d in delta]
+                # Calculate gradient from delta and learning rate
+                delta = info["delta"]
+                g_prev_hat = [-d / self.learning_rate for d in delta]
 
             for k in range(len(g_mix)):
                 g_mix[k] += W[idx] * g_prev_hat[k]
