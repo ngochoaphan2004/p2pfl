@@ -1,25 +1,5 @@
-#
-# This file is part of the federated_learning_p2p (p2pfl) distribution
-# (see https://github.com/pguijas/p2pfl).
-# Copyright (c) 2022 Pedro Guijas Bravo.
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, version 3.
-#
-# This program is distributed in the hope that it will be useful, but
-# WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-# General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-
-"""Callback for DFEDADP operations (PyTorch Lighting)."""
-
 import copy
-from typing import Any
+from typing import Any, List
 
 import lightning as pl
 import numpy as np
@@ -31,77 +11,80 @@ from p2pfl.learning.frameworks.callback import P2PFLCallback
 
 class DFEDADPCallback(Callback, P2PFLCallback):
     """
-    Callback for DFEDADP operations to use with PyTorch Lightning.
-
-    At the beginning of the training, the callback stores the global model. Then, after training, it computes the delta (new parameters minus old parameters).
+    DFedAdp callback.
+    - Lưu gradient thật g_i(w_i(t)) và g_i(w_i(t-1))
+    - Lưu delta cho compatibility
     """
 
     def __init__(self) -> None:
-        """Initialize the callback."""
         super().__init__()
-        # self.initial_model_params: list[torch.Tensor] = []
         self.additional_info: dict[str, Any] = {}
+
+        # DIGing states
+        self.prev_local_gradients: List[np.ndarray] | None = None
+        self.curr_local_gradients: List[np.ndarray] | None = None
 
     @staticmethod
     def get_name() -> str:
-        """Return the name of the callback."""
         return "dfedadp"
 
-    def on_train_start(self, trainer: pl.Trainer, pl_module: pl.LightningModule) -> None:
-        """
-        Store the global model and the initial learning rate.
+    # ==========================================================
+    # 1. Store global model before local training
+    # ==========================================================
+    def on_train_start(
+        self,
+        trainer: pl.Trainer,
+        pl_module: pl.LightningModule
+    ) -> None:
+        self.additional_info["global_model"] = copy.deepcopy(
+            self._get_parameters(pl_module)
+        )
 
-        Args:
-            trainer: The trainer
-            pl_module: The model.
+    # ==========================================================
+    # 2. Collect TRUE local gradient (after backward)
+    # ==========================================================
+    def on_after_backward(
+        self,
+        trainer: pl.Trainer,
+        pl_module: pl.LightningModule
+    ) -> None:
+        grads = [
+            p.grad.detach().cpu().numpy().copy()
+            for p in pl_module.parameters()
+            if p.grad is not None
+        ]
+        self.curr_local_gradients = grads
 
-        """
-        # Store the global model
-        initial_model_params = copy.deepcopy(self._get_parameters(pl_module))
-        self.additional_info["global_model"] = initial_model_params
-
-    def on_train_end(self, trainer: pl.Trainer, pl_module: pl.LightningModule) -> None:
-        """
-        Compute and store the delta (new parameters minus old parameters).
-
-        Args:
-            trainer: The trainer
-            pl_module: The model.
-
-        """
+    # ==========================================================
+    # 3. End of local training round
+    # ==========================================================
+    def on_train_end(
+        self,
+        trainer: pl.Trainer,
+        pl_module: pl.LightningModule
+    ) -> None:
+        # ---- delta (for compatibility) ----
         post_params = self._get_parameters(pl_module)
         pre_params = self.additional_info["global_model"]
         delta = [post - pre for post, pre in zip(post_params, pre_params)]
-        self.additional_info["delta"] = [d.detach().cpu().numpy() for d in delta]
+        self.additional_info["delta"] = [
+            d.detach().cpu().numpy() for d in delta
+        ]
 
-        # Get gradient information from the gradient collection callback if available
-        for callback in trainer.callbacks:
-            if hasattr(callback, 'get_name') and callback.get_name() == "gradient_collection":
-                gradient_info = callback.get_info()
-                if "local_gradients" in gradient_info:
-                    # Store local gradients for DFedADP algorithm
-                    self.additional_info["local_gradients"] = gradient_info["local_gradients"]
-                if "gradient_norms" in gradient_info:
-                    self.additional_info["gradient_norms"] = gradient_info["gradient_norms"]
+        # ---- DIGing gradients ----
+        self.additional_info["local_gradients"] = self.curr_local_gradients
+        self.additional_info["prev_local_gradients"] = self.prev_local_gradients
 
-    def _get_parameters(self, pl_module: pl.LightningModule) -> list[torch.Tensor]:
-        return [param.cpu() for _, param in pl_module.state_dict().items()]
+        # shift gradient history
+        self.prev_local_gradients = self.curr_local_gradients
+        self.curr_local_gradients = None
+
+    # ==========================================================
+    def _get_parameters(self, pl_module: pl.LightningModule):
+        return [p.detach().cpu() for _, p in pl_module.state_dict().items()]
 
     def get_info(self) -> dict[str, Any]:
-        """
-        Get the DFedADP information including gradients.
-
-        Returns:
-            Dictionary containing DFedADP information with gradients.
-        """
         return self.additional_info
 
     def set_info(self, info: dict[str, Any]) -> None:
-        """
-        Set the DFedADP information.
-
-        Args:
-            info: Dictionary containing DFedADP information.
-        """
         self.additional_info.update(info)
-
