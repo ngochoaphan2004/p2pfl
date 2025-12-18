@@ -6,14 +6,12 @@ import os
 
 LOG_CONFIG = {
     'DFedAdp': [
-        '50n-100r-random-noVote-dfedadp.log',
-        '50n-100r-random-noVote-dfedadp.log.1',
-        '50n-100r-random-noVote-dfedadp.log.2'
+        'DFedAdp',
+        'DFedAdp.1',
     ],
-    'DFedAvg': [
-        '50n-100r-random-noVote-fedavg.log',
-        '50n-100r-random-noVote-fedavg.log.1',
-        '50n-100r-random-noVote-fedavg.log.2'
+    'FedAvg': [
+        'FedAvg',
+        'FedAvg.1',
     ]
 }
 

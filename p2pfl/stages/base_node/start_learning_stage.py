@@ -49,6 +49,8 @@ class StartLearningStage(Stage):
         learner: Learner | None = None,
         communication_protocol: CommunicationProtocol | None = None,
         aggregator: Aggregator | None = None,
+        trainset_size: int | None = None,
+        nodes: int | None = None,
         **kwargs,
     ) -> type["Stage"] | None:
         """Execute the stage."""
@@ -92,6 +94,21 @@ class StartLearningStage(Stage):
         wait_time = Settings.heartbeat.WAIT_CONVERGENCE - (time.time() - begin)
         if wait_time > 0:
             time.sleep(wait_time)
+
+        # If trainset_size is 0 or greater than or equal to the number of available nodes, skip voting and set all nodes as train set
+        # When trainset_size is 0, it means skip voting completely
+        # When trainset_size is greater than or equal to available nodes, no need to vote
+        all_available_nodes = list(communication_protocol.get_neighbors(only_direct=False).keys())
+        if state.addr not in all_available_nodes:
+            all_available_nodes.append(state.addr)
+        
+        if trainset_size is not None and (trainset_size == 0 or (nodes is not None and trainset_size >= nodes) or trainset_size >= len(all_available_nodes)):
+            # Set all available nodes as the training set
+            if len(all_available_nodes) == 0:
+                all_available_nodes = [state.addr]
+            state.train_set = all_available_nodes
+            logger.info(state.addr, f"🚂 Train set of {len(state.train_set)} nodes (all available nodes): {state.train_set}")
+            return StageFactory.get_stage("TrainStage")
 
         # Vote
         return StageFactory.get_stage("VoteTrainSetStage")
