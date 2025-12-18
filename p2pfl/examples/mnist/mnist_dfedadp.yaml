@@ -58,8 +58,8 @@ experiment:
 
   # Aggregation algorithm configuration
   aggregator:
-    package: "p2pfl.learning.aggregators.fedavg"
-    aggregator: "FedAvg"
+    package: "p2pfl.learning.aggregators.dfedadp"
+    aggregator: "DFedAdp"
     params: {}  # Aggregator parameters (algorithm-specific)
 
 # General experiment settings
