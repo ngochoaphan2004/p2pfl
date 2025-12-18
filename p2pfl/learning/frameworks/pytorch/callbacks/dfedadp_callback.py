@@ -59,7 +59,7 @@ class DFEDADPCallback(Callback, P2PFLCallback):
         # Store the global model
         initial_model_params = copy.deepcopy(self._get_parameters(pl_module))
         self.additional_info["global_model"] = initial_model_params
-        
+
     def on_train_end(self, trainer: pl.Trainer, pl_module: pl.LightningModule) -> None:
         """
         Compute and store the delta (new parameters minus old parameters).
@@ -74,6 +74,34 @@ class DFEDADPCallback(Callback, P2PFLCallback):
         delta = [post - pre for post, pre in zip(post_params, pre_params)]
         self.additional_info["delta"] = [d.detach().cpu().numpy() for d in delta]
 
+        # Get gradient information from the gradient collection callback if available
+        for callback in trainer.callbacks:
+            if hasattr(callback, 'get_name') and callback.get_name() == "gradient_collection":
+                gradient_info = callback.get_info()
+                if "local_gradients" in gradient_info:
+                    # Store local gradients for DFedADP algorithm
+                    self.additional_info["local_gradients"] = gradient_info["local_gradients"]
+                if "gradient_norms" in gradient_info:
+                    self.additional_info["gradient_norms"] = gradient_info["gradient_norms"]
+
     def _get_parameters(self, pl_module: pl.LightningModule) -> list[torch.Tensor]:
         return [param.cpu() for _, param in pl_module.state_dict().items()]
+
+    def get_info(self) -> dict[str, Any]:
+        """
+        Get the DFedADP information including gradients.
+
+        Returns:
+            Dictionary containing DFedADP information with gradients.
+        """
+        return self.additional_info
+
+    def set_info(self, info: dict[str, Any]) -> None:
+        """
+        Set the DFedADP information.
+
+        Args:
+            info: Dictionary containing DFedADP information.
+        """
+        self.additional_info.update(info)
 

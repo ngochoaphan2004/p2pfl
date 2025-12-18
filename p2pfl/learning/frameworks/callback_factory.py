@@ -106,6 +106,13 @@ except ImportError:
     pass
 
 try:
+    from p2pfl.learning.frameworks.pytorch.callbacks.gradient_collection_callback import GradientCollectionCallback
+
+    CallbackFactory.register_callback(learner=Framework.PYTORCH.value, callback=GradientCollectionCallback)
+except ImportError:
+    pass
+
+try:
     from p2pfl.learning.frameworks.pytorch.callbacks.fedadp_callback import FEDADPCallback as FEDADPCallbackPT
 
     CallbackFactory.register_callback(learner=Framework.PYTORCH.value, callback=FEDADPCallbackPT)

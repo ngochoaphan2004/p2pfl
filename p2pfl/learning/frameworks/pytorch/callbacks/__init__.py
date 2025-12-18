@@ -16,3 +16,6 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 """Pytorch callbacks for federated learning."""
+
+# Import to ensure callbacks are properly registered
+from p2pfl.learning.frameworks.pytorch.callbacks.gradient_collection_callback import GradientCollectionCallback
