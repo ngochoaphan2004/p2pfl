@@ -1,0 +1,879 @@
+[ 2025-12-18 15:34:03 | ActorPool | INFO ] Ray detected 1.0 GPU(s), allocating 0.25 GPU per actor
+[ 2025-12-18 15:34:03 | ActorPool | INFO ] Initialized with 4 actors, 0.25 GPU per actor
+[ 2025-12-18 15:34:03 | node | INFO ] InMemoryServer started at node
+[ 2025-12-18 15:34:03 | node | INFO ] 🏁 Starting gossiper...
+[ 2025-12-18 15:34:03 | node_1 | INFO ] InMemoryServer started at node_1
+[ 2025-12-18 15:34:03 | node_1 | INFO ] 🏁 Starting gossiper...
+[ 2025-12-18 15:34:03 | node_2 | INFO ] InMemoryServer started at node_2
+[ 2025-12-18 15:34:03 | node_2 | INFO ] 🏁 Starting gossiper...
+[ 2025-12-18 15:34:03 | node_3 | INFO ] InMemoryServer started at node_3
+[ 2025-12-18 15:34:03 | node_3 | INFO ] 🏁 Starting gossiper...
+[ 2025-12-18 15:34:03 | node_4 | INFO ] InMemoryServer started at node_4
+[ 2025-12-18 15:34:03 | node_4 | INFO ] 🏁 Starting gossiper...
+[ 2025-12-18 15:34:03 |  | INFO ] Connected nodes node and node_1
+[ 2025-12-18 15:34:04 |  | INFO ] Connected nodes node and node_4
+[ 2025-12-18 15:34:04 |  | INFO ] Connected nodes node_1 and node_2
+[ 2025-12-18 15:34:04 |  | INFO ] Connected nodes node_2 and node_3
+[ 2025-12-18 15:34:04 |  | INFO ] Connected nodes node_3 and node_4
+[ 2025-12-18 15:34:04 | node | INFO ] 🚀 Broadcasting start learning...
+[ 2025-12-18 15:34:04 | node_1 | INFO ] 🔍 Neighbors found: ['node', 'node_2'] | Degree: 2
+[ 2025-12-18 15:34:04 | node_4 | INFO ] 🔍 Neighbors found: ['node', 'node_3'] | Degree: 2
+[ 2025-12-18 15:34:04 | node_1 | INFO ] ⏳ Waiting initialization.
+[ 2025-12-18 15:34:04 | node_4 | INFO ] ⏳ Waiting initialization.
+[ 2025-12-18 15:34:04 | node | INFO ] 🔍 Neighbors found: ['node_1', 'node_4'] | Degree: 2
+[ 2025-12-18 15:34:04 | node | INFO ] ⏳ Waiting initialization.
+[ 2025-12-18 15:34:04 | node | INFO ] 🗣️ Gossiping model initialization.
+[ 2025-12-18 15:34:04 | node_2 | INFO ] 🔍 Neighbors found: ['node_1', 'node_3'] | Degree: 2
+[ 2025-12-18 15:34:04 | node_2 | INFO ] ⏳ Waiting initialization.
+[ 2025-12-18 15:34:04 | node_3 | INFO ] 🔍 Neighbors found: ['node_2', 'node_4'] | Degree: 2
+[ 2025-12-18 15:34:04 | node_3 | INFO ] ⏳ Waiting initialization.
+[ 2025-12-18 15:34:05 | node_1 | INFO ] 🤖 Model Weights Initialized
+[ 2025-12-18 15:34:05 | node_1 | INFO ] 🗣️ Gossiping model initialization.
+[ 2025-12-18 15:34:05 | node_4 | INFO ] 🤖 Model Weights Initialized
+[ 2025-12-18 15:34:05 | node_4 | INFO ] 🗣️ Gossiping model initialization.
+[ 2025-12-18 15:34:06 | node_2 | INFO ] 🤖 Model Weights Initialized
+[ 2025-12-18 15:34:06 | node_2 | INFO ] 🗣️ Gossiping model initialization.
+[ 2025-12-18 15:34:06 | node_3 | INFO ] 🤖 Model Weights Initialized
+[ 2025-12-18 15:34:06 | node_3 | INFO ] 🗣️ Gossiping model initialization.
+[ 2025-12-18 15:34:06 | node | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:34:07 | node_2 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:34:07 | node_3 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:34:07 | node_1 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:34:07 | node_4 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:34:08 | node_1 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:34:08 | node_4 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:34:08 | node | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:34:08 | node_2 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:34:08 | node_3 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:34:09 | node_1 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:34:09 | node_1 | INFO ] 🚂 Train set of 5 nodes: ['node_2', 'node_4', 'node', 'node_3', 'node_1']
+[ 2025-12-18 15:34:09 | node_1 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:34:09 | node_2 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:34:09 | node_2 | INFO ] 🚂 Train set of 5 nodes: ['node_2', 'node_4', 'node', 'node_3', 'node_1']
+[ 2025-12-18 15:34:09 | node | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:34:09 | node_2 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:34:09 | node | INFO ] 🚂 Train set of 5 nodes: ['node_2', 'node_4', 'node', 'node_3', 'node_1']
+[ 2025-12-18 15:34:09 | node | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:34:09 | node_4 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:34:09 | node_3 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:34:09 | node_4 | INFO ] 🚂 Train set of 5 nodes: ['node_2', 'node_4', 'node', 'node_3', 'node_1']
+[ 2025-12-18 15:34:09 | node_3 | INFO ] 🚂 Train set of 5 nodes: ['node_2', 'node_4', 'node', 'node_3', 'node_1']
+[ 2025-12-18 15:34:09 | node_4 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:34:09 | node_3 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:34:17 | node | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 14.449026107788086, 'test_acc\n': 0.13750000298023224, 'test_precision\n': 0.04114937409758568, 'test_recall\n': 0.12120556831359863, 'test_f1\n': 0.05315490439534187}
+[ 2025-12-18 15:34:17 | node_2 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 15.031564712524414, 'test_acc\n': 0.11800000071525574, 'test_precision\n': 0.03795643895864487, 'test_recall\n': 0.11304464936256409, 'test_f1\n': 0.045947011560201645}
+[ 2025-12-18 15:34:17 | node | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:34:17 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:34:17 | node | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:34:17 | node_2 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:34:17 | node_3 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 14.874457359313965, 'test_acc\n': 0.12399999797344208, 'test_precision\n': 0.043299127370119095, 'test_recall\n': 0.11744441092014313, 'test_f1\n': 0.049035970121622086}
+[ 2025-12-18 15:34:17 | node_3 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:34:17 | node_3 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:34:18 | node_4 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 14.806714057922363, 'test_acc\n': 0.13249999284744263, 'test_precision\n': 0.04219396412372589, 'test_recall\n': 0.12169668078422546, 'test_f1\n': 0.05304252356290817}
+[ 2025-12-18 15:34:18 | node_1 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 14.809272766113281, 'test_acc\n': 0.125, 'test_precision\n': 0.054822634905576706, 'test_recall\n': 0.11904750764369965, 'test_f1\n': 0.05290495976805687}
+[ 2025-12-18 15:34:18 | node_4 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:34:18 | node_1 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:34:18 | node_4 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:34:18 | node_1 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:34:19 | node | INFO ] 🎓 Training done.
+[ 2025-12-18 15:34:19 | node | INFO ] 🧩 Model added (1/3) from ['node']
+[ 2025-12-18 15:34:19 | node_2 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:34:19 | node_2 | INFO ] 🧩 Model added (1/3) from ['node_2']
+[ 2025-12-18 15:34:20 | node_3 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:34:20 | node_3 | INFO ] 🧩 Model added (1/3) from ['node_3']
+[ 2025-12-18 15:34:20 | node_4 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:34:20 | node_4 | INFO ] 🧩 Model added (1/3) from ['node_4']
+[ 2025-12-18 15:34:21 | node_1 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:34:21 | node_1 | INFO ] 🧩 Model added (1/3) from ['node_1']
+[ 2025-12-18 15:34:24 | node | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_4']
+[ 2025-12-18 15:34:24 | node_1 | INFO ] 🧩 Model added (2/3) from ['node']
+[ 2025-12-18 15:34:24 | node_4 | INFO ] 🧩 Model added (2/3) from ['node']
+[ 2025-12-18 15:34:24 | node_2 | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_3']
+[ 2025-12-18 15:34:24 | node_1 | INFO ] 🧩 Model added (3/3) from ['node_2']
+[ 2025-12-18 15:34:25 | node_3 | INFO ] 🧩 Model added (2/3) from ['node_2']
+[ 2025-12-18 15:34:25 | node_3 | INFO ] 📤 Sending model to 2 direct neighbors: ['node_2', 'node_4']
+[ 2025-12-18 15:34:25 | node_2 | INFO ] 🧩 Model added (2/3) from ['node_3']
+[ 2025-12-18 15:34:25 | node_4 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_3']
+[ 2025-12-18 15:34:25 | node_4 | INFO ] 🧩 Model added (3/3) from ['node_3']
+[ 2025-12-18 15:34:25 | node | INFO ] 🧩 Model added (2/3) from ['node_4']
+[ 2025-12-18 15:34:25 | node_3 | INFO ] 🧩 Model added (3/3) from ['node_4']
+[ 2025-12-18 15:34:25 | node_3 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:34:25 | node_4 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:34:25 | node_3 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:34:25 | node_4 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:34:26 | node_1 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_2']
+[ 2025-12-18 15:34:26 | node | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2025-12-18 15:34:26 | node | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:34:26 | node | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:34:26 | node_2 | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2025-12-18 15:34:26 | node_2 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:34:26 | node_1 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:34:26 | node_2 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:34:26 | node_2 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:34:26 | node_1 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:34:26 | node_1 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:34:26 | node_2 | INFO ] 🎉 Round 1 of 10 finished.
+[ 2025-12-18 15:34:26 | node_1 | INFO ] 🎉 Round 1 of 10 finished.
+[ 2025-12-18 15:34:26 | node_2 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:34:26 | node_1 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:34:26 | node_4 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:34:26 | node_3 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:34:26 | node_4 | INFO ] 🎉 Round 1 of 10 finished.
+[ 2025-12-18 15:34:26 | node_3 | INFO ] 🎉 Round 1 of 10 finished.
+[ 2025-12-18 15:34:26 | node_4 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:34:26 | node_3 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:34:27 | node | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:34:27 | node | INFO ] 🎉 Round 1 of 10 finished.
+[ 2025-12-18 15:34:27 | node | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:34:27 | node | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:34:27 | node_4 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:34:27 | node | INFO ] 🚂 Train set of 5 nodes: ['node_1', 'node_2', 'node', 'node_3', 'node_4']
+[ 2025-12-18 15:34:27 | node_4 | INFO ] 🚂 Train set of 5 nodes: ['node_1', 'node_2', 'node', 'node_3', 'node_4']
+[ 2025-12-18 15:34:27 | node | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:34:27 | node_4 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:34:27 | node_1 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:34:27 | node_3 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:34:27 | node_1 | INFO ] 🚂 Train set of 5 nodes: ['node_1', 'node_2', 'node', 'node_3', 'node_4']
+[ 2025-12-18 15:34:27 | node_3 | INFO ] 🚂 Train set of 5 nodes: ['node_1', 'node_2', 'node', 'node_3', 'node_4']
+[ 2025-12-18 15:34:27 | node_1 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:34:27 | node_3 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:34:27 | node_2 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:34:27 | node_2 | INFO ] 🚂 Train set of 5 nodes: ['node_1', 'node_2', 'node', 'node_3', 'node_4']
+[ 2025-12-18 15:34:27 | node_2 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:34:27 | node | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.3029079735279083, 'test_acc\n': 0.8999999761581421, 'test_precision\n': 0.9087077379226685, 'test_recall\n': 0.8967901468276978, 'test_f1\n': 0.8958749771118164}
+[ 2025-12-18 15:34:27 | node | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:34:27 | node | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:34:27 | node_4 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.2975422739982605, 'test_acc\n': 0.9014999866485596, 'test_precision\n': 0.9097653031349182, 'test_recall\n': 0.8992654085159302, 'test_f1\n': 0.8976827263832092}
+[ 2025-12-18 15:34:27 | node_4 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:34:27 | node_3 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.27698615193367004, 'test_acc\n': 0.9120000004768372, 'test_precision\n': 0.9107920527458191, 'test_recall\n': 0.908538281917572, 'test_f1\n': 0.9055790901184082}
+[ 2025-12-18 15:34:27 | node_3 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:34:27 | node_4 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:34:27 | node_3 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:34:27 | node_1 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.30129745602607727, 'test_acc\n': 0.9024999737739563, 'test_precision\n': 0.9041931629180908, 'test_recall\n': 0.9017927050590515, 'test_f1\n': 0.8986449241638184}
+[ 2025-12-18 15:34:27 | node_1 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:34:27 | node_1 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:34:28 | node_2 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.30706581473350525, 'test_acc\n': 0.906000018119812, 'test_precision\n': 0.9058566689491272, 'test_recall\n': 0.9037888050079346, 'test_f1\n': 0.8999482989311218}
+[ 2025-12-18 15:34:28 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:34:28 | node_2 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:34:30 | node | INFO ] 🎓 Training done.
+[ 2025-12-18 15:34:30 | node | INFO ] 🧩 Model added (1/3) from ['node']
+[ 2025-12-18 15:34:30 | node_3 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:34:30 | node_3 | INFO ] 🧩 Model added (1/3) from ['node_3']
+[ 2025-12-18 15:34:30 | node_4 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:34:30 | node_4 | INFO ] 🧩 Model added (1/3) from ['node_4']
+[ 2025-12-18 15:34:30 | node_1 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:34:30 | node_1 | INFO ] 🧩 Model added (1/3) from ['node_1']
+[ 2025-12-18 15:34:31 | node_2 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:34:31 | node_2 | INFO ] 🧩 Model added (1/3) from ['node_2']
+[ 2025-12-18 15:34:35 | node | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_4']
+[ 2025-12-18 15:34:35 | node_3 | INFO ] 📤 Sending model to 2 direct neighbors: ['node_2', 'node_4']
+[ 2025-12-18 15:34:35 | node_4 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_3']
+[ 2025-12-18 15:34:35 | node_1 | INFO ] 🧩 Model added (2/3) from ['node']
+[ 2025-12-18 15:34:35 | node_2 | INFO ] 🧩 Model added (2/3) from ['node_3']
+[ 2025-12-18 15:34:35 | node | INFO ] 🧩 Model added (2/3) from ['node_4']
+[ 2025-12-18 15:34:35 | node_4 | INFO ] 🧩 Model added (2/3) from ['node_3']
+[ 2025-12-18 15:34:35 | node_4 | INFO ] 🧩 Model added (3/3) from ['node']
+[ 2025-12-18 15:34:35 | node_3 | INFO ] 🧩 Model added (2/3) from ['node_4']
+[ 2025-12-18 15:34:35 | node_4 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:34:35 | node_4 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:34:35 | node_1 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_2']
+[ 2025-12-18 15:34:35 | node | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2025-12-18 15:34:35 | node | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:34:35 | node_2 | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2025-12-18 15:34:35 | node | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:34:36 | node_2 | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_3']
+[ 2025-12-18 15:34:36 | node_1 | INFO ] 🧩 Model added (3/3) from ['node_2']
+[ 2025-12-18 15:34:36 | node_1 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:34:36 | node_1 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:34:36 | node_3 | INFO ] 🧩 Model added (3/3) from ['node_2']
+[ 2025-12-18 15:34:36 | node_3 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:34:36 | node_2 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:34:36 | node_3 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:34:36 | node_2 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:34:36 | node_2 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:34:36 | node_2 | INFO ] 🎉 Round 2 of 10 finished.
+[ 2025-12-18 15:34:36 | node_2 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:34:36 | node | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:34:36 | node | INFO ] 🎉 Round 2 of 10 finished.
+[ 2025-12-18 15:34:36 | node | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:34:37 | node_4 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:34:37 | node_4 | INFO ] 🎉 Round 2 of 10 finished.
+[ 2025-12-18 15:34:37 | node_4 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:34:37 | node_1 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:34:37 | node_1 | INFO ] 🎉 Round 2 of 10 finished.
+[ 2025-12-18 15:34:37 | node_1 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:34:37 | node_3 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:34:37 | node_3 | INFO ] 🎉 Round 2 of 10 finished.
+[ 2025-12-18 15:34:37 | node_3 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:34:37 | node_4 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:34:37 | node_4 | INFO ] 🚂 Train set of 5 nodes: ['node', 'node_3', 'node_1', 'node_2', 'node_4']
+[ 2025-12-18 15:34:37 | node_4 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:34:37 | node | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:34:37 | node | INFO ] 🚂 Train set of 5 nodes: ['node', 'node_3', 'node_1', 'node_2', 'node_4']
+[ 2025-12-18 15:34:37 | node | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:34:37 | node_3 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:34:37 | node_3 | INFO ] 🚂 Train set of 5 nodes: ['node', 'node_3', 'node_1', 'node_2', 'node_4']
+[ 2025-12-18 15:34:37 | node_1 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:34:37 | node_1 | INFO ] 🚂 Train set of 5 nodes: ['node', 'node_3', 'node_1', 'node_2', 'node_4']
+[ 2025-12-18 15:34:37 | node_3 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:34:37 | node_1 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:34:37 | node_2 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:34:37 | node_2 | INFO ] 🚂 Train set of 5 nodes: ['node', 'node_3', 'node_1', 'node_2', 'node_4']
+[ 2025-12-18 15:34:37 | node_2 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:34:37 | node_4 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.1917271912097931, 'test_acc\n': 0.9369999766349792, 'test_precision\n': 0.9400767683982849, 'test_recall\n': 0.9351688027381897, 'test_f1\n': 0.9346604943275452}
+[ 2025-12-18 15:34:37 | node_4 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:34:37 | node_4 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:34:38 | node | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.18036505579948425, 'test_acc\n': 0.9409999847412109, 'test_precision\n': 0.9427745938301086, 'test_recall\n': 0.9400354623794556, 'test_f1\n': 0.9386740326881409}
+[ 2025-12-18 15:34:38 | node | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:34:38 | node_3 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.21224595606327057, 'test_acc\n': 0.9359999895095825, 'test_precision\n': 0.9371978044509888, 'test_recall\n': 0.9337896108627319, 'test_f1\n': 0.9317541718482971}
+[ 2025-12-18 15:34:38 | node_3 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:34:38 | node | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:34:38 | node_1 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.19694045186042786, 'test_acc\n': 0.9380000233650208, 'test_precision\n': 0.9427444338798523, 'test_recall\n': 0.9358732104301453, 'test_f1\n': 0.936338484287262}
+[ 2025-12-18 15:34:38 | node_1 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:34:38 | node_3 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:34:38 | node_1 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:34:38 | node_2 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.1989629715681076, 'test_acc\n': 0.9384999871253967, 'test_precision\n': 0.9402483105659485, 'test_recall\n': 0.9368051290512085, 'test_f1\n': 0.934891939163208}
+[ 2025-12-18 15:34:38 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:34:38 | node_2 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:34:40 | node_4 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:34:40 | node_4 | INFO ] 🧩 Model added (1/3) from ['node_4']
+[ 2025-12-18 15:34:40 | node_3 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:34:40 | node_3 | INFO ] 🧩 Model added (1/3) from ['node_3']
+[ 2025-12-18 15:34:40 | node | INFO ] 🎓 Training done.
+[ 2025-12-18 15:34:40 | node | INFO ] 🧩 Model added (1/3) from ['node']
+[ 2025-12-18 15:34:40 | node_1 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:34:40 | node_1 | INFO ] 🧩 Model added (1/3) from ['node_1']
+[ 2025-12-18 15:34:41 | node_2 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:34:41 | node_2 | INFO ] 🧩 Model added (1/3) from ['node_2']
+[ 2025-12-18 15:34:45 | node_4 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_3']
+[ 2025-12-18 15:34:45 | node | INFO ] 🧩 Model added (2/3) from ['node_4']
+[ 2025-12-18 15:34:45 | node_3 | INFO ] 🧩 Model added (2/3) from ['node_4']
+[ 2025-12-18 15:34:45 | node_3 | INFO ] 📤 Sending model to 2 direct neighbors: ['node_2', 'node_4']
+[ 2025-12-18 15:34:45 | node_2 | INFO ] 🧩 Model added (2/3) from ['node_3']
+[ 2025-12-18 15:34:45 | node_4 | INFO ] 🧩 Model added (2/3) from ['node_3']
+[ 2025-12-18 15:34:45 | node | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_4']
+[ 2025-12-18 15:34:45 | node_1 | INFO ] 🧩 Model added (2/3) from ['node']
+[ 2025-12-18 15:34:45 | node_4 | INFO ] 🧩 Model added (3/3) from ['node']
+[ 2025-12-18 15:34:45 | node_4 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:34:45 | node_4 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:34:45 | node_1 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_2']
+[ 2025-12-18 15:34:45 | node | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2025-12-18 15:34:45 | node | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:34:45 | node | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:34:45 | node_2 | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2025-12-18 15:34:46 | node_2 | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_3']
+[ 2025-12-18 15:34:46 | node_1 | INFO ] 🧩 Model added (3/3) from ['node_2']
+[ 2025-12-18 15:34:46 | node_1 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:34:46 | node_1 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:34:46 | node_3 | INFO ] 🧩 Model added (3/3) from ['node_2']
+[ 2025-12-18 15:34:46 | node_3 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:34:46 | node_2 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:34:46 | node_3 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:34:46 | node_2 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:34:46 | node_2 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:34:46 | node_2 | INFO ] 🎉 Round 3 of 10 finished.
+[ 2025-12-18 15:34:46 | node_2 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:34:46 | node | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:34:46 | node | INFO ] 🎉 Round 3 of 10 finished.
+[ 2025-12-18 15:34:46 | node | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:34:47 | node_4 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:34:47 | node_4 | INFO ] 🎉 Round 3 of 10 finished.
+[ 2025-12-18 15:34:47 | node_4 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:34:47 | node_1 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:34:47 | node_1 | INFO ] 🎉 Round 3 of 10 finished.
+[ 2025-12-18 15:34:47 | node_1 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:34:47 | node_3 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:34:47 | node_3 | INFO ] 🎉 Round 3 of 10 finished.
+[ 2025-12-18 15:34:47 | node_3 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:34:47 | node_4 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:34:47 | node_4 | INFO ] 🚂 Train set of 5 nodes: ['node', 'node_2', 'node_3', 'node_4', 'node_1']
+[ 2025-12-18 15:34:47 | node_4 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:34:47 | node_3 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:34:47 | node_3 | INFO ] 🚂 Train set of 5 nodes: ['node', 'node_2', 'node_3', 'node_4', 'node_1']
+[ 2025-12-18 15:34:47 | node_1 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:34:47 | node_3 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:34:47 | node_1 | INFO ] 🚂 Train set of 5 nodes: ['node', 'node_2', 'node_3', 'node_4', 'node_1']
+[ 2025-12-18 15:34:47 | node_1 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:34:47 | node_2 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:34:47 | node_2 | INFO ] 🚂 Train set of 5 nodes: ['node', 'node_2', 'node_3', 'node_4', 'node_1']
+[ 2025-12-18 15:34:47 | node | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:34:48 | node_2 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:34:48 | node | INFO ] 🚂 Train set of 5 nodes: ['node', 'node_2', 'node_3', 'node_4', 'node_1']
+[ 2025-12-18 15:34:48 | node | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:34:48 | node_4 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.14565210044384003, 'test_acc\n': 0.9574999809265137, 'test_precision\n': 0.9603546261787415, 'test_recall\n': 0.9568585157394409, 'test_f1\n': 0.9560953974723816}
+[ 2025-12-18 15:34:48 | node_4 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:34:48 | node_4 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:34:48 | node_3 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.1574995219707489, 'test_acc\n': 0.9539999961853027, 'test_precision\n': 0.953555166721344, 'test_recall\n': 0.9517490267753601, 'test_f1\n': 0.9501804709434509}
+[ 2025-12-18 15:34:48 | node_3 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:34:48 | node_3 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:34:48 | node_1 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.17074328660964966, 'test_acc\n': 0.9455000162124634, 'test_precision\n': 0.9467471241950989, 'test_recall\n': 0.9435739517211914, 'test_f1\n': 0.9432376027107239}
+[ 2025-12-18 15:34:48 | node_2 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.15677951276302338, 'test_acc\n': 0.9520000219345093, 'test_precision\n': 0.9503887891769409, 'test_recall\n': 0.9514439702033997, 'test_f1\n': 0.9483575224876404}
+[ 2025-12-18 15:34:48 | node_1 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:34:48 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:34:48 | node_1 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:34:48 | node_2 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:34:48 | node | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.14154373109340668, 'test_acc\n': 0.9520000219345093, 'test_precision\n': 0.955589234828949, 'test_recall\n': 0.9513170719146729, 'test_f1\n': 0.9509395956993103}
+[ 2025-12-18 15:34:48 | node | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:34:48 | node | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:34:50 | node_1 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:34:50 | node_1 | INFO ] 🧩 Model added (1/3) from ['node_1']
+[ 2025-12-18 15:34:50 | node_4 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:34:50 | node_4 | INFO ] 🧩 Model added (1/3) from ['node_4']
+[ 2025-12-18 15:34:50 | node_2 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:34:50 | node_2 | INFO ] 🧩 Model added (1/3) from ['node_2']
+[ 2025-12-18 15:34:50 | node_3 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:34:50 | node_3 | INFO ] 🧩 Model added (1/3) from ['node_3']
+[ 2025-12-18 15:34:51 | node | INFO ] 🎓 Training done.
+[ 2025-12-18 15:34:51 | node | INFO ] 🧩 Model added (1/3) from ['node']
+[ 2025-12-18 15:34:55 | node_1 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_2']
+[ 2025-12-18 15:34:55 | node | INFO ] 🧩 Model added (2/3) from ['node_1']
+[ 2025-12-18 15:34:55 | node_2 | INFO ] 🧩 Model added (2/3) from ['node_1']
+[ 2025-12-18 15:34:55 | node_4 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_3']
+[ 2025-12-18 15:34:55 | node | INFO ] 🧩 Model added (3/3) from ['node_4']
+[ 2025-12-18 15:34:55 | node_3 | INFO ] 🧩 Model added (2/3) from ['node_4']
+[ 2025-12-18 15:34:55 | node_2 | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_3']
+[ 2025-12-18 15:34:55 | node_1 | INFO ] 🧩 Model added (2/3) from ['node_2']
+[ 2025-12-18 15:34:55 | node_3 | INFO ] 🧩 Model added (3/3) from ['node_2']
+[ 2025-12-18 15:34:55 | node_3 | INFO ] 📤 Sending model to 2 direct neighbors: ['node_2', 'node_4']
+[ 2025-12-18 15:34:55 | node_2 | INFO ] 🧩 Model added (3/3) from ['node_3']
+[ 2025-12-18 15:34:55 | node_2 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:34:55 | node_2 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:34:55 | node_4 | INFO ] 🧩 Model added (2/3) from ['node_3']
+[ 2025-12-18 15:34:55 | node_3 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:34:55 | node_3 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:34:56 | node | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_4']
+[ 2025-12-18 15:34:56 | node_1 | INFO ] 🧩 Model added (3/3) from ['node']
+[ 2025-12-18 15:34:56 | node_1 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:34:56 | node_1 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:34:56 | node_4 | INFO ] 🧩 Model added (3/3) from ['node']
+[ 2025-12-18 15:34:56 | node_4 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:34:56 | node | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:34:56 | node_4 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:34:56 | node | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:34:56 | node | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:34:56 | node | INFO ] 🎉 Round 4 of 10 finished.
+[ 2025-12-18 15:34:56 | node | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:34:56 | node_2 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:34:56 | node_3 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:34:56 | node_2 | INFO ] 🎉 Round 4 of 10 finished.
+[ 2025-12-18 15:34:56 | node_3 | INFO ] 🎉 Round 4 of 10 finished.
+[ 2025-12-18 15:34:56 | node_2 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:34:56 | node_3 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:34:57 | node_1 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:34:57 | node_1 | INFO ] 🎉 Round 4 of 10 finished.
+[ 2025-12-18 15:34:57 | node_1 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:34:57 | node_4 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:34:57 | node_4 | INFO ] 🎉 Round 4 of 10 finished.
+[ 2025-12-18 15:34:57 | node_4 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:34:57 | node | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:34:57 | node | INFO ] 🚂 Train set of 5 nodes: ['node', 'node_3', 'node_1', 'node_2', 'node_4']
+[ 2025-12-18 15:34:57 | node | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:34:57 | node | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.11690092831850052, 'test_acc\n': 0.9645000100135803, 'test_precision\n': 0.9655440449714661, 'test_recall\n': 0.9636251926422119, 'test_f1\n': 0.963050901889801}
+[ 2025-12-18 15:34:57 | node | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:34:57 | node | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:34:58 | node_4 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:34:58 | node_4 | INFO ] 🚂 Train set of 5 nodes: ['node', 'node_3', 'node_1', 'node_2', 'node_4']
+[ 2025-12-18 15:34:58 | node_1 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:34:58 | node_4 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:34:58 | node_1 | INFO ] 🚂 Train set of 5 nodes: ['node', 'node_3', 'node_1', 'node_2', 'node_4']
+[ 2025-12-18 15:34:58 | node_1 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:34:58 | node_2 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:34:58 | node_3 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:34:58 | node_2 | INFO ] 🚂 Train set of 5 nodes: ['node', 'node_3', 'node_1', 'node_2', 'node_4']
+[ 2025-12-18 15:34:58 | node_3 | INFO ] 🚂 Train set of 5 nodes: ['node', 'node_3', 'node_1', 'node_2', 'node_4']
+[ 2025-12-18 15:34:58 | node_2 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:34:58 | node_3 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:34:58 | node_4 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.14576397836208344, 'test_acc\n': 0.9570000171661377, 'test_precision\n': 0.9550844430923462, 'test_recall\n': 0.9572198390960693, 'test_f1\n': 0.9540736079216003}
+[ 2025-12-18 15:34:58 | node_4 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:34:58 | node_4 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:34:58 | node_1 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.15248453617095947, 'test_acc\n': 0.9524999856948853, 'test_precision\n': 0.955510675907135, 'test_recall\n': 0.9518453478813171, 'test_f1\n': 0.9516311287879944}
+[ 2025-12-18 15:34:58 | node_1 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:34:58 | node_1 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:34:58 | node_2 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.15269547700881958, 'test_acc\n': 0.953499972820282, 'test_precision\n': 0.9526875019073486, 'test_recall\n': 0.9532235264778137, 'test_f1\n': 0.9498231410980225}
+[ 2025-12-18 15:34:58 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:34:58 | node_3 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.14480550587177277, 'test_acc\n': 0.9555000066757202, 'test_precision\n': 0.9565330743789673, 'test_recall\n': 0.9539262652397156, 'test_f1\n': 0.9528188109397888}
+[ 2025-12-18 15:34:58 | node_3 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:34:58 | node_2 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:34:58 | node_3 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:34:59 | node | INFO ] 🎓 Training done.
+[ 2025-12-18 15:34:59 | node | INFO ] 🧩 Model added (1/3) from ['node']
+[ 2025-12-18 15:35:00 | node_4 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:00 | node_4 | INFO ] 🧩 Model added (1/3) from ['node_4']
+[ 2025-12-18 15:35:00 | node_1 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:00 | node_1 | INFO ] 🧩 Model added (1/3) from ['node_1']
+[ 2025-12-18 15:35:00 | node_2 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:00 | node_2 | INFO ] 🧩 Model added (1/3) from ['node_2']
+[ 2025-12-18 15:35:01 | node_3 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:01 | node_3 | INFO ] 🧩 Model added (1/3) from ['node_3']
+[ 2025-12-18 15:35:04 | node | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_4']
+[ 2025-12-18 15:35:04 | node_1 | INFO ] 🧩 Model added (2/3) from ['node']
+[ 2025-12-18 15:35:04 | node_4 | INFO ] 🧩 Model added (2/3) from ['node']
+[ 2025-12-18 15:35:05 | node_4 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_3']
+[ 2025-12-18 15:35:05 | node | INFO ] 🧩 Model added (2/3) from ['node_4']
+[ 2025-12-18 15:35:05 | node_3 | INFO ] 🧩 Model added (2/3) from ['node_4']
+[ 2025-12-18 15:35:05 | node_1 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_2']
+[ 2025-12-18 15:35:05 | node | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2025-12-18 15:35:05 | node | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:35:05 | node_2 | INFO ] 🧩 Model added (2/3) from ['node_1']
+[ 2025-12-18 15:35:05 | node | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:35:05 | node_2 | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_3']
+[ 2025-12-18 15:35:05 | node_1 | INFO ] 🧩 Model added (3/3) from ['node_2']
+[ 2025-12-18 15:35:05 | node_1 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:35:05 | node_1 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:35:05 | node_3 | INFO ] 🧩 Model added (3/3) from ['node_2']
+[ 2025-12-18 15:35:06 | node_3 | INFO ] 📤 Sending model to 2 direct neighbors: ['node_2', 'node_4']
+[ 2025-12-18 15:35:06 | node_2 | INFO ] 🧩 Model added (3/3) from ['node_3']
+[ 2025-12-18 15:35:06 | node_2 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:35:06 | node_2 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:35:06 | node_4 | INFO ] 🧩 Model added (3/3) from ['node_3']
+[ 2025-12-18 15:35:06 | node_4 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:35:06 | node_3 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:35:06 | node_4 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:35:06 | node_3 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:35:06 | node_3 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:35:06 | node_3 | INFO ] 🎉 Round 5 of 10 finished.
+[ 2025-12-18 15:35:06 | node_3 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:35:06 | node | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:35:06 | node | INFO ] 🎉 Round 5 of 10 finished.
+[ 2025-12-18 15:35:06 | node | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:35:06 | node_1 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:35:06 | node_1 | INFO ] 🎉 Round 5 of 10 finished.
+[ 2025-12-18 15:35:06 | node_1 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:35:07 | node_2 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:35:07 | node_2 | INFO ] 🎉 Round 5 of 10 finished.
+[ 2025-12-18 15:35:07 | node_2 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:35:07 | node_4 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:35:07 | node_4 | INFO ] 🎉 Round 5 of 10 finished.
+[ 2025-12-18 15:35:07 | node_4 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:35:07 | node_1 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:35:07 | node_1 | INFO ] 🚂 Train set of 5 nodes: ['node_1', 'node_3', 'node_4', 'node', 'node_2']
+[ 2025-12-18 15:35:07 | node_1 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:35:07 | node | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:35:07 | node_3 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:35:07 | node | INFO ] 🚂 Train set of 5 nodes: ['node_1', 'node_3', 'node_4', 'node', 'node_2']
+[ 2025-12-18 15:35:07 | node_3 | INFO ] 🚂 Train set of 5 nodes: ['node_1', 'node_3', 'node_4', 'node', 'node_2']
+[ 2025-12-18 15:35:07 | node_4 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:35:07 | node_4 | INFO ] 🚂 Train set of 5 nodes: ['node_1', 'node_3', 'node_4', 'node', 'node_2']
+[ 2025-12-18 15:35:07 | node | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:35:07 | node_3 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:35:07 | node_2 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:35:07 | node_4 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:35:07 | node_2 | INFO ] 🚂 Train set of 5 nodes: ['node_1', 'node_3', 'node_4', 'node', 'node_2']
+[ 2025-12-18 15:35:07 | node_2 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:35:07 | node_1 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.12704934179782867, 'test_acc\n': 0.9639999866485596, 'test_precision\n': 0.9646977782249451, 'test_recall\n': 0.9624031782150269, 'test_f1\n': 0.9621607661247253}
+[ 2025-12-18 15:35:07 | node_1 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:35:07 | node_1 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:35:08 | node | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.11225268244743347, 'test_acc\n': 0.9595000147819519, 'test_precision\n': 0.9613471031188965, 'test_recall\n': 0.9596598148345947, 'test_f1\n': 0.9589657783508301}
+[ 2025-12-18 15:35:08 | node | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:35:08 | node | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:35:08 | node_4 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.13229379057884216, 'test_acc\n': 0.9595000147819519, 'test_precision\n': 0.9579266309738159, 'test_recall\n': 0.959637463092804, 'test_f1\n': 0.9571621417999268}
+[ 2025-12-18 15:35:08 | node_3 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.15108416974544525, 'test_acc\n': 0.9549999833106995, 'test_precision\n': 0.9542916417121887, 'test_recall\n': 0.9534767270088196, 'test_f1\n': 0.9518987536430359}
+[ 2025-12-18 15:35:08 | node_4 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:35:08 | node_3 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:35:08 | node_4 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:35:08 | node_3 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:35:08 | node_2 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.15672576427459717, 'test_acc\n': 0.9495000243186951, 'test_precision\n': 0.9497122764587402, 'test_recall\n': 0.9490564465522766, 'test_f1\n': 0.9459187388420105}
+[ 2025-12-18 15:35:08 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:35:08 | node_2 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:35:09 | node | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:09 | node | INFO ] 🧩 Model added (1/3) from ['node']
+[ 2025-12-18 15:35:10 | node_4 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:10 | node_4 | INFO ] 🧩 Model added (1/3) from ['node_4']
+[ 2025-12-18 15:35:10 | node_3 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:10 | node_3 | INFO ] 🧩 Model added (1/3) from ['node_3']
+[ 2025-12-18 15:35:10 | node_1 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:10 | node_1 | INFO ] 🧩 Model added (1/3) from ['node_1']
+[ 2025-12-18 15:35:11 | node_2 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:11 | node_2 | INFO ] 🧩 Model added (1/3) from ['node_2']
+[ 2025-12-18 15:35:14 | node | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_4']
+[ 2025-12-18 15:35:14 | node_1 | INFO ] 🧩 Model added (2/3) from ['node']
+[ 2025-12-18 15:35:14 | node_4 | INFO ] 🧩 Model added (2/3) from ['node']
+[ 2025-12-18 15:35:15 | node_4 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_3']
+[ 2025-12-18 15:35:15 | node | INFO ] 🧩 Model added (2/3) from ['node_4']
+[ 2025-12-18 15:35:15 | node_3 | INFO ] 🧩 Model added (2/3) from ['node_4']
+[ 2025-12-18 15:35:15 | node_3 | INFO ] 📤 Sending model to 2 direct neighbors: ['node_2', 'node_4']
+[ 2025-12-18 15:35:15 | node_2 | INFO ] 🧩 Model added (2/3) from ['node_3']
+[ 2025-12-18 15:35:15 | node_4 | INFO ] 🧩 Model added (3/3) from ['node_3']
+[ 2025-12-18 15:35:15 | node_4 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:35:15 | node_4 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:35:15 | node_1 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_2']
+[ 2025-12-18 15:35:15 | node | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2025-12-18 15:35:15 | node | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:35:15 | node_2 | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2025-12-18 15:35:15 | node | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:35:16 | node_2 | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_3']
+[ 2025-12-18 15:35:16 | node_1 | INFO ] 🧩 Model added (3/3) from ['node_2']
+[ 2025-12-18 15:35:16 | node_1 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:35:16 | node_3 | INFO ] 🧩 Model added (3/3) from ['node_2']
+[ 2025-12-18 15:35:16 | node_1 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:35:16 | node_3 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:35:16 | node_2 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:35:16 | node_3 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:35:16 | node_3 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:35:16 | node_2 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:35:16 | node_2 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:35:16 | node_3 | INFO ] 🎉 Round 6 of 10 finished.
+[ 2025-12-18 15:35:16 | node_2 | INFO ] 🎉 Round 6 of 10 finished.
+[ 2025-12-18 15:35:16 | node_3 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:35:16 | node_2 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:35:16 | node | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:35:16 | node | INFO ] 🎉 Round 6 of 10 finished.
+[ 2025-12-18 15:35:16 | node | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:35:17 | node_1 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:35:17 | node_4 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:35:17 | node_1 | INFO ] 🎉 Round 6 of 10 finished.
+[ 2025-12-18 15:35:17 | node_1 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:35:17 | node_4 | INFO ] 🎉 Round 6 of 10 finished.
+[ 2025-12-18 15:35:17 | node_4 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:35:17 | node | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:35:17 | node | INFO ] 🚂 Train set of 5 nodes: ['node', 'node_3', 'node_2', 'node_1', 'node_4']
+[ 2025-12-18 15:35:17 | node | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:35:17 | node | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.11285710334777832, 'test_acc\n': 0.9624999761581421, 'test_precision\n': 0.9660668969154358, 'test_recall\n': 0.9626442790031433, 'test_f1\n': 0.9627572298049927}
+[ 2025-12-18 15:35:17 | node | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:35:17 | node | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:35:17 | node_4 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:35:17 | node_4 | INFO ] 🚂 Train set of 5 nodes: ['node', 'node_3', 'node_2', 'node_1', 'node_4']
+[ 2025-12-18 15:35:17 | node_1 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:35:17 | node_1 | INFO ] 🚂 Train set of 5 nodes: ['node', 'node_3', 'node_2', 'node_1', 'node_4']
+[ 2025-12-18 15:35:17 | node_4 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:35:17 | node_1 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:35:18 | node_4 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.11442910879850388, 'test_acc\n': 0.9610000252723694, 'test_precision\n': 0.960815966129303, 'test_recall\n': 0.9622184038162231, 'test_f1\n': 0.9594331383705139}
+[ 2025-12-18 15:35:18 | node_4 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:35:18 | node_1 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.13574349880218506, 'test_acc\n': 0.9589999914169312, 'test_precision\n': 0.9618409276008606, 'test_recall\n': 0.956514298915863, 'test_f1\n': 0.9575558304786682}
+[ 2025-12-18 15:35:18 | node_1 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:35:18 | node_4 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:35:18 | node_1 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:35:18 | node_2 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:35:18 | node_2 | INFO ] 🚂 Train set of 5 nodes: ['node', 'node_3', 'node_2', 'node_1', 'node_4']
+[ 2025-12-18 15:35:18 | node_2 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:35:18 | node_3 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:35:18 | node_3 | INFO ] 🚂 Train set of 5 nodes: ['node', 'node_3', 'node_2', 'node_1', 'node_4']
+[ 2025-12-18 15:35:18 | node_3 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:35:18 | node_2 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.14430655539035797, 'test_acc\n': 0.9585000276565552, 'test_precision\n': 0.9557642340660095, 'test_recall\n': 0.9563145041465759, 'test_f1\n': 0.9535084366798401}
+[ 2025-12-18 15:35:18 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:35:18 | node_2 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:35:19 | node_3 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.12924759089946747, 'test_acc\n': 0.9649999737739563, 'test_precision\n': 0.965682327747345, 'test_recall\n': 0.9645732045173645, 'test_f1\n': 0.963483452796936}
+[ 2025-12-18 15:35:19 | node_3 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:35:19 | node_3 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:35:19 | node | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:19 | node | INFO ] 🧩 Model added (1/3) from ['node']
+[ 2025-12-18 15:35:20 | node_4 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:20 | node_4 | INFO ] 🧩 Model added (1/3) from ['node_4']
+[ 2025-12-18 15:35:20 | node_1 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:20 | node_1 | INFO ] 🧩 Model added (1/3) from ['node_1']
+[ 2025-12-18 15:35:21 | node_2 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:21 | node_2 | INFO ] 🧩 Model added (1/3) from ['node_2']
+[ 2025-12-18 15:35:21 | node_3 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:21 | node_3 | INFO ] 🧩 Model added (1/3) from ['node_3']
+[ 2025-12-18 15:35:24 | node | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_4']
+[ 2025-12-18 15:35:24 | node_1 | INFO ] 🧩 Model added (2/3) from ['node']
+[ 2025-12-18 15:35:24 | node_4 | INFO ] 🧩 Model added (2/3) from ['node']
+[ 2025-12-18 15:35:25 | node_4 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_3']
+[ 2025-12-18 15:35:25 | node | INFO ] 🧩 Model added (2/3) from ['node_4']
+[ 2025-12-18 15:35:25 | node_1 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_2']
+[ 2025-12-18 15:35:25 | node_3 | INFO ] 🧩 Model added (2/3) from ['node_4']
+[ 2025-12-18 15:35:25 | node | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2025-12-18 15:35:25 | node | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:35:25 | node_2 | INFO ] 🧩 Model added (2/3) from ['node_1']
+[ 2025-12-18 15:35:25 | node | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:35:26 | node_2 | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_3']
+[ 2025-12-18 15:35:26 | node_1 | INFO ] 🧩 Model added (3/3) from ['node_2']
+[ 2025-12-18 15:35:26 | node_1 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:35:26 | node_3 | INFO ] 🧩 Model added (3/3) from ['node_2']
+[ 2025-12-18 15:35:26 | node_1 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:35:26 | node_3 | INFO ] 📤 Sending model to 2 direct neighbors: ['node_2', 'node_4']
+[ 2025-12-18 15:35:26 | node_2 | INFO ] 🧩 Model added (3/3) from ['node_3']
+[ 2025-12-18 15:35:26 | node_2 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:35:26 | node_2 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:35:26 | node_4 | INFO ] 🧩 Model added (3/3) from ['node_3']
+[ 2025-12-18 15:35:26 | node_4 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:35:26 | node_3 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:35:26 | node_4 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:35:26 | node_3 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:35:26 | node_3 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:35:26 | node_3 | INFO ] 🎉 Round 7 of 10 finished.
+[ 2025-12-18 15:35:26 | node_3 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:35:26 | node | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:35:26 | node | INFO ] 🎉 Round 7 of 10 finished.
+[ 2025-12-18 15:35:26 | node | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:35:27 | node_1 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:35:27 | node_1 | INFO ] 🎉 Round 7 of 10 finished.
+[ 2025-12-18 15:35:27 | node_1 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:35:27 | node_2 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:35:27 | node_2 | INFO ] 🎉 Round 7 of 10 finished.
+[ 2025-12-18 15:35:27 | node_2 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:35:27 | node_4 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:35:27 | node_4 | INFO ] 🎉 Round 7 of 10 finished.
+[ 2025-12-18 15:35:27 | node_4 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:35:27 | node_3 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:35:27 | node_2 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:35:27 | node_3 | INFO ] 🚂 Train set of 5 nodes: ['node_2', 'node', 'node_1', 'node_3', 'node_4']
+[ 2025-12-18 15:35:27 | node_2 | INFO ] 🚂 Train set of 5 nodes: ['node_2', 'node', 'node_1', 'node_3', 'node_4']
+[ 2025-12-18 15:35:27 | node_3 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:35:27 | node_2 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:35:27 | node | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:35:27 | node | INFO ] 🚂 Train set of 5 nodes: ['node_2', 'node', 'node_1', 'node_3', 'node_4']
+[ 2025-12-18 15:35:27 | node | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:35:28 | node_4 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:35:28 | node_4 | INFO ] 🚂 Train set of 5 nodes: ['node_2', 'node', 'node_1', 'node_3', 'node_4']
+[ 2025-12-18 15:35:28 | node_1 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:35:28 | node_1 | INFO ] 🚂 Train set of 5 nodes: ['node_2', 'node', 'node_1', 'node_3', 'node_4']
+[ 2025-12-18 15:35:28 | node_4 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:35:28 | node_1 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:35:28 | node_3 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.11014778167009354, 'test_acc\n': 0.9679999947547913, 'test_precision\n': 0.9662474989891052, 'test_recall\n': 0.9668336510658264, 'test_f1\n': 0.9652814865112305}
+[ 2025-12-18 15:35:28 | node_3 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:35:28 | node | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.11267580091953278, 'test_acc\n': 0.9620000123977661, 'test_precision\n': 0.9647819995880127, 'test_recall\n': 0.961044192314148, 'test_f1\n': 0.9611783623695374}
+[ 2025-12-18 15:35:28 | node | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:35:28 | node_3 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:35:28 | node_2 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.12474718689918518, 'test_acc\n': 0.9660000205039978, 'test_precision\n': 0.9645877480506897, 'test_recall\n': 0.965080201625824, 'test_f1\n': 0.9635097980499268}
+[ 2025-12-18 15:35:28 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:35:28 | node | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:35:28 | node_2 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:35:29 | node_4 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.12444479763507843, 'test_acc\n': 0.9605000019073486, 'test_precision\n': 0.9617164134979248, 'test_recall\n': 0.9609189629554749, 'test_f1\n': 0.95948326587677}
+[ 2025-12-18 15:35:29 | node_4 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:35:29 | node_4 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:35:29 | node_1 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.12648750841617584, 'test_acc\n': 0.9585000276565552, 'test_precision\n': 0.9596929550170898, 'test_recall\n': 0.957649827003479, 'test_f1\n': 0.9567750096321106}
+[ 2025-12-18 15:35:29 | node_1 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:35:29 | node_1 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:35:32 | node_3 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:32 | node_3 | INFO ] 🧩 Model added (1/3) from ['node_3']
+[ 2025-12-18 15:35:32 | node | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:32 | node | INFO ] 🧩 Model added (1/3) from ['node']
+[ 2025-12-18 15:35:32 | node_2 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:32 | node_2 | INFO ] 🧩 Model added (1/3) from ['node_2']
+[ 2025-12-18 15:35:33 | node_4 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:33 | node_4 | INFO ] 🧩 Model added (1/3) from ['node_4']
+[ 2025-12-18 15:35:35 | node_1 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:35 | node_1 | INFO ] 🧩 Model added (1/3) from ['node_1']
+[ 2025-12-18 15:35:37 | node_3 | INFO ] 📤 Sending model to 2 direct neighbors: ['node_2', 'node_4']
+[ 2025-12-18 15:35:37 | node | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_4']
+[ 2025-12-18 15:35:37 | node_2 | INFO ] 🧩 Model added (2/3) from ['node_3']
+[ 2025-12-18 15:35:37 | node_1 | INFO ] 🧩 Model added (2/3) from ['node']
+[ 2025-12-18 15:35:37 | node_4 | INFO ] 🧩 Model added (2/3) from ['node_3']
+[ 2025-12-18 15:35:37 | node_4 | INFO ] 🧩 Model added (3/3) from ['node']
+[ 2025-12-18 15:35:37 | node_2 | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_3']
+[ 2025-12-18 15:35:37 | node_1 | INFO ] 🧩 Model added (3/3) from ['node_2']
+[ 2025-12-18 15:35:37 | node_3 | INFO ] 🧩 Model added (2/3) from ['node_2']
+[ 2025-12-18 15:35:38 | node_4 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_3']
+[ 2025-12-18 15:35:38 | node | INFO ] 🧩 Model added (2/3) from ['node_4']
+[ 2025-12-18 15:35:38 | node_3 | INFO ] 🧩 Model added (3/3) from ['node_4']
+[ 2025-12-18 15:35:38 | node_3 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:35:38 | node_4 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:35:38 | node_3 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:35:38 | node_4 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:35:40 | node_1 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_2']
+[ 2025-12-18 15:35:40 | node | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2025-12-18 15:35:40 | node | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:35:40 | node | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:35:40 | node_2 | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2025-12-18 15:35:40 | node_2 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:35:40 | node_1 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:35:40 | node_2 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:35:40 | node_1 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:35:40 | node_1 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:35:40 | node_1 | INFO ] 🎉 Round 8 of 10 finished.
+[ 2025-12-18 15:35:40 | node_1 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:35:40 | node_4 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:35:40 | node_3 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:35:40 | node_4 | INFO ] 🎉 Round 8 of 10 finished.
+[ 2025-12-18 15:35:40 | node_3 | INFO ] 🎉 Round 8 of 10 finished.
+[ 2025-12-18 15:35:40 | node_4 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:35:40 | node_3 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:35:41 | node | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:35:41 | node | INFO ] 🎉 Round 8 of 10 finished.
+[ 2025-12-18 15:35:41 | node | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:35:41 | node_2 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:35:41 | node_2 | INFO ] 🎉 Round 8 of 10 finished.
+[ 2025-12-18 15:35:41 | node_2 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:35:41 | node_1 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:35:41 | node_1 | INFO ] 🚂 Train set of 5 nodes: ['node_4', 'node_1', 'node', 'node_2', 'node_3']
+[ 2025-12-18 15:35:41 | node_1 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:35:41 | node_2 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:35:41 | node_3 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:35:41 | node_2 | INFO ] 🚂 Train set of 5 nodes: ['node_4', 'node_1', 'node', 'node_2', 'node_3']
+[ 2025-12-18 15:35:41 | node_3 | INFO ] 🚂 Train set of 5 nodes: ['node_4', 'node_1', 'node', 'node_2', 'node_3']
+[ 2025-12-18 15:35:41 | node_2 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:35:41 | node_3 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:35:41 | node_1 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.11993357539176941, 'test_acc\n': 0.968999981880188, 'test_precision\n': 0.9697835445404053, 'test_recall\n': 0.9681750535964966, 'test_f1\n': 0.9677599668502808}
+[ 2025-12-18 15:35:41 | node_1 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:35:41 | node_2 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.14148938655853271, 'test_acc\n': 0.9585000276565552, 'test_precision\n': 0.9578571319580078, 'test_recall\n': 0.9569090008735657, 'test_f1\n': 0.9548903703689575}
+[ 2025-12-18 15:35:41 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:35:41 | node_1 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:35:41 | node_2 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:35:41 | node_3 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.12349586188793182, 'test_acc\n': 0.9635000228881836, 'test_precision\n': 0.9637014269828796, 'test_recall\n': 0.9635642170906067, 'test_f1\n': 0.9617643356323242}
+[ 2025-12-18 15:35:41 | node_3 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:35:41 | node_3 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:35:42 | node_4 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:35:42 | node_4 | INFO ] 🚂 Train set of 5 nodes: ['node_4', 'node_1', 'node', 'node_2', 'node_3']
+[ 2025-12-18 15:35:42 | node_4 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:35:42 | node | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:35:42 | node | INFO ] 🚂 Train set of 5 nodes: ['node_4', 'node_1', 'node', 'node_2', 'node_3']
+[ 2025-12-18 15:35:42 | node | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:35:42 | node_4 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.11924012005329132, 'test_acc\n': 0.9635000228881836, 'test_precision\n': 0.9616433382034302, 'test_recall\n': 0.9632441997528076, 'test_f1\n': 0.9608032703399658}
+[ 2025-12-18 15:35:42 | node_4 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:35:42 | node_4 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:35:43 | node | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.10413244366645813, 'test_acc\n': 0.9674999713897705, 'test_precision\n': 0.9704027771949768, 'test_recall\n': 0.9680073261260986, 'test_f1\n': 0.9677334427833557}
+[ 2025-12-18 15:35:43 | node | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:35:43 | node | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:35:44 | node_1 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:44 | node_1 | INFO ] 🧩 Model added (1/3) from ['node_1']
+[ 2025-12-18 15:35:44 | node_2 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:44 | node_2 | INFO ] 🧩 Model added (1/3) from ['node_2']
+[ 2025-12-18 15:35:44 | node_3 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:44 | node_3 | INFO ] 🧩 Model added (1/3) from ['node_3']
+[ 2025-12-18 15:35:45 | node_4 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:45 | node_4 | INFO ] 🧩 Model added (1/3) from ['node_4']
+[ 2025-12-18 15:35:45 | node | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:45 | node | INFO ] 🧩 Model added (1/3) from ['node']
+[ 2025-12-18 15:35:49 | node_1 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_2']
+[ 2025-12-18 15:35:49 | node_2 | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_3']
+[ 2025-12-18 15:35:49 | node | INFO ] 🧩 Model added (2/3) from ['node_1']
+[ 2025-12-18 15:35:49 | node_1 | INFO ] 🧩 Model added (2/3) from ['node_2']
+[ 2025-12-18 15:35:49 | node_2 | INFO ] 🧩 Model added (2/3) from ['node_1']
+[ 2025-12-18 15:35:49 | node_3 | INFO ] 🧩 Model added (2/3) from ['node_2']
+[ 2025-12-18 15:35:49 | node_3 | INFO ] 📤 Sending model to 2 direct neighbors: ['node_2', 'node_4']
+[ 2025-12-18 15:35:49 | node_2 | INFO ] 🧩 Model added (3/3) from ['node_3']
+[ 2025-12-18 15:35:49 | node_2 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:35:49 | node_4 | INFO ] 🧩 Model added (2/3) from ['node_3']
+[ 2025-12-18 15:35:49 | node_2 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:35:50 | node_4 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_3']
+[ 2025-12-18 15:35:50 | node | INFO ] 🧩 Model added (3/3) from ['node_4']
+[ 2025-12-18 15:35:50 | node_3 | INFO ] 🧩 Model added (3/3) from ['node_4']
+[ 2025-12-18 15:35:50 | node_3 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:35:50 | node_3 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:35:50 | node | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_4']
+[ 2025-12-18 15:35:50 | node_1 | INFO ] 🧩 Model added (3/3) from ['node']
+[ 2025-12-18 15:35:50 | node_1 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:35:50 | node_4 | INFO ] 🧩 Model added (3/3) from ['node']
+[ 2025-12-18 15:35:50 | node_4 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:35:50 | node_1 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:35:50 | node | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:35:50 | node_4 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:35:50 | node | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:35:50 | node | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:35:50 | node | INFO ] 🎉 Round 9 of 10 finished.
+[ 2025-12-18 15:35:50 | node | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:35:51 | node_2 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:35:51 | node_2 | INFO ] 🎉 Round 9 of 10 finished.
+[ 2025-12-18 15:35:51 | node_2 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:35:51 | node_3 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:35:51 | node_3 | INFO ] 🎉 Round 9 of 10 finished.
+[ 2025-12-18 15:35:51 | node_3 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:35:51 | node_1 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:35:51 | node_1 | INFO ] 🎉 Round 9 of 10 finished.
+[ 2025-12-18 15:35:51 | node_1 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:35:51 | node_4 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:35:51 | node_4 | INFO ] 🎉 Round 9 of 10 finished.
+[ 2025-12-18 15:35:51 | node_4 | INFO ] 🗳️ Sending train set vote.
+[ 2025-12-18 15:35:51 | node | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:35:51 | node | INFO ] 🚂 Train set of 5 nodes: ['node', 'node_1', 'node_3', 'node_2', 'node_4']
+[ 2025-12-18 15:35:51 | node | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:35:51 | node_2 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:35:51 | node_2 | INFO ] 🚂 Train set of 5 nodes: ['node', 'node_1', 'node_3', 'node_2', 'node_4']
+[ 2025-12-18 15:35:51 | node_3 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:35:51 | node_2 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:35:51 | node_3 | INFO ] 🚂 Train set of 5 nodes: ['node', 'node_1', 'node_3', 'node_2', 'node_4']
+[ 2025-12-18 15:35:51 | node_3 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:35:52 | node | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.10107048600912094, 'test_acc\n': 0.9714999794960022, 'test_precision\n': 0.9735803604125977, 'test_recall\n': 0.9723392724990845, 'test_f1\n': 0.9718044400215149}
+[ 2025-12-18 15:35:52 | node | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:35:52 | node_2 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.13426056504249573, 'test_acc\n': 0.9624999761581421, 'test_precision\n': 0.9605367183685303, 'test_recall\n': 0.9613721966743469, 'test_f1\n': 0.9589788913726807}
+[ 2025-12-18 15:35:52 | node_3 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.11802639812231064, 'test_acc\n': 0.9700000286102295, 'test_precision\n': 0.9696512818336487, 'test_recall\n': 0.9675064086914062, 'test_f1\n': 0.9670451879501343}
+[ 2025-12-18 15:35:52 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:35:52 | node_3 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:35:52 | node | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:35:52 | node_4 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:35:52 | node_4 | INFO ] 🚂 Train set of 5 nodes: ['node', 'node_1', 'node_3', 'node_2', 'node_4']
+[ 2025-12-18 15:35:52 | node_1 | INFO ] 🔢 Computed 5 votes.
+[ 2025-12-18 15:35:52 | node_1 | INFO ] 🚂 Train set of 5 nodes: ['node', 'node_1', 'node_3', 'node_2', 'node_4']
+[ 2025-12-18 15:35:52 | node_4 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:35:52 | node_1 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:35:52 | node_3 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:35:52 | node_2 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:35:52 | node_1 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.1247074231505394, 'test_acc\n': 0.9645000100135803, 'test_precision\n': 0.9648091197013855, 'test_recall\n': 0.9639553427696228, 'test_f1\n': 0.9627803564071655}
+[ 2025-12-18 15:35:52 | node_1 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:35:52 | node_1 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:35:52 | node_4 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.11483768373727798, 'test_acc\n': 0.9670000076293945, 'test_precision\n': 0.9675895571708679, 'test_recall\n': 0.9672523736953735, 'test_f1\n': 0.9656870365142822}
+[ 2025-12-18 15:35:53 | node_4 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:35:53 | node_4 | INFO ] 🏋️‍♀️ Training...
+[ 2025-12-18 15:35:54 | node | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:54 | node | INFO ] 🧩 Model added (1/3) from ['node']
+[ 2025-12-18 15:35:54 | node_3 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:54 | node_3 | INFO ] 🧩 Model added (1/3) from ['node_3']
+[ 2025-12-18 15:35:54 | node_2 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:54 | node_2 | INFO ] 🧩 Model added (1/3) from ['node_2']
+[ 2025-12-18 15:35:55 | node_1 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:55 | node_1 | INFO ] 🧩 Model added (1/3) from ['node_1']
+[ 2025-12-18 15:35:56 | node_4 | INFO ] 🎓 Training done.
+[ 2025-12-18 15:35:56 | node_4 | INFO ] 🧩 Model added (1/3) from ['node_4']
+[ 2025-12-18 15:35:59 | node | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_4']
+[ 2025-12-18 15:35:59 | node_1 | INFO ] 🧩 Model added (2/3) from ['node']
+[ 2025-12-18 15:35:59 | node_4 | INFO ] 🧩 Model added (2/3) from ['node']
+[ 2025-12-18 15:35:59 | node_3 | INFO ] 📤 Sending model to 2 direct neighbors: ['node_2', 'node_4']
+[ 2025-12-18 15:35:59 | node_2 | INFO ] 🧩 Model added (2/3) from ['node_3']
+[ 2025-12-18 15:35:59 | node_4 | INFO ] 🧩 Model added (3/3) from ['node_3']
+[ 2025-12-18 15:35:59 | node_2 | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_3']
+[ 2025-12-18 15:35:59 | node_1 | INFO ] 🧩 Model added (3/3) from ['node_2']
+[ 2025-12-18 15:36:00 | node_3 | INFO ] 🧩 Model added (2/3) from ['node_2']
+[ 2025-12-18 15:36:00 | node_1 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_2']
+[ 2025-12-18 15:36:00 | node | INFO ] 🧩 Model added (2/3) from ['node_1']
+[ 2025-12-18 15:36:00 | node_2 | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2025-12-18 15:36:00 | node_2 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:36:00 | node_1 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:36:00 | node_2 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:36:00 | node_1 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:36:01 | node_4 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_3']
+[ 2025-12-18 15:36:01 | node | INFO ] 🧩 Model added (3/3) from ['node_4']
+[ 2025-12-18 15:36:01 | node | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:36:01 | node_3 | INFO ] 🧩 Model added (3/3) from ['node_4']
+[ 2025-12-18 15:36:01 | node_3 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:36:01 | node | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:36:01 | node_4 | INFO ] 🧠 Aggregating models.
+[ 2025-12-18 15:36:01 | node_3 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:36:01 | node_4 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2025-12-18 15:36:01 | node_4 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:36:01 | node_4 | INFO ] 🎉 Round 10 of 10 finished.
+[ 2025-12-18 15:36:01 | node_4 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:36:01 | node_2 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:36:01 | node_1 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:36:01 | node_2 | INFO ] 🎉 Round 10 of 10 finished.
+[ 2025-12-18 15:36:01 | node_2 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:36:01 | node_1 | INFO ] 🎉 Round 10 of 10 finished.
+[ 2025-12-18 15:36:01 | node_1 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:36:01 | node_4 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.1299097090959549, 'test_acc\n': 0.9570000171661377, 'test_precision\n': 0.9612041115760803, 'test_recall\n': 0.9568012356758118, 'test_f1\n': 0.9563292264938354}
+[ 2025-12-18 15:36:01 | node_4 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:36:01 | node_4 | INFO ] 😋 Training finished!!
+[ 2025-12-18 15:36:01 | node_1 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.12804970145225525, 'test_acc\n': 0.965499997138977, 'test_precision\n': 0.9661937355995178, 'test_recall\n': 0.9649455547332764, 'test_f1\n': 0.9643010497093201}
+[ 2025-12-18 15:36:01 | node_1 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:36:01 | node_1 | INFO ] 😋 Training finished!!
+[ 2025-12-18 15:36:01 | node_2 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.1435711681842804, 'test_acc\n': 0.9610000252723694, 'test_precision\n': 0.9603592753410339, 'test_recall\n': 0.9595060348510742, 'test_f1\n': 0.9578883647918701}
+[ 2025-12-18 15:36:01 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:36:02 | node_2 | INFO ] 😋 Training finished!!
+[ 2025-12-18 15:36:02 | node_2 | WARNING ] Models ready received when learning is not running
+[ 2025-12-18 15:36:02 | node | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:36:02 | node | INFO ] 🎉 Round 10 of 10 finished.
+[ 2025-12-18 15:36:02 | node | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:36:02 | node_1 | WARNING ] Models ready received when learning is not running
+[ 2025-12-18 15:36:02 | node_3 | INFO ] 🤫 Gossip finished.
+[ 2025-12-18 15:36:02 | node_3 | INFO ] 🎉 Round 10 of 10 finished.
+[ 2025-12-18 15:36:02 | node_3 | INFO ] 🔬 Evaluating...
+[ 2025-12-18 15:36:02 | node_3 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.11178048700094223, 'test_acc\n': 0.9649999737739563, 'test_precision\n': 0.9665390253067017, 'test_recall\n': 0.9625914692878723, 'test_f1\n': 0.9627245664596558}
+[ 2025-12-18 15:36:02 | node | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 0.11305878311395645, 'test_acc\n': 0.9645000100135803, 'test_precision\n': 0.9674217700958252, 'test_recall\n': 0.9644678831100464, 'test_f1\n': 0.9643174409866333}
+[ 2025-12-18 15:36:02 | node_3 | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:36:02 | node | INFO ] 📢 Broadcasting metrics.
+[ 2025-12-18 15:36:02 | node_3 | INFO ] 😋 Training finished!!
+[ 2025-12-18 15:36:02 | node | INFO ] 😋 Training finished!!
+[ 2025-12-18 15:36:03 | node | INFO ] Stopping node...
+[ 2025-12-18 15:36:03 | node | INFO ] 🛑 Stopping gossiper...
+[ 2025-12-18 15:36:03 | node | INFO ] InMemoryServer stopped at node
+[ 2025-12-18 15:36:03 | node_1 | INFO ] Stopping node...
+[ 2025-12-18 15:36:03 | node_1 | INFO ] 🛑 Stopping gossiper...
+[ 2025-12-18 15:36:03 | node_1 | INFO ] InMemoryServer stopped at node_1
+[ 2025-12-18 15:36:03 | node_2 | INFO ] Stopping node...
+[ 2025-12-18 15:36:03 | node_2 | INFO ] 🛑 Stopping gossiper...
+[ 2025-12-18 15:36:03 | node_2 | INFO ] InMemoryServer stopped at node_2
+[ 2025-12-18 15:36:03 | node_3 | INFO ] Stopping node...
+[ 2025-12-18 15:36:03 | node_3 | INFO ] 🛑 Stopping gossiper...
+[ 2025-12-18 15:36:03 | node_3 | INFO ] InMemoryServer stopped at node_3
+[ 2025-12-18 15:36:03 | node_4 | INFO ] Stopping node...
+[ 2025-12-18 15:36:03 | node_4 | INFO ] 🛑 Stopping gossiper...
+[ 2025-12-18 15:36:03 | node_4 | INFO ] InMemoryServer stopped at node_4
