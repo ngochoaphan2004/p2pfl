@@ -1,0 +1,189 @@
+\section{Phương pháp đề xuất: Decentralized Federated Adaptive Weighting (d-FedAdp)}
+
+\subsection{Động lực}
+
+Phân tích hội tụ trong Mục Preliminaries cho thấy tốc độ hội tụ của Federated Learning phụ thuộc trực tiếp vào độ tương quan cosine giữa gradient cục bộ và gradient toàn cục. Cụ thể, trong Corollary~1, thành phần
+\[
+\frac{
+\langle \nabla F(w(t)), \nabla F_i(w(t)) \rangle
+}{
+\|\nabla F(w(t))\| \, \|\nabla F_i(w(t))\|
+}
+\]
+xuất hiện tường minh trong giới hạn hội tụ, cho thấy các cập nhật có hướng phù hợp với gradient toàn cục đóng vai trò quyết định trong việc giảm hàm mất mát.
+
+Thuật toán Federated Adaptive Weighting khai thác trực tiếp nhận xét này bằng cách gán trọng số thích nghi cho các nút dựa trên mức độ tương quan gradient. Tuy nhiên, cách tiếp cận này giả định sự tồn tại của máy chủ trung tâm để truy cập hoặc ước lượng gradient toàn cục.
+
+Trong khi đó, các thuật toán phân tán hoàn toàn như Decentralized Parallel Stochastic Gradient Descent (D-PSGD) loại bỏ máy chủ trung tâm và đạt khả năng mở rộng tốt, nhưng chỉ sử dụng cơ chế trộn tham số đồng đều, không xét đến chất lượng cập nhật gradient của từng nút.
+
+Mục tiêu của phương pháp đề xuất là đưa cơ chế adaptive weighting dựa trên tương quan gradient vào môi trường phân tán hoàn toàn, trong đó mỗi nút chỉ giao tiếp với các nút láng giềng, đồng thời bảo toàn logic hội tụ đã được thiết lập trong Preliminaries.
+
+\subsection{Thiết lập bài toán}
+
+Xét một hệ thống gồm $n$ nút được kết nối thông qua đồ thị vô hướng liên thông $\mathcal{G} = (\mathcal{V}, \mathcal{E})$. Mỗi nút $i \in \mathcal{V}$ sở hữu hàm mất mát cục bộ $F_i(\cdot)$ và duy trì một bản sao tham số cục bộ $x_i(t) \in \mathbb{R}^d$ tại vòng huấn luyện $t$.
+
+Mục tiêu chung của hệ thống là giải bài toán tối ưu:
+\begin{equation}
+\min_x F(x) = \frac{1}{n} \sum_{i=1}^{n} F_i(x),
+\end{equation}
+mà không cần máy chủ trung tâm.
+
+\subsection{Tính toán gradient cục bộ}
+
+Tại mỗi vòng $t$, mỗi nút $i$ tính gradient ngẫu nhiên trên dữ liệu cục bộ:
+\begin{equation}
+g_i(t) = \nabla F_i(x_i(t); \xi_i(t)),
+\end{equation}
+trong đó $\xi_i(t)$ là minibatch được lấy mẫu tại nút $i$.
+
+\subsection{Decentralized Gradient Tracking}
+
+Do gradient toàn cục không thể được truy cập trực tiếp, mỗi nút $i$ duy trì một biến theo dõi gradient $\hat g_i(t)$ nhằm xấp xỉ gradient toàn cục.
+
+Biến này được cập nhật theo cơ chế gradient tracking được sử dụng trong D-PSGD:
+\begin{equation}
+\hat g_i(t+1)
+=
+\sum_{j \in \mathcal{N}_i} W_{ij} \hat g_j(t)
++
+g_i(t+1) - g_i(t),
+\end{equation}
+trong đó $\mathcal{N}_i$ là tập các nút láng giềng của nút $i$.
+
+Với đồ thị liên thông và ma trận trộn phù hợp, các biến $\hat g_i(t)$ hội tụ về gradient toàn cục $\nabla F(x(t))$.
+
+\subsection{Ma trận trộn Metropolis (Metropolis Mixing Matrix)}
+
+Ma trận trộn $W$ được xây dựng theo trọng số Metropolis. Cụ thể, với hai nút $i$ và $j$:
+\begin{equation}
+W_{ij} =
+\begin{cases}
+\displaystyle
+\frac{1}{1 + \max\{d_i, d_j\}}, & \text{nếu } j \in \mathcal{N}_i, \\[8pt]
+\displaystyle
+1 - \sum_{k \in \mathcal{N}_i \setminus \{i\}} W_{ik}, & \text{nếu } j = i, \\[6pt]
+0, & \text{ngược lại},
+\end{cases}
+\end{equation}
+trong đó $d_i = |\mathcal{N}_i|$ là bậc của nút $i$.
+
+Cách chọn này đảm bảo $W$ là ma trận hàng–chuẩn hóa và đối xứng, giúp duy trì tính đồng thuận trong quá trình trộn tham số.
+
+\subsection{Đánh giá đóng góp thông qua tương quan gradient}
+
+Mức độ đóng góp của mỗi nút được đánh giá thông qua tương quan giữa gradient cục bộ và gradient toàn cục ước lượng.
+
+Cụ thể, tại nút $i$, góc đóng góp được xác định bởi:
+\begin{equation}
+\theta_i(t)
+=
+\arccos
+\left(
+\frac{
+\langle \hat g_i(t), g_i(t) \rangle
+}{
+\|\hat g_i(t)\| \, \|g_i(t)\|
+}
+\right).
+\end{equation}
+
+Giá trị $\theta_i(t)$ càng nhỏ thì gradient cục bộ của nút $i$ càng phù hợp với hướng tối ưu toàn cục.
+
+\subsection{Làm trơn theo thời gian góc đóng góp}
+
+Do $\theta_i(t)$ có thể dao động mạnh giữa các vòng huấn luyện, góc đóng góp được làm trơn theo thời gian bằng trung bình tích lũy, giống với cơ chế được sử dụng trong Federated Adaptive Weighting:
+\begin{equation}
+\tilde{\theta}_i(t) =
+\begin{cases}
+\theta_i(1), & t = 1, \\[6pt]
+\displaystyle
+\frac{t-1}{t}\tilde{\theta}_i(t-1) + \frac{1}{t}\theta_i(t), & t > 1.
+\end{cases}
+\end{equation}
+
+Cách làm trơn này phản ánh xu hướng đóng góp dài hạn của mỗi nút, đồng thời giảm nhiễu ngẫu nhiên trong từng vòng huấn luyện.
+
+\subsection{Hàm khuyến khích}
+
+Từ góc làm trơn $\tilde{\theta}_i(t)$, giá trị incentive của nút $i$ được xác định bởi hàm ánh xạ phi tuyến:
+\begin{equation}
+{f}_i(t)
+=
+\alpha
+\left(
+1 - e^{-e^{-\alpha(\tilde{\theta}_i(t)-1)}}
+\right),
+\end{equation}
+trong đó $\alpha > 0$ là tham số điều chỉnh độ nhạy.
+
+Hàm ánh xạ này có tính giảm đơn điệu theo $\tilde{\theta}_i(t)$, cho phép khuếch đại sự khác biệt giữa các nút có mức độ đóng góp cao và thấp.
+
+\subsection{Trọng số thích nghi}
+
+Trọng số thích nghi của mỗi nút được tính thông qua hàm Softmax:
+\begin{equation}
+\psi_i(t)
+=
+\frac{\exp({f}_i(t))}
+{\sum_{j=1}^{n} \exp({f}_j(t))}.
+\end{equation}
+
+Các trọng số $\psi_i(t)$ phản ánh mức độ đóng góp tương đối của từng nút tại vòng $t$.
+\subsection{Quy tắc cập nhật mô hình}
+
+Tại mỗi vòng lặp $t$, mỗi nút $i$ cập nhật mô hình của mình thông qua hai bước:
+(i) trộn mô hình với các nút lân cận bằng ma trận trộn thích nghi
+và (ii) hạ gradient cục bộ dựa trên vector gradient-tracking.
+
+\paragraph{Ma trận trộn thích nghi}
+Ma trận trộn $\widetilde W(t)$ được xây dựng từ ma trận
+Metropolis $W(t)$ và trọng số thích nghi $\tilde{\psi}_j(t)$ như sau:
+\begin{equation}
+\widetilde W_{ij}(t)
+=
+\begin{cases}
+\dfrac{\tilde{\psi}_j(t)\, W_{ij}(t)}
+{\sum\limits_{k \in \mathcal{N}_i \cup \{i\}} \tilde{\psi}_k(t)\, W_{ik}(t)},
+& j \in \mathcal{N}_i \cup \{i\}, \\[10pt]
+0, & \text{ngược lại},
+\end{cases}
+\end{equation}
+và thỏa mãn
+\(
+\sum_{j} \widetilde W_{ij}(t) = 1
+\),
+tức mỗi hàng của $\widetilde W(t)$ là một phân phối xác suất.
+
+\paragraph{Bước trộn mô hình}
+\begin{equation}
+w_i\!\left(t+\tfrac{1}{2}\right)
+=
+\sum_{j \in \mathcal{N}_i \cup \{i\}}
+\widetilde W_{ij}(t)\, w_j(t).
+\end{equation}
+
+\paragraph{Bước cập nhật cục bộ}
+\begin{equation}
+w_i(t+1)
+=
+w_i\!\left(t+\tfrac{1}{2}\right)
+-
+\eta_t \hat g_i(t),
+\end{equation}
+
+trong đó $\hat g_i(t)$ là vector gradient-tracking tại nút $i$.
+
+Cơ chế cập nhật hai bước này cho phép mỗi nút tiến dần đến đồng thuận thông qua
+bước trộn thích nghi, đồng thời tận dụng thông tin gradient toàn cục xấp xỉ
+từ gradient-tracking để cải thiện tốc độ hội tụ trong môi trường phi tập trung.
+
+\subsection{Kết quả kỳ vọng}
+
+Dựa trên cấu trúc thuật toán và phân tích lý thuyết trong Preliminaries, chúng tôi kỳ vọng rằng phương pháp đề xuất sẽ đạt được các kết quả sau, và các kết quả này sẽ được kiểm chứng thông qua thực nghiệm:
+
+\begin{itemize}
+    \item \textbf{Hội tụ nhanh hơn}: nhờ ưu tiên các cập nhật có hướng phù hợp với gradient toàn cục, số vòng huấn luyện cần thiết để đạt hội tụ được kỳ vọng giảm so với D-PSGD và FedAvg.
+    \item \textbf{Ổn định hơn trong môi trường non-IID}: cơ chế đánh giá đóng góp giúp giảm ảnh hưởng tiêu cực của các nút có phân phối dữ liệu lệch.
+    \item \textbf{Phân tán hoàn toàn}: loại bỏ máy chủ trung tâm giúp tránh bottleneck giao tiếp và tăng khả năng mở rộng.
+    \item \textbf{Bảo toàn logic hội tụ}: mối liên hệ giữa đóng góp của nút và tốc độ hội tụ, như đã chỉ ra trong Corollary~1, vẫn được duy trì khi chuyển sang môi trường phân tán.
+\end{itemize}

@@ -159,38 +159,30 @@ class DFedAdp(Aggregator):
             if self.log_dfedadp_params:
                 logger.info(self.addr, f"DFedAdp Round {current_round}, Node {node_id}: Angle={angle:.4f}, Smoothed Angle={smoothed_angle:.4f}, Gompertz f_val={f_val:.4f}, Score={score:.4f}, Local grad norm={l_norm:.4f}")
 
-        # 7. Calculate Adaptive Mixing Matrix (Metropolis + FedAdp)
-        total_score = sum(fedadp_scores)
-        psi = [s / total_score if total_score > 0 else 1.0/len(models) for s in fedadp_scores]
-        
-        unnormalized_mix = [p * w for p, w in zip(psi, weight_metro)]
-        sum_mix = sum(unnormalized_mix)
-        final_mixing_weights = [u / sum_mix if sum_mix > 0 else 1.0/len(models) for u in unnormalized_mix]
-        
         # Log the mixing weights and scores if logging is enabled
         if self.log_dfedadp_params:
             logger.info(self.addr, f"DFedAdp Round {current_round}: FedAdp scores = {fedadp_scores}")
             logger.info(self.addr, f"DFedAdp Round {current_round}: Normalized psi weights = {psi}")
-            logger.info(self.addr, f"DFedAdp Round {current_round}: Final mixing weights = {final_mixing_weights}")
-
-        # 8. Aggregation Step (Consensus)
+            
+        # 8. Consensus step (pure Metropolis, NO adaptive weighting)
         w_half = [np.zeros_like(p, dtype=np.float64) for p in self.global_model_params]
+
         for idx, m in enumerate(models):
-            w = final_mixing_weights[idx]
+            w = weight_metro[idx]   # <-- CHỈ Metropolis
             for i, layer in enumerate(m.get_parameters()):
                 w_half[i] += layer * w
 
-        clip_threshold = 5.0
-        tracking_gradient = [
-            np.clip(tg, -clip_threshold, clip_threshold) 
-            for tg in tracking_gradient
-        ]
+        # 9. Final Update (Adaptive step-size, NOT adaptive mixing)
+        total_score = sum(fedadp_scores)
+        psi = [s / total_score if total_score > 0 else 1.0/len(models) for s in fedadp_scores]
 
-        # 9. Final Update (Apply Gradient Tracking correction)
+        psi_self = psi[0]   # node hiện tại
+
         self.global_model_params = [
-            wh - self.learning_rate * tg
+            wh - self.learning_rate * psi_self * tg
             for wh, tg in zip(w_half, tracking_gradient)
         ]
+
 
         if self.log_dfedadp_params:
             logger.info(self.addr, f"DFedAdp Round {current_round}: Aggregated {len(models)} models.")

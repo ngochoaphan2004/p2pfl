@@ -1,0 +1,6 @@
+# First, filter logs from both experiments
+   python filter_logs.py experiment1.log filtered_output1.csv csv
+   python filter_logs.py experiment2.log filtered_output2.csv csv
+
+# Then compare the results
+    python filter_logs.py compare filtered_output1.csv filtered_output2.csv comparison_plot.png
