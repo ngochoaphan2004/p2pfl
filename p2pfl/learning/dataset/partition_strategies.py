@@ -19,8 +19,9 @@
 
 import random
 from abc import abstractmethod
-
+import math
 import numpy as np
+from typing import List, Tuple, Optional
 import pandas as pd
 from datasets import Dataset  # type: ignore
 
@@ -152,6 +153,83 @@ class LabelSkewedPartitionStrategy(DataPartitionStrategy):
 
         return train_partitions, test_partitions
 
+
+class QualitySkewedPartitionStrategy(DataPartitionStrategy):
+    """Partition the dataset for Quality-Skew scenario to test adaptive weight."""
+
+    @staticmethod
+    def generate_partitions(
+        train_data: Dataset, test_data: Dataset, num_partitions: int, alpha_dirichlet: float = -1, percent_for_partitions: Optional[List[float]] = None,  **kwargs
+    ) -> tuple[list[list[int]], list[list[int]]]:
+        """
+        Generate partitions of the dataset using Quality-Skew.
+
+        Args:
+            train_data: The training Dataset object to partition.
+            test_data: The test Dataset object to partition.
+            num_partitions: The number of partitions to create.
+            **kwargs: Additional keyword arguments that may be required by specific strategies.
+
+        Returns:
+            A tuple containing two lists of lists:
+                - The first list contains lists of indices for the training data partitions.
+                - The second list contains lists of indices for the test data partitions.
+
+        """
+        # check len of percent_for_partitions match with num_partitions
+
+        if alpha_dirichlet > 0:
+            rng = np.random.default_rng(Settings.general.SEED)
+            min_require_size = 1 
+            while True:
+                proportions = rng.dirichlet(alpha=[alpha_dirichlet] * num_partitions).tolist()
+                sizes = [int(p * len(train_data)) for p in proportions]
+                if all(s >= min_require_size for s in sizes):
+                    break
+            
+            final_percent = proportions
+        elif percent_for_partitions is not None:
+            if len(percent_for_partitions) != num_partitions:
+                raise ValueError(
+                    f"Length of percents list ({len(percent_for_partitions)}) "
+                    f"does not match num_partitions ({num_partitions})."
+                )
+            if not math.isclose(sum(percent_for_partitions), 1.0, rel_tol=1e-5):
+                raise ValueError(f"Sum of percents list must equal 1.0, got {sum(percent_for_partitions)}")
+            
+            final_percent = percent_for_partitions
+        else:
+            raise ValueError(f"Require parameter alpha_dirichlet (float) and percent_for_partitions(list)!")
+
+        return (
+            QualitySkewedPartitionStrategy.__partition_data(train_data, num_partitions, final_percent),
+            QualitySkewedPartitionStrategy.__partition_data(test_data, num_partitions, final_percent),
+        )
+
+    @staticmethod
+    def __partition_data(data: Dataset, num_partitions: int, percent_for_partitions: List[float]) -> list[list[int]]:
+        # Shuffle the indices
+        indices = list(range(len(data)))
+        random.Random(Settings.general.SEED).shuffle(indices)
+
+        # Get partition sizes
+        data_size = len(data)
+
+        # Partition the data using list comprehension
+        data_partitions = []
+        current_idx = 0
+
+        for i in range(num_partitions):
+            if i == num_partitions - 1:
+                partition_indices = indices[current_idx:]
+            else:
+                part_len = int(percent_for_partitions[i] * data_size)
+                end_idx = current_idx + part_len
+                partition_indices = indices[current_idx : end_idx]
+                current_idx = end_idx
+            data_partitions.append(partition_indices)
+
+        return data_partitions
 
 class DirichletPartitionStrategy(DataPartitionStrategy):
     """
