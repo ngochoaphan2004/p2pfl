@@ -115,6 +115,7 @@ class LabelSkewedPartitionStrategy(DataPartitionStrategy):
 
     @staticmethod
     def generate_partitions(
+        self,
         train_data: Dataset,
         test_data: Dataset,
         num_partitions: int,
@@ -156,10 +157,38 @@ class LabelSkewedPartitionStrategy(DataPartitionStrategy):
 
 class QualitySkewedPartitionStrategy(DataPartitionStrategy):
     """Partition the dataset for Quality-Skew scenario to test adaptive weight."""
+    @staticmethod   
+    def _apply_proportions(
+        index_list: list[int],
+        proportions: pd.Series,
+        generator: np.random.Generator,
+    ):
+        """
+        Use the proportions to get the list of indexes for each partition.
+
+        Args:
+            index_list: The list of indexes to partition.
+            proportions: The proportions of the Dirichlet distribution.
+            generator: The random number generator to shuffle the indexes.
+
+        """
+        cum_probs = proportions.cumsum()
+        cum_probs.iloc[-1] = 1.0
+        right_sides = (cum_probs * len(index_list)).round().astype(int)
+        
+        generator.shuffle(index_list)
+        return [index_list[: right_sides[0]]] + [index_list[right_sides[i - 1] : right_sides[i]] for i in range(1, len(right_sides))]
 
     @staticmethod
     def generate_partitions(
-        train_data: Dataset, test_data: Dataset, num_partitions: int, alpha_dirichlet: float = -1, percent_for_partitions: Optional[List[float]] = None,  **kwargs
+        train_data: Dataset, 
+        test_data: Dataset, 
+        num_partitions: int, 
+        alpha_label_dirichlet: float,
+        alpha_dirichlet: float = -1, 
+        percent_for_partitions: Optional[List[float]] = None,  
+        label_tag: str = "label",
+        **kwargs
     ) -> tuple[list[list[int]], list[list[int]]]:
         """
         Generate partitions of the dataset using Quality-Skew.
@@ -178,8 +207,8 @@ class QualitySkewedPartitionStrategy(DataPartitionStrategy):
         """
         # check len of percent_for_partitions match with num_partitions
 
+        rng = np.random.default_rng(Settings.general.SEED)
         if alpha_dirichlet > 0:
-            rng = np.random.default_rng(Settings.general.SEED)
             min_require_size = 1 
             while True:
                 proportions = rng.dirichlet(alpha=[alpha_dirichlet] * num_partitions).tolist()
@@ -202,34 +231,47 @@ class QualitySkewedPartitionStrategy(DataPartitionStrategy):
             raise ValueError(f"Require parameter alpha_dirichlet (float) and percent_for_partitions(list)!")
 
         return (
-            QualitySkewedPartitionStrategy.__partition_data(train_data, num_partitions, final_percent),
-            QualitySkewedPartitionStrategy.__partition_data(test_data, num_partitions, final_percent),
+            QualitySkewedPartitionStrategy.__partition_data(train_data, num_partitions, final_percent, label_tag, alpha_label_dirichlet, rng),
+            QualitySkewedPartitionStrategy.__partition_data(test_data, num_partitions, final_percent, label_tag, alpha_label_dirichlet, rng),
         )
 
     @staticmethod
-    def __partition_data(data: Dataset, num_partitions: int, percent_for_partitions: List[float]) -> list[list[int]]:
-        # Shuffle the indices
-        indices = list(range(len(data)))
-        random.Random(Settings.general.SEED).shuffle(indices)
+    def __partition_data(
+            data: Dataset, 
+            num_partitions: int, 
+            percent_for_partitions: List[float],
+            label_tag: str,
+            alpha_label_dirichlet: float,
+            random_generator: np.random.Generator,
+        ) -> list[list[int]]:
+        data_labels = data[label_tag]
+        unique_labels = sorted(list(set(data_labels)))
 
-        # Get partition sizes
-        data_size = len(data)
+        # Combine percent_for_partitions and alpha_label_dirichlet
+        num_classes = len(unique_labels)
+        raw_proportions = random_generator.dirichlet(
+            alpha=[alpha_label_dirichlet] * num_partitions, 
+            size=num_classes
+        ).T
+        percent_array = np.array(percent_for_partitions).reshape(-1, 1)
+        weighted_proportions = raw_proportions * percent_array
+        col_sums = weighted_proportions.sum(axis=0)
+        alpha_vector = weighted_proportions / col_sums
+        df_result = pd.DataFrame(index=range(num_partitions))
+        df_result.index.name = "partition"
 
-        # Partition the data using list comprehension
-        data_partitions = []
-        current_idx = 0
+        for label in unique_labels:
+            proportions = random_generator.dirichlet(alpha_vector)
+            df_result[label] = proportions
 
-        for i in range(num_partitions):
-            if i == num_partitions - 1:
-                partition_indices = indices[current_idx:]
-            else:
-                part_len = int(percent_for_partitions[i] * data_size)
-                end_idx = current_idx + part_len
-                partition_indices = indices[current_idx : end_idx]
-                current_idx = end_idx
-            data_partitions.append(partition_indices)
+        #  Apply proportions of labels into result
+        result: list[list[int]] = [[] for _ in range(num_partitions)]
+        for label in unique_labels:
+            label_index = [idx for idx, lab in enumerate(data[label_tag]) if lab == label]
+            for partition, index_list in enumerate(QualitySkewedPartitionStrategy._apply_proportions(label_index, df_result[label], random_generator)):
+                result[partition].extend(index_list)
 
-        return data_partitions
+        return result
 
 class DirichletPartitionStrategy(DataPartitionStrategy):
     """
